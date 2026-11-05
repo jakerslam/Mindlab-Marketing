@@ -6,7 +6,7 @@ The first website is implemented in `site/` using Astro, TypeScript, Tailwind CS
 
 **Private review:** https://mindlab-solutions-review.jakerslam.chatgpt.site
 
-This owner-private Sites deployment is a review of the website design and content. The production host and connection to mindlab.solutions remain to be finalized. The app and static output are portable to the planned GitHub-backed host.
+This owner-private Sites deployment is a review of the website design and content. A public GitHub Pages preview is configured at https://jakerslam.github.io/Mindlab-Marketing/. The connection to mindlab.solutions and final production approval remain to be finalized. The app and static output are portable to the planned GitHub-backed host.
 
 ## Included
 
@@ -26,7 +26,7 @@ The final source check has zero errors/warnings/hints. The build produces 10 pag
 2. Live Tally form `https://tally.so/r/zEN7DM` is embedded with automatic height. Required name/company/email validation and mobile layout were checked. Accepted submissions, notification recipients and delivery, retry behavior, and the contact inbox remain to be checked. Add a primary-goal question and a `service` hidden field if package interest should be retained in submissions.
 3. Live booking event `https://cal.com/jacob-haslam-zfpxbo/30min` is linked. Its 30-minute duration, America/Denver timezone, and available slots were verified. Site copy now matches the actual event. No booking was created.
 4. Owner review of prices, scope, terms, business details, draft privacy/retention information, and the proposed visual direction.
-5. GitHub source repository: https://github.com/jakerslam/Mindlab-Marketing. Production host and custom-domain deployment remain to be finalized. Set production indexing and correct canonical URLs in that build.
+5. GitHub source repository: https://github.com/jakerslam/Mindlab-Marketing. The public GitHub Pages preview is configured. Custom-domain deployment and final production approval remain to be finalized. Set production indexing and correct canonical URLs in that build.
 
 No inquiry or booking completion is simulated. The call page now shows the real inquiry form and booking link. The authenticated content import is complete and Sanity Studio is deployed. The in-app browser showed the expected Sanity sign-in gate; an authenticated editing session was not exercised there. Insights and verified client case studies remain later work; current samples are visibly fictional.
 

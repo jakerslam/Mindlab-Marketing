@@ -1,6 +1,7 @@
 ---
+import { withBase } from '@/lib/urls';
 import Arrow from './Arrow.astro';
 interface Props { title?: string; description?: string }
 const { title = 'Good marketing starts with a clear conversation.', description = 'Tell us where you are, where you want to go, and what’s getting in the way. We’ll explore whether Mindlab is the right fit.' } = Astro.props;
 ---
-<section class="cta-section section"><div class="container cta-inner"><div><p class="eyebrow">Your next chapter</p><h2>{title}</h2><p>{description}</p></div><a class="button" href="/book-call/" data-track="strategy_call_click" data-location="final-cta">Book a strategy call <Arrow/></a></div></section>
+<section class="cta-section section"><div class="container cta-inner"><div><p class="eyebrow">Your next chapter</p><h2>{title}</h2><p>{description}</p></div><a class="button" href={withBase("/book-call/")} data-track="strategy_call_click" data-location="final-cta">Book a strategy call <Arrow/></a></div></section>

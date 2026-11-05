@@ -2,7 +2,7 @@
 
 An original, static Astro marketing site based on the Mindlab agency guide and website planning workbook. This repository contains the website application at its root and the agency strategy, service guide, and website planning references in `docs/`. The local workspace checkout is the `site/` folder.
 
-Source: **[jakerslam/Mindlab-Marketing](https://github.com/jakerslam/Mindlab-Marketing)** · [Private review](https://mindlab-solutions-review.jakerslam.chatgpt.site/) · [Content editor](https://mindlab-solutions.sanity.studio/)
+Source: **[jakerslam/Mindlab-Marketing](https://github.com/jakerslam/Mindlab-Marketing)** · [GitHub Pages preview](https://jakerslam.github.io/Mindlab-Marketing/) · [Private review](https://mindlab-solutions-review.jakerslam.chatgpt.site/) · [Content editor](https://mindlab-solutions.sanity.studio/)
 
 ![Mindlab homepage](docs/previews/website.jpg)
 
@@ -85,7 +85,7 @@ Allowed site events: `strategy_call_click`, `package_interest`, `booking_link_op
 
 ## Hosting and production release
 
-The output is portable static files. Proposed free host: **Cloudflare Pages**, backed by GitHub. Do not change domain or mail DNS until the production destination is chosen and verified. Existing planning documents discuss GitHub Pages policy suitability; no production host has been selected by this implementation.
+GitHub Pages hosts the public preview at **https://jakerslam.github.io/Mindlab-Marketing/**. The custom-domain production launch is still pending. Earlier planning documents discuss GitHub Pages business-use policy suitability and Cloudflare Pages as an alternative. The output remains portable static files.
 
 For a host connected to this GitHub repository: use the repository root, build command `npm run check && npm run build && npm run verify`, output directory `dist`, and Node `24.22.1`.
 
@@ -100,7 +100,24 @@ npm run verify
 
 Review the generated site, test real inquiry delivery and calendar availability, then connect the custom domain. Ensure the production build allows indexing, generates the correct canonical URLs and sitemap, and uses a CMS publish hook for updates. `SITE_URL` can be supplied as a host environment variable; it defaults to `https://mindlab.solutions`.
 
-The production gate validates configuration, not external service ownership or delivery. Manual provider checks are still required. The private review uses a Sites source repository and deployment. The GitHub source repository is jakerslam/Mindlab-Marketing. The production host, domain connection, and paid resources have not been provisioned. The source and static output remain portable.
+The production gate validates configuration, not external service ownership or delivery. Manual provider checks are still required. The private review uses a Sites source repository and deployment. The GitHub source repository is jakerslam/Mindlab-Marketing. The public Pages preview is configured; the custom domain, final production approval, and paid resources have not been provisioned. The source and static output remain portable.
+
+## GitHub Pages deployment
+
+`.github/workflows/pages.yml` builds and deploys on pushes to `main`. It also supports **Actions → Deploy GitHub Pages → Run workflow**, which rebuilds the current published Sanity content without needing a code change. The workflow uses GitHub's built-in ephemeral token; no personal access token or Sanity write token is required.
+
+Pages is enabled with GitHub Actions as its publishing source. The workflow reads the actual origin and repository base path from `actions/configure-pages`, uses Node from `.nvmrc`, installs the lockfile, checks types, builds from Sanity, verifies the output, and deploys the artifact. Official action releases are pinned to their commit SHAs.
+
+This is a public **preview** with `SITE_STAGE=preview` and noindex metadata. A domain launch still requires the existing content/contact approval gates. CMS publication does not automatically dispatch this workflow yet; use the manual Run workflow action after publishing until a supported publish hook is configured.
+
+For an equivalent local build:
+
+```sh
+SITE_URL=https://jakerslam.github.io SITE_BASE=/Mindlab-Marketing npm run build
+SITE_BASE=/Mindlab-Marketing npm run verify
+```
+
+`SITE_BASE=/` preserves root-domain hosting. The route helper applies the prefix to navigation, form handoff, work links, and the favicon. Sanity, Tally, and the booking calendar remain provider-independent configuration.
 
 ## Dependency maintenance
 

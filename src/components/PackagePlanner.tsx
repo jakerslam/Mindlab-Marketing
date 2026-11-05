@@ -1,3 +1,4 @@
+import { withBase } from '@/lib/urls';
 import { useId, useState } from 'react';
 import type { Package } from '@/domain/content';
 import { formatPrice } from '@/domain/content';
@@ -21,6 +22,6 @@ export default function PackagePlanner({ packages }: { packages: Pick<Package, '
     {hasAds && <div className="planner-media"><label htmlFor={`${uid}-media`}>Illustrative monthly media budget <strong>{formatPrice(media)}</strong></label><input id={`${uid}-media`} type="range" min="1000" max="10000" step="500" value={media} onChange={(event) => setMedia(Number(event.target.value))}/><p>Paid to the ad platform. This estimate is not a recommended budget.</p></div>}
     <p>All amounts in USD. Taxes and separately scoped production or technical work are additional.</p></div>
     <div className="planner-result" aria-live="polite" aria-atomic="true"><span className="eyebrow">{selected === 'brand-blueprint' ? 'Your project estimate' : 'Your first month estimate'}</span><div className="planner-total">{formatPrice(firstMonth)}</div><dl><div><dt>{selected === 'brand-blueprint' ? 'Project fee' : 'Monthly service fee'}</dt><dd>{formatPrice(recurring)}</dd></div>{setup > 0 && <div><dt>One-time setup</dt><dd>{formatPrice(setup)}</dd></div>}{hasAds && <div><dt>Illustrative media budget</dt><dd>{formatPrice(media)}</dd></div>}</dl>{selected !== 'brand-blueprint' && <p>Following months: <strong>{formatPrice(recurring + (hasAds ? media : 0))}</strong>{hasAds ? ' including this media budget.' : ' in service fees.'}</p>}
-    <Button asChild><a href={`/book-call/?service=${selected}`} data-track="package_interest" data-service={selected}>Talk through this option <span aria-hidden="true">↗</span></a></Button></div>
+    <Button asChild><a href={withBase(`/book-call/?service=${selected}`)} data-track="package_interest" data-service={selected}>Talk through this option <span aria-hidden="true">↗</span></a></Button></div>
   </div>;
 }

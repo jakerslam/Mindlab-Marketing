@@ -1,10 +1,11 @@
 ---
+import { withBase } from '@/lib/urls';
 import { integrations } from '@/integrations/config';
 const analytics = integrations.analytics;
 ---
 {analytics && <>
   <div class="consent-banner" id="consent-banner" hidden data-gtm-id={analytics.id}>
-    <div><strong>A small choice about analytics.</strong><p>Optional analytics help us understand how the site is used. We only load them if you agree. <a href="/privacy/">Privacy details</a></p></div>
+    <div><strong>A small choice about analytics.</strong><p>Optional analytics help us understand how the site is used. We only load them if you agree. <a href={withBase("/privacy/")}>Privacy details</a></p></div>
     <div class="consent-actions"><button class="button button-outline button-small" data-consent="denied">Decline</button><button class="button button-small" data-consent="granted">Allow analytics</button></div>
   </div>
   <script>
