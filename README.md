@@ -1,6 +1,22 @@
 # Mindlab Solutions website
 
-An original, static Astro marketing site based on the Mindlab agency guide and website planning workbook. The project lives in `site/` so the strategy documents stay separate from the application.
+An original, static Astro marketing site based on the Mindlab agency guide and website planning workbook. This repository contains the website application at its root and the agency strategy, service guide, and website planning references in `docs/`. The local workspace checkout is the `site/` folder.
+
+Source: **[jakerslam/Mindlab-Marketing](https://github.com/jakerslam/Mindlab-Marketing)** · [Private review](https://mindlab-solutions-review.jakerslam.chatgpt.site/) · [Content editor](https://mindlab-solutions.sanity.studio/)
+
+![Mindlab homepage](docs/previews/website.jpg)
+
+## Planning and references
+
+- [Agency strategy](docs/MINDLAB-STRATEGY.md)
+- [Services, packages, and pricing](docs/MINDLAB-AGENCY-GUIDE.md)
+- [Technology stack](docs/MINDLAB-TECH-STACK.md)
+- [Integration architecture](docs/MINDLAB-INTEGRATION-ARCHITECTURE.md)
+- [Implementation and launch status](docs/MINDLAB-BUILD-STATUS.md)
+- [Website plan and reference websites workbook](<docs/Mindlab Website Plan and References.xlsx>)
+- [Agency guide Word export](<docs/Mindlab Solutions Agency and Service Guide.docx>)
+
+The Word guide and workbook are planning exports. The current Markdown notes, application configuration, and published CMS records describe the latest implementation.
 
 ## Run locally
 
@@ -71,7 +87,7 @@ Allowed site events: `strategy_call_click`, `package_interest`, `booking_link_op
 
 The output is portable static files. Proposed free host: **Cloudflare Pages**, backed by GitHub. Do not change domain or mail DNS until the production destination is chosen and verified. Existing planning documents discuss GitHub Pages policy suitability; no production host has been selected by this implementation.
 
-If this folder becomes the repository root: build command `npm run check && npm run build && npm run verify`; output `dist`; Node `24.22.1`. If the repository includes the parent strategy docs, set the host's root directory to `site`.
+For a host connected to this GitHub repository: use the repository root, build command `npm run check && npm run build && npm run verify`, output directory `dist`, and Node `24.22.1`.
 
 For preview deployments use `SITE_STAGE=preview`. For production set the real provider configuration, `CONTENT_SOURCE=sanity`, `SITE_STAGE=production`, and `LAUNCH_CONTENT_APPROVED=true` **after** the owner reviews prices, scope, terms, sample disclosures, business/contact information, privacy and retention practices, and the original visual direction. Do not flip the flag simply to bypass the gate.
 
@@ -84,7 +100,7 @@ npm run verify
 
 Review the generated site, test real inquiry delivery and calendar availability, then connect the custom domain. Ensure the production build allows indexing, generates the correct canonical URLs and sitemap, and uses a CMS publish hook for updates. `SITE_URL` can be supplied as a host environment variable; it defaults to `https://mindlab.solutions`.
 
-The production gate validates configuration, not external service ownership or delivery. Manual provider checks are still required. The private review uses a Sites source repository and deployment. The final GitHub repository, production host, domain connection, and paid resources have not been provisioned. The source and static output remain portable.
+The production gate validates configuration, not external service ownership or delivery. Manual provider checks are still required. The private review uses a Sites source repository and deployment. The GitHub source repository is jakerslam/Mindlab-Marketing. The production host, domain connection, and paid resources have not been provisioned. The source and static output remain portable.
 
 ## Dependency maintenance
 
