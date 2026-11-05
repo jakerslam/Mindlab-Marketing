@@ -18,9 +18,9 @@ The terminal prints the local preview URL. `npm run check` checks Astro and Type
 
 The local preview includes Home, Services and pricing, Industries, two explicitly fictional sample concepts with detail pages, About, the call page, privacy information, and a 404. It includes a selective React cost calculator and a customized shadcn/ui Button. Content pages render static HTML; no React runtime is needed on the homepage. Fonts are self-hosted. Insights is intentionally deferred until original articles are ready.
 
-**This is a review build, not a live lead-generation site.** A private review deployment can be published through Sites; its identity is in `.openai/hosting.json`. `CONTENT_SOURCE=local` is explicit and `SITE_STAGE=preview` makes pages noindex and disallows crawling. No provider is silently substituted. Missing inquiry and calendar destinations show an honest calls-opening-soon state; no submission is simulated. Production builds require CMS, inquiry, calendar, contact details, and owner-reviewed content.
+**This is a review build, not a live lead-generation site.** A private review deployment can be published through Sites; its identity is in `.openai/hosting.json`. `CONTENT_SOURCE=sanity` is the configured default and `SITE_STAGE=preview` makes pages noindex and disallows crawling. Local draft content is used only when explicitly selected. No provider is silently substituted. Missing inquiry and calendar destinations show an honest calls-opening-soon state; no submission is simulated. Production builds require CMS, inquiry, calendar, contact details, and owner-reviewed content.
 
-The Tally inquiry form and Cal.com 30-minute event are connected through `src/integrations/project.ts`. The live embed and required-field validation were checked, and the calendar reports available slots. The supplied Sanity project (`o19f4dqg`) has a public but empty `production` dataset. Studio and the content adapter target it; the website explicitly uses local content until authenticated import is completed. Inquiry delivery, booking confirmation, the contact inbox, and the final host still need verification.
+The Tally inquiry form and Cal.com 30-minute event are connected through `src/integrations/project.ts`. The live embed and required-field validation were checked, and the calendar reports available slots. Sanity project `o19f4dqg` now contains all 18 imported records in its public `production` dataset. The website builds from published Sanity content, and the authenticated browser editor is deployed at https://mindlab-solutions.sanity.studio/. Inquiry delivery, booking confirmation, the contact inbox, and the final host still need verification.
 
 ## Structure and replaceable integrations
 
@@ -34,16 +34,21 @@ The Tally inquiry form and Cal.com 30-minute event are connected through `src/in
 
 Replacing a provider means implementing its boundary and migrating its records. It does not require redesigning the marketing pages. The current Tally integration is an iframe, not a made-up submission API. Booking is a hosted link and cannot claim confirmed meetings. Inquiry contents are never sent through the site's analytics wrapper. Keep private leads outside the website CMS and repository.
 
-## Connect browser editing
+## Browser editing and publishing
 
-1. The supplied Sanity project is `o19f4dqg`; the public `production` dataset is reachable. Do not put leads or private information in it. Its public configuration is in `src/integrations/project.ts`.
-2. Copy `.env.example` to `.env`. Set `SANITY_PROJECT_ID` and `SANITY_STUDIO_PROJECT_ID` to the real project ID. Set both dataset values to the real dataset name.
-3. Run `npx sanity login`, complete browser authentication, then run `npm run content:import:session`. The supported CLI session passes credentials internally; no token needs to be copied or shared. The importer uses `createIfNotExists` and preserves existing records. Alternatively, use a limited write token in the ignored `.env` and `npm run content:import`, then revoke it. Static website builds need no write token.
-4. Run `npm run studio`, authenticate with Sanity, and allow the local Studio origin in that project's CORS settings as required. Review and publish the imported homepage, package, industry, sample, and FAQ records. The seed importer creates published records, so use it with a new dataset before connecting production.
-5. Set `CONTENT_SOURCE=sanity` and rebuild. Test that changing and publishing a package price updates all its appearances, including combined totals. A missing record, invalid shape, or failed fetch stops the build; no local fallback is used.
-6. For a hosted browser editor, build/deploy the Studio separately through Sanity's supported deployment workflow. Set its actual public origin in CORS. Set up a filtered publish webhook to the selected host's secret deploy hook so published edits trigger a static rebuild.
+Editor: **https://mindlab-solutions.sanity.studio/**. Sign in with an account authorized for project `o19f4dqg`. Sanity manages authentication; opening the editor does not grant someone permission to edit.
 
-The editor covers the introduction, package facts, industry entries, sample narratives, and FAQs. Layouts, artwork templates, and other page copy live in code. Article editing and real case-study evidence models are later extensions. Stable IDs must be preserved. Export the dataset and assets before any CMS migration.
+The `production` dataset contains 18 published seed records: settings, homepage introduction, 3 packages, 6 industries, 2 clearly labeled sample concepts, and 5 FAQs. The import used `createIfNotExists` and never overwrote existing records. The source now explicitly selects Sanity, and an invalid record or unavailable API stops the build.
+
+To edit, open the appropriate content group, change the fields, and publish. Package amounts and setup fees feed the cards, detailed service pages, and combined estimates from the same records. Stable IDs and slugs must be preserved.
+
+**Published CMS changes currently need a website rebuild and redeployment to appear in the private review.** Automatic CMS-triggered rebuilds are not connected yet. Configure a filtered publish webhook and the final production host's protected deploy hook when that host is chosen. The public site is static, so a Sanity Publish action alone does not update already-deployed HTML.
+
+For local editing use `npm run studio`. To update the hosted editor's code or schema, use `npm run studio:deploy`; `sanity.cli.ts` retains the actual deployment app ID. The deployed schema and manifest are registered with Sanity. Hosted Studio access and CORS are handled by Sanity hosting; localhost:3333 remains allowed for local editing.
+
+The importer is available for recovery or a new dataset: `npx sanity login`, then `npm run content:import:session`. It preserves existing records, including edits. The optional token-based importer uses only an ignored environment file; no write token belongs in the repository or public website build.
+
+The editor covers the introduction, package facts, industry entries, sample narratives, and FAQs. Layouts, artwork templates, and other page copy live in code. Article editing and real case-study evidence models are later extensions. Export the dataset and assets before a CMS migration. Keep private leads outside this public dataset.
 
 ## Connect inquiries and scheduling
 

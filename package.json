@@ -13,6 +13,7 @@
     "release:check": "node scripts/check-release.mjs",
     "studio": "sanity dev",
     "studio:build": "sanity build studio-dist",
+    "studio:deploy": "sanity deploy --url mindlab-solutions --no-auto-updates --schema-required",
     "content:import": "node --env-file=.env scripts/import-content.mjs",
     "content:import:session": "sanity exec scripts/import-content.mjs --with-user-token -- --cli-session"
   },
