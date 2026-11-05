@@ -1,0 +1,9 @@
+---
+import type { Project } from '@/domain/content';
+import WorkVisual from './WorkVisual.astro';
+import Arrow from './Arrow.astro';
+interface Props { projects: Project[]; headingLevel?: 2 | 3 }
+const { projects, headingLevel = 3 } = Astro.props;
+const Heading = headingLevel === 2 ? 'h2' : 'h3';
+---
+<div class="work-grid">{projects.map((project) => <article class="work-card"><a href={`/work/${project.slug}/`} class="work-image-link" aria-label={`View sample: ${project.title}`}><WorkVisual visual={project.visual}/></a><div class="work-meta"><span>{project.label}</span><span>{project.audience}</span></div><a class="work-title" href={`/work/${project.slug}/`}><Heading>{project.title}</Heading><Arrow/></a><p>{project.summary}</p></article>)}</div>

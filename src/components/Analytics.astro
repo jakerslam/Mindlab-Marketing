@@ -1,0 +1,48 @@
+---
+import { integrations } from '@/integrations/config';
+const analytics = integrations.analytics;
+---
+{analytics && <>
+  <div class="consent-banner" id="consent-banner" hidden data-gtm-id={analytics.id}>
+    <div><strong>A small choice about analytics.</strong><p>Optional analytics help us understand how the site is used. We only load them if you agree. <a href="/privacy/">Privacy details</a></p></div>
+    <div class="consent-actions"><button class="button button-outline button-small" data-consent="denied">Decline</button><button class="button button-small" data-consent="granted">Allow analytics</button></div>
+  </div>
+  <script>
+    type DataWindow = Window & { dataLayer?: Record<string, unknown>[] };
+    const w = window as DataWindow;
+    const banner = document.getElementById('consent-banner');
+    const key = 'mindlab-analytics-v1';
+    let active = false;
+    let preference: string | null = null;
+    try { preference = localStorage.getItem(key); } catch { /* Storage may be disabled. */ }
+    const load = () => {
+      if (active || !banner?.dataset.gtmId) return;
+      active = true;
+      w.dataLayer = w.dataLayer || [];
+      w.dataLayer.push({ 'gtm.start': Date.now(), event: 'gtm.js' });
+      const script = document.createElement('script');
+      script.async = true;
+      script.src = `https://www.googletagmanager.com/gtm.js?id=${banner.dataset.gtmId}`;
+      document.head.append(script);
+    };
+    if (preference === 'granted') load();
+    if (!preference && banner) banner.hidden = false;
+    document.querySelectorAll<HTMLButtonElement>('[data-consent]').forEach((button) => button.addEventListener('click', () => {
+      const selected = button.dataset.consent!;
+      try { localStorage.setItem(key, selected); } catch { /* Current-page choice still works. */ }
+      if (banner) banner.hidden = true;
+      if (selected === 'granted') { preference = selected; load(); }
+      else { const previouslyActive = active; preference = selected; if (previouslyActive) window.location.reload(); }
+    }));
+    document.querySelector('[data-consent-open]')?.addEventListener('click', () => { if (banner) banner.hidden = false; });
+    // Strict allowlist. Never send form values, query strings, or contact data.
+    document.addEventListener('click', (event) => {
+      if (!active || preference !== 'granted' || !(event.target instanceof Element)) return;
+      const link = event.target.closest<HTMLElement>('[data-track]');
+      if (!link) return;
+      const allowed = ['strategy_call_click', 'package_interest', 'booking_link_opened'];
+      const name = link.dataset.track;
+      if (name && allowed.includes(name)) w.dataLayer?.push({ event: name, location: link.dataset.location || 'page', service: link.dataset.service || 'unspecified' });
+    });
+  </script>
+</>}
