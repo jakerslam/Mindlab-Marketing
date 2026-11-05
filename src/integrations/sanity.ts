@@ -1,9 +1,10 @@
 import { websiteSchema, type WebsiteContent } from '@/domain/content';
+import { projectConfig } from './project';
 
 // All provider record shapes and queries stay inside this adapter.
 export async function getSanityContent(): Promise<WebsiteContent> {
-  const project = import.meta.env.SANITY_PROJECT_ID;
-  const dataset = import.meta.env.SANITY_DATASET || 'production';
+  const project = import.meta.env.SANITY_PROJECT_ID || projectConfig.sanity.projectId;
+  const dataset = import.meta.env.SANITY_DATASET || projectConfig.sanity.dataset;
   if (!project || !/^[a-z0-9]+$/.test(project) || !/^[a-z0-9_-]+$/.test(dataset)) {
     throw new Error('Sanity selected: set a valid SANITY_PROJECT_ID and SANITY_DATASET.');
   }

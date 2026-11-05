@@ -13,7 +13,8 @@
     "release:check": "node scripts/check-release.mjs",
     "studio": "sanity dev",
     "studio:build": "sanity build studio-dist",
-    "content:import": "node --env-file=.env scripts/import-content.mjs"
+    "content:import": "node --env-file=.env scripts/import-content.mjs",
+    "content:import:session": "sanity exec scripts/import-content.mjs --with-user-token -- --cli-session"
   },
   "dependencies": {
     "astro": "7.4.6",
