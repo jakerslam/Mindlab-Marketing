@@ -294,7 +294,7 @@ article[id] {
 	gap: 32px;
 }
 .main-nav > a:not(.button) {
-	font-size: 12px;
+	font-size: 14px;
 	font-weight: 550;
 	position: relative;
 	padding: 12px 0;
@@ -315,6 +315,7 @@ article[id] {
 }
 .main-nav > .button {
 	margin-left: 10px;
+	font-size: 14px;
 }
 .menu-toggle {
 	display: none;
@@ -1361,21 +1362,21 @@ article[id] {
 	flex-direction: column;
 }
 .footer-main p {
-	font-size: 12px;
+	font-size: 14px;
 	color: #a3a2ae;
 	margin: 20px 0 0;
 	line-height: 1.9;
 }
 .footer-label {
 	text-transform: uppercase;
-	font-size: 8px;
+	font-size: 11px;
 	letter-spacing: 0.12em;
 	color: #9f92bc;
 	margin-bottom: 19px;
 	display: block;
 }
 .footer-main > div > a:not(.wordmark) {
-	font-size: 11px;
+	font-size: 14px;
 	color: #d2d0da;
 	margin: 0 0 9px;
 }
@@ -1391,11 +1392,12 @@ article[id] {
 	gap: 20px;
 	border-top: 1px solid #33333c;
 	padding-top: 22px;
-	font-size: 8px;
+	font-size: 12px;
 	color: #92919c;
 }
 .footer-bottom > div {
 	display: flex;
+	flex-wrap: wrap;
 	gap: 25px;
 }
 .footer-bottom a:hover,
@@ -2012,7 +2014,7 @@ article[id] {
 		border-radius: 7px;
 		padding: 8px 12px;
 		background: transparent;
-		font-size: 12px;
+		font-size: 14px;
 		min-height: 44px;
 	}
 	.main-nav {
@@ -2033,7 +2035,7 @@ article[id] {
 		gap: 0;
 	}
 	.main-nav > a:not(.button) {
-		font-size: 15px;
+		font-size: 16px;
 		padding: 12px 0;
 	}
 	.main-nav > .button {
@@ -2246,12 +2248,6 @@ article[id] {
 	}
 	.footer-note p > br {
 		display: none;
-	}
-	.footer-label {
-		font-size: 9px;
-	}
-	.footer-main > div > a:not(.wordmark) {
-		font-size: 12px;
 	}
 	.footer-note .footer-label {
 		margin-bottom: 12px;
@@ -2718,7 +2714,6 @@ article[id] {
 	}
 	.footer-main > div:first-child > p {
 		margin-top: 16px;
-		font-size: 12px;
 	}
 	.footer-main > div:first-child > p > br {
 		display: none;
@@ -2726,14 +2721,10 @@ article[id] {
 	.footer-note {
 		grid-column: 1/-1;
 	}
-	.footer-main > div > a:not(.wordmark) {
-		font-size: 11px;
-	}
 	.footer-bottom {
 		align-items: start;
 		flex-direction: column;
 		gap: 14px;
-		font-size: 8px;
 	}
 	.footer-bottom > div {
 		width: 100%;

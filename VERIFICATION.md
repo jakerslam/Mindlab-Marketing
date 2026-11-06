@@ -26,3 +26,7 @@ The initial artifact-based publication timed out in GitHub's `updating_pages` ph
 Package fees and setup fees were halved in Sanity and the seed content. The full comparison, combined package, and calculator now live at `/pricing/`; Home links to that page and Services focuses on scope. Header, footer, service pricing links, and the booking-page return link point to Pricing. Existing `#packages` anchors on Home and Services remain as short links to the new page.
 
 Astro checked 40 files with zero errors, warnings, or hints. The root-domain build passed 11 pages and 266 URL, asset, and anchor checks. Browser checks confirmed mobile navigation to Pricing, no horizontal overflow at 360px and 861px viewport settings, desktop navigation without logo overlap, calculator totals of $4,750 initially / $4,250 ongoing for Demand Campaigns with $3,000 media, selected-package handoff, and return to Pricing. The homepage has no package price cards, and no browser console errors were recorded in these checks.
+
+## Header and footer typography
+
+Navigation uses 14px text on desktop and 16px in the mobile menu. Footer links and copy use 14px, section labels 11px, and legal text 12px; mobile overrides no longer shrink them. Browser checks at 360px, 861px, and the default desktop viewport confirmed the computed sizes, working menu, no horizontal overflow, and no logo/navigation overlap. Footer line-break spacing remains correct when the mobile layout hides the breaks. The static build and all 266 URL, asset, and anchor checks passed across 11 pages.
