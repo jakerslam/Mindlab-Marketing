@@ -106,7 +106,9 @@ The production gate validates configuration, not external service ownership or d
 
 `.github/workflows/pages.yml` builds and deploys on pushes to `main`. It also supports **Actions → Deploy GitHub Pages → Run workflow**, which rebuilds the current published Sanity content without needing a code change. The workflow uses GitHub's built-in ephemeral token; no personal access token or Sanity write token is required.
 
-Pages is enabled with GitHub Actions as its publishing source. The workflow reads the actual origin and repository base path from `actions/configure-pages`, uses Node from `.nvmrc`, installs the lockfile, checks types, builds from Sanity, verifies the output, and deploys the artifact. Official action releases are pinned to their commit SHAs.
+Pages is configured to publish the root of `codex/pages-static`. The workflow reads the actual origin and repository base path from `actions/configure-pages`, uses Node from `.nvmrc`, installs the lockfile, checks types, builds from Sanity, verifies the output, and updates the static branch. It requests a Pages build with the built-in repository token and waits for the exact publishing commit to finish. Official action releases are pinned to their commit SHAs. The unused Webpack starter workflow is disabled; its file is retained.
+
+**Keep editable code on `main`. Do not merge `codex/pages-static` into `main`; that branch contains only generated files.** An accidental merge was reversed with a normal revert commit so all history and the source were preserved.
 
 This is a public **preview** with `SITE_STAGE=preview` and noindex metadata. A domain launch still requires the existing content/contact approval gates. CMS publication does not automatically dispatch this workflow yet; use the manual Run workflow action after publishing until a supported publish hook is configured.
 
@@ -116,6 +118,8 @@ For an equivalent local build:
 SITE_URL=https://jakerslam.github.io SITE_BASE=/Mindlab-Marketing npm run build
 SITE_BASE=/Mindlab-Marketing npm run verify
 ```
+
+For a custom domain, set the domain in GitHub Pages first, update DNS, and run this workflow again. It will rebuild with the domain root as its base and preserve the GitHub CNAME setting on the publishing branch. See [custom domain setup](docs/CUSTOM-DOMAIN.md).
 
 `SITE_BASE=/` preserves root-domain hosting. The route helper applies the prefix to navigation, form handoff, work links, and the favicon. Sanity, Tally, and the booking calendar remain provider-independent configuration.
 

@@ -21,6 +21,8 @@ jobs:
   build:
     runs-on: ubuntu-latest
     timeout-minutes: 15
+    outputs:
+      page_url: ${{ steps.pages.outputs.base_url }}
     permissions:
       contents: read
       pages: read
@@ -48,9 +50,10 @@ jobs:
         run: |
           npm run build
           npm run verify
-      - name: Upload Pages artifact
-        uses: actions/upload-pages-artifact@fc324d3547104276b827a68afc52ff2a11cc49c9 # v5.0.0
+      - name: Upload static build
+        uses: actions/upload-artifact@cf430e030ddbb5b0abf93d22962f4752f3646cd9 # v7.0.2
         with:
+          name: website-static
           path: dist
 
   deploy:
@@ -58,12 +61,77 @@ jobs:
     runs-on: ubuntu-latest
     timeout-minutes: 12
     permissions:
+      contents: write
       pages: write
-      id-token: write
+      actions: read
     environment:
       name: github-pages
-      url: ${{ steps.deployment.outputs.page_url }}
+      url: ${{ needs.build.outputs.page_url }}
     steps:
-      - name: Deploy to GitHub Pages
-        id: deployment
-        uses: actions/deploy-pages@368f82528645a54fb793d4d04e342629a3f51346 # v5.0.1
+      - name: Check out publishing branch
+        uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+        with:
+          ref: codex/pages-static
+          path: published
+          persist-credentials: false
+      - name: Download static build
+        uses: actions/download-artifact@9000827ccba6bdab643e8b6fd33ac0654aef8333 # v8.0.2
+        with:
+          name: website-static
+          path: dist
+      - name: Publish branch and verify Pages build
+        working-directory: published
+        env:
+          GH_TOKEN: ${{ github.token }}
+          PAGES_EXPECTED_URL: ${{ needs.build.outputs.page_url }}
+        run: |
+          pages_configuration="$(gh api "repos/${GITHUB_REPOSITORY}/pages")"
+          pages_current_url="$(jq -r '.html_url' <<< "$pages_configuration")"
+          if [[ "${pages_current_url%/}" != "${PAGES_EXPECTED_URL%/}" ]]; then
+            echo 'Pages domain changed during the build. Run the workflow again.' >&2
+            exit 1
+          fi
+          rsync --archive --delete --exclude=.git ../dist/ ./
+          touch .nojekyll
+          pages_cname="$(jq -r '.cname // empty' <<< "$pages_configuration")"
+          if [[ -n "$pages_cname" ]]; then
+            printf '%s\n' "$pages_cname" > CNAME
+          fi
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git add --all
+          if ! git diff --cached --quiet; then
+            git commit -m "Publish static site from ${GITHUB_SHA}"
+            git -c credential.helper= -c 'credential.helper=!gh auth git-credential' push origin HEAD:refs/heads/codex/pages-static
+          fi
+          pages_commit="$(git rev-parse HEAD)"
+          if pages_response="$(gh api --method POST "repos/${GITHUB_REPOSITORY}/pages/builds")"; then
+            pages_build_url="$(jq -r '.url' <<< "$pages_response")"
+          elif [[ "$(jq -r '.status // empty' <<< "$pages_response")" == '409' ]]; then
+            pages_build_url="$(gh api "repos/${GITHUB_REPOSITORY}/pages/builds/latest" --jq .url)"
+          else
+            echo 'GitHub rejected the Pages build request.' >&2
+            exit 1
+          fi
+          case "$pages_build_url" in
+            "https://api.github.com/repos/${GITHUB_REPOSITORY}/pages/builds/"*) ;;
+            *) echo 'Unexpected Pages build URL.' >&2; exit 1 ;;
+          esac
+          for pages_attempt in {1..30}; do
+            pages_status="$(gh api "$pages_build_url" --jq .status)"
+            case "$pages_status" in
+              built)
+                pages_built_commit="$(gh api "$pages_build_url" --jq .commit)"
+                [[ "$pages_built_commit" == "$pages_commit" ]] || { echo 'Pages built a different commit.' >&2; exit 1; }
+                echo "GitHub Pages published ${pages_commit}."
+                exit 0
+                ;;
+              errored)
+                gh api "$pages_build_url" --jq '.error.message'
+                exit 1
+                ;;
+            esac
+            sleep 10
+          done
+          echo 'GitHub Pages did not complete publication within five minutes.' >&2
+          exit 1

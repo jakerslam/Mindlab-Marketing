@@ -18,3 +18,5 @@ The browser logged a transient Vite stylesheet-reload failure while dependencies
 ## GitHub Pages verification
 
 Root-domain and `/Mindlab-Marketing` builds each passed all 10 pages and 233 local URL, asset, and anchor checks. Canonical URLs also respect the deployment base. The official Pages workflow YAML parsed successfully. The signed-in GitHub CLI enabled Pages without using a personal token from chat.
+
+The initial artifact-based publication timed out in GitHub's `updating_pages` phase. Branch-based publishing succeeded from `codex/pages-static`; both the normal public URL and a fresh request returned HTTP 200. Browser checks on the live Pages site confirmed service navigation, the $6,500 Demand Campaigns estimate, the prefixed package handoff, the Tally form, and the 30-minute Cal.com link. No browser console errors were reported in those checks. The editable source was restored after a deployment-branch merge using a regular revert commit.
