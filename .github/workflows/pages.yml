@@ -105,15 +105,24 @@ jobs:
             git -c credential.helper= -c 'credential.helper=!gh auth git-credential' push origin HEAD:refs/heads/codex/pages-static
           fi
           pages_commit="$(git rev-parse HEAD)"
-          if ! pages_response="$(gh api --method POST "repos/${GITHUB_REPOSITORY}/pages/builds")"; then
-            if [[ "$(jq -r '.status // empty' <<< "$pages_response")" != '409' ]]; then
-              echo 'GitHub rejected the Pages build request.' >&2
-              exit 1
+          pages_build_url="repos/${GITHUB_REPOSITORY}/pages/builds/latest"
+          pages_existing_build="$(gh api "$pages_build_url")"
+          if [[ "$(jq -r '.commit' <<< "$pages_existing_build")" == "$pages_commit" && "$(jq -r '.status' <<< "$pages_existing_build")" == 'built' ]]; then
+            echo "GitHub Pages already published ${pages_commit}."
+            exit 0
+          fi
+          if [[ "$(jq -r '.commit' <<< "$pages_existing_build")" == "$pages_commit" && "$(jq -r '.status' <<< "$pages_existing_build")" == 'building' ]]; then
+            echo "GitHub Pages is already building ${pages_commit}."
+          else
+            if ! pages_response="$(gh api --method POST "repos/${GITHUB_REPOSITORY}/pages/builds")"; then
+              if [[ "$(jq -r '.status // empty' <<< "$pages_response")" != '409' ]]; then
+                echo 'GitHub rejected the Pages build request.' >&2
+                exit 1
+              fi
             fi
           fi
           # GitHub may return its numeric repository URL. Use our known endpoint.
-          pages_build_url="repos/${GITHUB_REPOSITORY}/pages/builds/latest"
-          for pages_attempt in {1..30}; do
+          for pages_attempt in {1..48}; do
             pages_build="$(gh api "$pages_build_url")"
             pages_status="$(jq -r '.status' <<< "$pages_build")"
             pages_built_commit="$(jq -r '.commit' <<< "$pages_build")"
@@ -134,5 +143,5 @@ jobs:
             esac
             sleep 10
           done
-          echo 'GitHub Pages did not complete publication within five minutes.' >&2
+          echo 'GitHub Pages did not complete publication within eight minutes.' >&2
           exit 1
