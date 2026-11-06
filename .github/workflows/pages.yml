@@ -105,24 +105,24 @@ jobs:
             git -c credential.helper= -c 'credential.helper=!gh auth git-credential' push origin HEAD:refs/heads/codex/pages-static
           fi
           pages_commit="$(git rev-parse HEAD)"
-          if pages_response="$(gh api --method POST "repos/${GITHUB_REPOSITORY}/pages/builds")"; then
-            pages_build_url="$(jq -r '.url' <<< "$pages_response")"
-          elif [[ "$(jq -r '.status // empty' <<< "$pages_response")" == '409' ]]; then
-            pages_build_url="$(gh api "repos/${GITHUB_REPOSITORY}/pages/builds/latest" --jq .url)"
-          else
-            echo 'GitHub rejected the Pages build request.' >&2
-            exit 1
+          if ! pages_response="$(gh api --method POST "repos/${GITHUB_REPOSITORY}/pages/builds")"; then
+            if [[ "$(jq -r '.status // empty' <<< "$pages_response")" != '409' ]]; then
+              echo 'GitHub rejected the Pages build request.' >&2
+              exit 1
+            fi
           fi
-          case "$pages_build_url" in
-            "https://api.github.com/repos/${GITHUB_REPOSITORY}/pages/builds/"*) ;;
-            *) echo 'Unexpected Pages build URL.' >&2; exit 1 ;;
-          esac
+          # GitHub may return its numeric repository URL. Use our known endpoint.
+          pages_build_url="repos/${GITHUB_REPOSITORY}/pages/builds/latest"
           for pages_attempt in {1..30}; do
-            pages_status="$(gh api "$pages_build_url" --jq .status)"
+            pages_build="$(gh api "$pages_build_url")"
+            pages_status="$(jq -r '.status' <<< "$pages_build")"
+            pages_built_commit="$(jq -r '.commit' <<< "$pages_build")"
+            if [[ "$pages_built_commit" != "$pages_commit" ]]; then
+              sleep 10
+              continue
+            fi
             case "$pages_status" in
               built)
-                pages_built_commit="$(gh api "$pages_build_url" --jq .commit)"
-                [[ "$pages_built_commit" == "$pages_commit" ]] || { echo 'Pages built a different commit.' >&2; exit 1; }
                 echo "GitHub Pages published ${pages_commit}."
                 exit 0
                 ;;
