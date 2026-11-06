@@ -256,18 +256,41 @@ article[id] {
 
 /* Navigation */
 .site-header {
+	--header-height: 92px;
+	--header-compact-height: 64px;
+	--header-current-height: var(--header-height);
 	position: sticky;
 	top: 0;
 	z-index: 30;
+	/* Reserve the original height so compacting never moves the page content. */
+	height: var(--header-height);
+	isolation: isolate;
+	pointer-events: none;
+}
+.site-header::before {
+	content: '';
+	position: absolute;
+	inset: 0 0 auto;
+	z-index: -1;
+	height: var(--header-current-height);
 	background: rgba(247, 247, 244, 0.97);
 	border-bottom: 1px solid rgba(222, 222, 226, 0.55);
 	backdrop-filter: blur(12px);
+	transition: height 0.22s ease, box-shadow 0.22s ease;
+}
+.site-header.is-scrolled {
+	--header-current-height: var(--header-compact-height);
+}
+.site-header.is-scrolled::before {
+	box-shadow: 0 4px 16px rgba(20, 21, 26, 0.1);
 }
 .header-inner {
 	display: flex;
 	align-items: center;
 	justify-content: space-between;
-	height: 91px;
+	height: var(--header-current-height);
+	pointer-events: auto;
+	transition: height 0.22s ease;
 }
 .wordmark {
 	display: inline-flex;
@@ -1997,8 +2020,9 @@ article[id] {
 	.container {
 		width: calc(100% - 48px);
 	}
-	.header-inner {
-		height: 76px;
+	.site-header {
+		--header-height: 77px;
+		--header-compact-height: 60px;
 	}
 	.wordmark > span {
 		font-size: 28px;
@@ -2020,13 +2044,14 @@ article[id] {
 	.main-nav {
 		display: none;
 		position: absolute;
-		top: 75px;
+		top: var(--header-current-height);
 		left: 0;
 		width: 100%;
 		background: var(--paper);
 		padding: 18px 24px 24px;
 		border-bottom: 1px solid #d6d0e1;
 		box-shadow: 0 12px 18px #14151a08;
+		transition: top 0.22s ease;
 	}
 	.main-nav.is-open {
 		display: flex;

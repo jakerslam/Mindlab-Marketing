@@ -30,3 +30,7 @@ Astro checked 40 files with zero errors, warnings, or hints. The root-domain bui
 ## Header and footer typography
 
 Navigation uses 14px text on desktop and 16px in the mobile menu. Footer links and copy use 14px, section labels 11px, and legal text 12px; mobile overrides no longer shrink them. Browser checks at 360px, 861px, and the default desktop viewport confirmed the computed sizes, working menu, no horizontal overflow, and no logo/navigation overlap. Footer line-break spacing remains correct when the mobile layout hides the breaks. The static build and all 266 URL, asset, and anchor checks passed across 11 pages.
+
+## Header scroll behavior
+
+After 32px of scrolling, the bar contracts from 92px to 64px on desktop and from 77px to 60px on mobile, with a soft bottom shadow. The header reserves its original space to keep the content position stable. The dropdown follows the current bar height, text sizes stay unchanged, and existing reduced-motion styles disable the transitions. Browser checks covered the scroll state and shadow, return to the top, stable main-content offset, navigation clicks, menu alignment, 44px mobile menu control, and horizontal overflow. Astro/TypeScript checking passed, followed by the final build and all 266 generated URL, asset, and anchor checks.
