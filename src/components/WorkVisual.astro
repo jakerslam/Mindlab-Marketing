@@ -1,0 +1,19 @@
+---
+interface Props { visual: 'northline' | 'daybreak'; compact?: boolean }
+const { visual, compact = false } = Astro.props;
+---
+<div class:list={['work-visual', `visual-${visual}`, { compact }]} aria-hidden="true">
+  {visual === 'northline' ? <>
+    <span class="sample-brand">N / NORTHLINE ADVISORY</span>
+    <div class="northline-art"><span></span><span></span><span></span><span></span><span></span></div>
+    <div class="sample-headline">Clarity for your<br/><em>next chapter.</em></div>
+    <span class="sample-caption">A clearer direction for what comes next.</span>
+    <span class="sample-corner">↗</span>
+  </> : <>
+    <span class="sample-brand">daybreak <span>STUDIO</span></span>
+    <div class="daybreak-art"><span></span><span></span><span></span></div>
+    <div class="sample-headline">A little stronger.<br/><em>Every day.</em></div>
+    <span class="sample-caption">Start where you are. Find your rhythm.</span>
+    <span class="sample-corner">↗</span>
+  </>}
+</div>

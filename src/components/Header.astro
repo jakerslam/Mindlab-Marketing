@@ -1,0 +1,30 @@
+---
+import { withBase } from '@/lib/urls';
+import Mark from './Mark.astro';
+import Arrow from './Arrow.astro';
+const links = [['Services', '/services/'], ['Industries', '/industries/'], ['Our thinking', '/work/'], ['About', '/about/']];
+const path = Astro.url.pathname;
+---
+<header class="site-header">
+  <div class="container header-inner">
+    <a class="wordmark" href={withBase("/")} aria-label="Mindlab Solutions home"><Mark/><span>mindlab<span class="wordmark-dot">.</span></span></a>
+    <button class="menu-toggle" aria-expanded="false" aria-controls="main-nav" type="button"><span>Menu</span><svg width="20" height="20" viewBox="0 0 20 20" fill="none" stroke="currentColor" aria-hidden="true"><path d="M3 6h14M3 13h14"/></svg></button>
+    <nav id="main-nav" class="main-nav" aria-label="Main navigation">
+      {links.map(([name, href]) => <a href={withBase(href)} aria-current={path.startsWith(withBase(href)) ? 'page' : undefined}>{name}</a>)}
+      <a class="button button-small" href={withBase("/book-call/")} data-track="strategy_call_click" data-location="header">Let’s talk <Arrow/></a>
+    </nav>
+  </div>
+</header>
+<script>
+  const toggle = document.querySelector<HTMLButtonElement>('.menu-toggle');
+  const nav = document.querySelector<HTMLElement>('#main-nav');
+  const close = () => { toggle?.setAttribute('aria-expanded', 'false'); nav?.classList.remove('is-open'); };
+  toggle?.addEventListener('click', () => {
+    const open = toggle.getAttribute('aria-expanded') !== 'true';
+    toggle.setAttribute('aria-expanded', String(open));
+    nav?.classList.toggle('is-open', open);
+  });
+  document.addEventListener('keydown', (event) => { if (event.key === 'Escape') { close(); toggle?.focus(); } });
+  nav?.querySelectorAll('a').forEach((link) => link.addEventListener('click', close));
+  window.matchMedia('(min-width: 861px)').addEventListener('change', close);
+</script>

@@ -1,0 +1,11 @@
+node_modules/
+dist/
+.astro/
+.env
+.env.*
+!.env.example
+studio-dist/
+.sanity/
+.sites-runtime/
+*.log
+.DS_Store

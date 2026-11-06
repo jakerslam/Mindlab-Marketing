@@ -1,0 +1,18 @@
+---
+import { withBase } from '@/lib/urls';
+import type { Package } from '@/domain/content';
+import { formatPrice } from '@/domain/content';
+import Arrow from './Arrow.astro';
+interface Props { packages: Package[]; detailed?: boolean }
+const { packages, detailed = false } = Astro.props;
+---
+<div class="package-grid">
+  {packages.map((pkg) => <article class:list={['package-card', { 'package-featured': pkg.id === 'content-studio' }]}>
+    <div class="package-topline"><span class="mono">{pkg.number} /</span><span>{pkg.cadence === 'project' ? 'One-time project' : 'Monthly partnership'}</span></div>
+    <h3>{pkg.name}</h3><p class="package-tagline">{pkg.tagline}</p>
+    <p class="package-price">{formatPrice(pkg.price)}<span> / {pkg.cadence}</span></p>
+    <p class="setup-line">{pkg.setup ? `+ ${formatPrice(pkg.setup)} one-time ${pkg.id === 'content-studio' ? 'onboarding' : 'launch'}` : 'No additional setup fee'}{pkg.id === 'demand-campaigns' && <><br/>Advertising spend is additional.</>}</p>
+    <ul class="check-list">{(detailed ? pkg.deliverables : pkg.deliverables.slice(0, 4)).map((item) => <li>{item}</li>)}</ul>
+    <a class="button button-outline" href={withBase(detailed ? `/book-call/?service=${pkg.id}` : `/services/#${pkg.id}`)} data-track="package_interest" data-service={pkg.id}>{detailed ? 'Talk about this package' : 'Explore the package'}<Arrow/></a>
+  </article>)}
+</div>

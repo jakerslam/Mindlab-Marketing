@@ -1,0 +1,16 @@
+---
+import { withBase } from '@/lib/urls';
+import Mark from './Mark.astro';
+import { integrations } from '@/integrations/config';
+---
+<footer class="site-footer">
+  <div class="container">
+    <div class="footer-main">
+      <div><a class="wordmark" href={withBase("/")}><Mark/><span>mindlab.</span></a><p>Clear thinking.<br/>Connected marketing.</p></div>
+      <div><span class="footer-label">Explore</span><a href={withBase("/services/")}>Our services</a><a href={withBase("/services/#packages")}>Packages & pricing</a><a href={withBase("/industries/")}>Who we help</a></div>
+      <div><span class="footer-label">Meet Mindlab</span><a href={withBase("/work/")}>Our thinking</a><a href={withBase("/about/")}>Our approach</a><a href={withBase("/book-call/")}>Let’s talk</a></div>
+      <div class="footer-note"><span class="footer-label">A good place to start</span><p>One business. One clear next step.<br/>Let’s work out yours.</p>{integrations.contactEmail && <a href={`mailto:${integrations.contactEmail}`}>{integrations.contactEmail}</a>}</div>
+    </div>
+    <div class="footer-bottom"><span>© {new Date().getFullYear()} Mindlab Solutions</span><div><a href={withBase("/privacy/")}>Privacy</a>{integrations.analytics && <button class="text-button" type="button" data-consent-open>Cookie preferences</button>}<span>Built with intention.</span></div></div>
+  </div>
+</footer>
