@@ -128,7 +128,8 @@ jobs:
                 ;;
               errored)
                 gh api "$pages_build_url" --jq '.error.message'
-                exit 1
+                # GitHub may cancel a build in favor of a newer one for this commit.
+                # Continue the bounded poll while the latest build catches up.
                 ;;
             esac
             sleep 10
