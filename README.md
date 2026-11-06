@@ -114,6 +114,8 @@ Pages is configured to publish the root of `codex/pages-static`. The workflow re
 
 **Keep editable code on `main`. Do not merge `codex/pages-static` into `main`; that branch contains only generated files.** An accidental merge was reversed with a normal revert commit so all history and the source were preserved.
 
+GitHub's native Pages workflow owns the `github-pages` deployment environment. The helper workflow builds, pushes, and checks publication without creating a second environment deployment record.
+
 This is a public **preview** with `SITE_STAGE=preview` and noindex metadata. A domain launch still requires the existing content/contact approval gates. CMS publication does not automatically dispatch this workflow yet; use the manual Run workflow action after publishing until a supported publish hook is configured.
 
 For an equivalent local build:
