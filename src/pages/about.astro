@@ -5,6 +5,18 @@ import Arrow from '@/components/Arrow.astro';
 import { withBase } from '@/lib/urls';
 import { getContent } from '@/content';
 const { projects, guides } = await getContent();
+const teamMembers = [
+  {
+    name: 'Jay Haslam',
+    focus: 'B2C businesses',
+    biography: 'Jay has sales and marketing experience across 18 industries and a Nanodegree in digital marketing. He is also a software engineer, well versed in business automation, and specializes in B2C businesses.',
+  },
+  {
+    name: 'Daiana Costa',
+    focus: 'B2B services & finance',
+    biography: 'Daiana has a diverse background in sales and marketing, with a specialization in B2B service companies and the financial industry.',
+  },
+];
 const disciplines = [
   ['01', 'Strategy', 'Choose what to say.', 'Positioning, message hierarchy, voice, and a plan for the next 90 days.', 'brand-blueprint'],
   ['02', 'Content', 'Make the message useful.', 'Expert-led written content built around the questions your customers ask.', 'content-studio'],
@@ -19,8 +31,17 @@ const briefQuestions = [
   ['The review', 'What will we measure, and who will act on it?'],
 ];
 ---
-<Layout title="About Mindlab: our approach & thinking" description="Meet Mindlab’s approach to brand strategy, content, and campaigns. Explore sample work, practical guides, and how we work together.">
+<Layout title="About Mindlab: our people, approach & thinking" description="Meet Jay Haslam and Daiana Costa, and explore Mindlab’s approach to brand strategy, content, and campaigns for B2B and B2C businesses.">
   <section class="page-hero container firm-hero"><p class="eyebrow">About Mindlab</p><h1>One direction.<br/>From plan to campaign.</h1><div class="firm-introduction"><p class="lede">Mindlab brings brand strategy, written content, and paid advertising together around your business goals.</p><p>For B2B and B2C businesses, the starting point is the same: understand the offer, the audience, and the decision the marketing needs to support. Then give each piece of work a defined role.</p></div></section>
+  <section class="section team-section" id="who-we-are" aria-labelledby="team-heading">
+    <div class="container">
+      <div class="section-heading"><div><p class="eyebrow">The people behind Mindlab</p><h2 id="team-heading">Who we are.</h2></div><p>Sales, marketing, and technical experience across business and consumer markets.</p></div>
+      <div class="team-grid">{teamMembers.map((member) => <article class="team-profile">
+        <div class="team-portrait" aria-hidden="true"><svg viewBox="0 0 320 400" fill="currentColor" focusable="false"><circle cx="160" cy="132" r="52"/><path d="M48 400v-72a112 112 0 0 1 224 0v72Z"/></svg></div>
+        <div class="team-biography"><h3>{member.name}</h3><p class="team-focus">{member.focus}</p><p>{member.biography}</p></div>
+      </article>)}</div>
+    </div>
+  </section>
   <section class="section firm-disciplines"><div class="container"><div class="section-heading"><div><p class="eyebrow">Three connected disciplines</p><h2>A shared brief.<br/>Work with a purpose.</h2></div><p>Each service can stand on its own. When they work together, the positioning guides the writing and the offer guides the campaign.</p></div><div class="discipline-grid">{disciplines.map(([number, name, title, description, id]) => <article><span class="mono">{number} / {name}</span><h3>{title}</h3><p>{description}</p><a class="text-link" href={withBase(`/services/#${id}`)}>Explore {name.toLowerCase()}<Arrow/></a></article>)}</div></div></section>
   <section class="section about-thinking" id="our-thinking"><div class="container">
     <div class="section-heading"><div><p class="eyebrow">Our thinking</p><h2>The approach,<br/>put into practice.</h2></div><p>Explore the writing and decisions behind two original demonstrations, or start with a practical guide.</p></div>

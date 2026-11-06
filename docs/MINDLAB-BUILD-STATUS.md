@@ -10,7 +10,7 @@ This owner-private Sites deployment is a review of the website design and conten
 
 ## Included
 
-- Home, Services, dedicated Pricing, Who we help overview, separate B2B and B2C pages, About with condensed Our thinking, two expanded fictional demonstrations, three original practical guides, call page, draft privacy information, and 404.
+- Home, Services, dedicated Pricing, Who we help overview, separate B2B and B2C pages, About with Jay Haslam and Daiana Costa profiles and condensed Our thinking, two expanded fictional demonstrations, three original practical guides, call page, draft privacy information, and 404.
 - Shared validated package data, clear setup and media fees, and a working first-month calculator.
 - Responsive navigation, accessible FAQ disclosures, focus states, reduced-motion support, local fonts, metadata, sitemap, and preview noindex behavior.
 - Provider boundaries for content, inquiries, scheduling, and optional consent-gated analytics.
@@ -26,7 +26,7 @@ The current build checks 49 Astro/TypeScript files with zero errors/warnings/hin
 2. Live Tally form `https://tally.so/r/zEN7DM` is embedded with automatic height. Required name/company/email validation and mobile layout were checked. Accepted submissions, notification recipients and delivery, retry behavior, and the contact inbox remain to be checked. Add a primary-goal question and a `service` hidden field if package interest should be retained in submissions.
 3. Live booking event `https://cal.com/jacob-haslam-zfpxbo/30min` is linked. Its 30-minute duration, America/Denver timezone, and available slots were verified. Site copy now matches the actual event. No booking was created.
 4. Owner review of prices, scope, terms, business details, draft privacy/retention information, and the proposed visual direction.
-5. GitHub source repository: https://github.com/jakerslam/Mindlab-Marketing. GitHub Pages serves https://mindlab.solutions/ with HTTPS. The owner deferred personal profiles and public contact details during this pass. Final production approval and indexing remain to be completed through the existing launch gate.
+5. GitHub source repository: https://github.com/jakerslam/Mindlab-Marketing. GitHub Pages serves https://mindlab.solutions/ with HTTPS. The owner approved Jay Haslam and Daiana Costa profiles using the supplied biographies and silhouette placeholders. Public contact details remain deferred. Final production approval and indexing remain to be completed through the existing launch gate.
 
 No inquiry or booking completion is simulated. The call page shows the real inquiry form and booking link. Sanity Studio is deployed; an authenticated editing session was not exercised in this pass. Original guides are now available. Verified client case studies remain later work; current demonstrations are visibly fictional.
 
