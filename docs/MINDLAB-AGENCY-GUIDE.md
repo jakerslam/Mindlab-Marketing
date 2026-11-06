@@ -67,10 +67,10 @@ All prices are in USD. The following prices define the proposed launch offer. A 
 
 | Package | Service fee | One time setup | Primary purpose |
 | --- | --- | --- | --- |
-| Brand Blueprint | $2,500 per project | Included | Clarify the audience, position, message, and marketing plan |
-| Content Studio | $2,000 per month | $500 | Develop consistent written content around an agreed offer |
-| Demand Campaigns | $2,500 per month | $1,000 | Manage a focused paid advertising program |
-| Content and Campaigns | $4,500 per month | $1,500 | Combine the full Content Studio and Demand Campaigns scopes |
+| Brand Blueprint | $1,250 per project | Included | Clarify the audience, position, message, and marketing plan |
+| Content Studio | $1,000 per month | $250 | Develop consistent written content around an agreed offer |
+| Demand Campaigns | $1,250 per month | $500 | Manage a focused paid advertising program |
+| Content and Campaigns | $2,250 per month | $750 | Combine the full Content Studio and Demand Campaigns scopes |
 
 Content and Campaigns combines the two existing retainers at their standard prices, with one coordinated monthly review. Brand Blueprint can be added as a separate project when positioning needs to be established first.
 
@@ -86,17 +86,17 @@ Clients may start directly with content or advertising when their positioning an
 
 ## Budget examples
 
-Content Studio costs **$2,500 in the first month**, including onboarding, then **$2,000 per month** for the defined scope.
+Content Studio costs **$1,250 in the first month**, including onboarding, then **$1,000 per month** for the defined scope.
 
-Demand Campaigns costs **$3,500 in the first month**, including launch, plus media. With an illustrative $3,000 monthly media budget, the first month totals **$6,500**, followed by **$5,500 per month**. This example demonstrates the cost structure; the appropriate media budget depends on the campaign.
+Demand Campaigns costs **$1,750 in the first month**, including launch, plus media. With an illustrative $3,000 monthly media budget, the first month totals **$4,750**, followed by **$4,250 per month**. This example demonstrates the cost structure; the appropriate media budget depends on the campaign.
 
-Content and Campaigns costs **$6,000 in the first month**, including both setup fees, plus media and any separately scoped work.
+Content and Campaigns costs **$3,000 in the first month**, including both setup fees, plus media and any separately scoped work.
 
 <!-- PAGE -->
 
 ## Brand Blueprint
 
-**Proposed fee:** $2,500 per project. **Typical delivery:** two to three weeks after required inputs and stakeholder interviews are complete.
+**Proposed fee:** $1,250 per project. **Typical delivery:** two to three weeks after required inputs and stakeholder interviews are complete.
 
 This engagement establishes how a business should describe its value, whom it should prioritize, and how its marketing should support its commercial goals.
 
@@ -133,7 +133,7 @@ The client can use the Blueprint independently or commission Content Studio or D
 
 ## Content Studio
 
-**Proposed fee:** $2,000 per month, plus $500 onboarding. **Recommended initial engagement:** 90 days.
+**Proposed fee:** $1,000 per month, plus $250 onboarding. **Recommended initial engagement:** 90 days.
 
 This package turns the client's expertise, customer insight, and offer into a consistent body of written content. The monthly plan connects each piece to a defined audience and purpose.
 
@@ -166,7 +166,7 @@ One post means one written piece for the agreed channel. Adaptations for another
 
 ## Demand Campaigns
 
-**Proposed fee:** $2,500 per month, plus $1,000 launch. **Advertising spend:** additional. **Recommended initial engagement:** 90 days.
+**Proposed fee:** $1,250 per month, plus $500 launch. **Advertising spend:** additional. **Recommended initial engagement:** 90 days.
 
 This package plans and manages paid campaigns around one defined product or service offer and an agreed conversion goal. The platform is selected according to the audience, offer, budget, required assets, and Mindlab's delivery capabilities.
 

@@ -43,9 +43,9 @@ Present three separate buying options. Recommend the one that addresses the buye
 
 | Offer | Proposed price | Defined scope | Buyer trigger |
 | --- | --- | --- | --- |
-| **Brand Blueprint** | **$2,500 once** | Up to two stakeholder interviews; review of three competitors; one priority buyer profile; positioning and value proposition; message hierarchy; brand voice guidance; three content themes; a 90-day marketing plan; one presentation and two consolidated revision rounds | The business struggles to explain its difference or market a priority offer |
-| **Content Studio** | **$2,000/month + $500 onboarding** | One 45-minute source interview monthly; eight written social posts for one agreed profile or page; one article of up to 1,200 words or one email of up to 800 words; monthly calendar; two consolidated revision rounds; performance review and one monthly call | The business needs consistent, useful content to support its offer |
-| **Demand Campaigns** | **$2,500/month + $1,000 launch** | One ad platform, one product/service offer, one agreed market, up to three active campaigns and $10,000 monthly media spend under management; campaign setup; up to four new text/copy variants monthly; landing-page message brief; weekly optimization; reporting against the agreed conversion goal and one monthly call | The business has a validated offer and wants to test paid acquisition |
+| **Brand Blueprint** | **$1,250 once** | Up to two stakeholder interviews; review of three competitors; one priority buyer profile; positioning and value proposition; message hierarchy; brand voice guidance; three content themes; a 90-day marketing plan; one presentation and two consolidated revision rounds | The business struggles to explain its difference or market a priority offer |
+| **Content Studio** | **$1,000/month + $250 onboarding** | One 45-minute source interview monthly; eight written social posts for one agreed profile or page; one article of up to 1,200 words or one email of up to 800 words; monthly calendar; two consolidated revision rounds; performance review and one monthly call | The business needs consistent, useful content to support its offer |
+| **Demand Campaigns** | **$1,250/month + $500 launch** | One ad platform, one product/service offer, one agreed market, up to three active campaigns and $10,000 monthly media spend under management; campaign setup; up to four new text/copy variants monthly; landing-page message brief; weekly optimization; reporting against the agreed conversion goal and one monthly call | The business has a validated offer and wants to test paid acquisition |
 
 Brand Blueprint is a strategy and messaging engagement. Logo creation, visual identity design, original photography, and website implementation require separate scopes. Proposed delivery time: two to three weeks after interviews and required inputs, subject to actual capacity.
 
@@ -82,14 +82,14 @@ Use an internal cost for founder time as well as contractor and client-specific 
 
 Illustrative Content Studio writing-only model:
 
-- Monthly revenue: $2,000.
+- Monthly revenue: $1,000.
 - Delivery assumption: 16 hours at an internal cost of $50/hour = $800.
 - Absorbed client-specific tools/other direct costs: $100.
-- Gross profit: $1,100, or 55%.
+- Gross profit: $100, or 10%.
 
 Those hours and costs are assumptions. Measure interviews, research, writing, revisions, coordination, and reporting. Reduce scope or adjust the price if actual costs exceed the model.
 
-Two content clients and two campaign clients would produce $9,000 monthly recurring revenue. Assuming 16 delivery hours per content client and 18 per campaign client, that requires 68 monthly delivery hours, plus onboarding, coordination between services, sales, and administration. Confirm available capacity before committing.
+Two content clients and two campaign clients would produce $4,500 monthly recurring revenue. Assuming 16 delivery hours per content client and 18 per campaign client, that requires 68 monthly delivery hours, plus onboarding, coordination between services, sales, and administration. Confirm available capacity before committing.
 
 For a client's paid acquisition economics, include agency fees, media, setup, and other marketing costs over the relevant buying period. Compare them with contribution profit from incremental customers. For lead-based businesses, use actual close rates and buying cycles to estimate required opportunity volume. For purchase-based businesses, account for fulfillment costs, discounts, refunds, and any repeat-purchase assumptions. State assumptions explicitly.
 
