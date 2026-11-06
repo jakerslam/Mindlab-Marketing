@@ -1,0 +1,78 @@
+/* Audience pages share the core services, with content specific to the buyer. */
+.audience-overview-hero { padding-bottom: 35px; }
+.audience-overview { padding-top: 10px; padding-bottom: 60px; }
+.audience-overview-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 30px; }
+.audience-overview-panel { background: #e4eae3; padding: 40px; border-radius: 8px; }
+.audience-overview-panel.overview-b2c { background: #f1dfd3; }
+.audience-overview-panel h2 { font-size: clamp(29px, 3vw, 40px); max-width: 460px; }
+.audience-overview-panel > p:not(.eyebrow) { font-size: 16px; margin: 22px 0 12px; max-width: 450px; }
+.audience-overview-panel > ul { list-style: none; padding: 22px 0 0; margin: 24px 0 0; border-top: 1px solid #bec7bc; }
+.overview-b2c > ul { border-color: #d0bcae; }
+.audience-overview-panel li a { display: flex; justify-content: space-between; align-items: center; gap: 20px; min-height: 44px; padding: 8px 0; font-size: 14px; }
+.audience-overview-panel li a:hover { color: var(--violet); }
+.audience-overview-next { padding-top: 20px; padding-bottom: 70px; }
+.audience-overview-next h2 { font-size: 35px; }
+.audience-landing-hero { display: grid; grid-template-columns: minmax(0,1.35fr) minmax(0,.75fr); gap: 65px; align-items: center; padding-bottom: 65px; }
+.audience-landing-hero h1 { font-size: clamp(40px, 4.4vw, 60px); }
+.audience-landing-hero .lede { font-size: 17px; max-width: 650px; }
+.audience-landing-hero .hero-actions { margin-top: 25px; gap: 18px 26px; }
+.audience-landing-hero .hero-actions :is(.button,.text-link) { font-size: 13px; }
+.buyer-question { padding: 34px; background: #e4eae3; border-radius: 8px; }
+.audience-b2c .buyer-question { background: #f1dfd3; }
+.buyer-question .eyebrow { font-size: 10px; margin-bottom: 26px; }
+.buyer-question .buyer-question-quote { font-family: var(--heading); font-size: 30px; letter-spacing: -.035em; font-weight: 600; line-height: 1.35; color: var(--ink); margin-bottom: 24px; }
+.buyer-question > p:not(.eyebrow):not(.buyer-question-quote) { font-size: 14px; }
+.buyer-question > span { display: block; border-top: 1px solid #b9c7b9; padding-top: 20px; font-size: 11px; letter-spacing: .035em; }
+.audience-b2c .buyer-question > span { border-color: #cfb9a9; }
+.audience-priorities { padding-block: 70px; border-top: 1px solid var(--line); }
+.audience-priority-grid { display: grid; grid-template-columns: repeat(3,minmax(0,1fr)); gap: 40px; }
+.audience-priority-grid article { border-top: 1px solid var(--line); padding-top: 22px; }
+.audience-priority-grid .mono { color: var(--violet); }
+.audience-priority-grid h3 { font-size: 26px; margin-top: 20px; margin-bottom: 18px; }
+.audience-priority-grid p { font-size: 15px; margin: 0; }
+.audience-sample-section { background: #efefeb; padding-block: 70px; }
+.audience-sample { display: grid; grid-template-columns: minmax(0,.85fr) minmax(0,1.15fr); gap: 70px; align-items: center; }
+.audience-sample h2 { font-size: clamp(30px,3.3vw,44px); margin-bottom: 22px; }
+.audience-sample > div > p:not(.eyebrow) { font-size: 16px; }
+.audience-sample > div > p.audience-sample-note { font-size: 12px; }
+.audience-sample .text-link { margin-top: 8px; }
+.audience-service-list article { display: grid; grid-template-columns: minmax(0,.7fr) minmax(0,1fr) 115px; gap: 45px; align-items: start; border-top: 1px solid var(--line); padding: 30px 0; }
+.audience-service-list h3 { font-size: 26px; }
+.audience-service-list article > div:first-child > p { font-size: 13px; margin: 12px 0 0; }
+.audience-service-list article > p { font-size: 15px; margin: 0; }
+.audience-service-list .text-link { font-size: 13px; gap: 12px; padding-top: 0; min-height: 35px; }
+.audience-pricing-link { display: block; font-size: 12px; color: var(--violet); min-height: 44px; padding-top: 12px; }
+.audience-guides { padding-block: 70px; }
+.audience-switch { display: flex; align-items: center; flex-wrap: wrap; gap: 12px 28px; padding-bottom: 50px; }
+.audience-switch > span { font-size: 14px; color: var(--muted); }
+
+@media (max-width: 1000px) {
+  .audience-landing-hero { gap: 35px; grid-template-columns: minmax(0,1.2fr) minmax(0,.8fr); }
+  .buyer-question { padding: 28px; }
+  .buyer-question .buyer-question-quote { font-size: 26px; }
+  .audience-overview-panel { padding: 30px; }
+  .audience-priority-grid { gap: 28px; }
+  .audience-sample { gap: 35px; }
+  .audience-service-list article { grid-template-columns: minmax(0,.7fr) minmax(0,1fr); gap: 25px; }
+  .audience-service-list article > div:last-child { grid-column: 2; display: flex; align-items: center; flex-wrap: wrap; gap: 12px 24px; }
+  .audience-pricing-link { padding-top: 0; display: inline-flex; align-items: center; }
+}
+@media (max-width: 720px) {
+  .audience-overview-grid, .audience-landing-hero, .audience-priority-grid, .audience-sample { grid-template-columns: 1fr; }
+  .audience-overview-panel { padding: 30px; }
+  .audience-overview-panel h2 { font-size: 32px; }
+  .audience-overview-panel > p:not(.eyebrow) { font-size: 15px; }
+  .audience-landing-hero { gap: 32px; padding-bottom: 45px; }
+  .audience-landing-hero .lede { font-size: 16px; }
+  .buyer-question { max-width: 520px; }
+  .buyer-question .buyer-question-quote { font-size: 28px; }
+  .audience-priorities, .audience-sample-section, .audience-guides { padding-block: 55px; }
+  .audience-priority-grid h3 { font-size: 26px; margin-top: 14px; }
+  .audience-sample { gap: 30px; }
+  .audience-sample h2 { font-size: 34px; }
+  .audience-service-list article { grid-template-columns: 1fr; gap: 18px; }
+  .audience-service-list article > div:last-child { grid-column: auto; }
+}
+@media (max-width: 400px) {
+  .audience-overview-panel, .buyer-question { padding: 24px; }
+}

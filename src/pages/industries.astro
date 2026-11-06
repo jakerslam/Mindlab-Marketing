@@ -4,14 +4,27 @@ import Layout from '@/layouts/Layout.astro';
 import CTA from '@/components/CTA.astro';
 import Arrow from '@/components/Arrow.astro';
 import { getContent } from '@/content';
-const { industries, projects } = await getContent();
+const { industries } = await getContent();
 const audiences = [
-  { id: 'b2b', label: 'Business to business', title: 'Make complex value clear.', description: 'Help buyers understand your expertise, weigh their options, and see why your offer fits. Useful content and focused campaigns start with a well-defined buyer.' },
-  { id: 'b2c', label: 'Business to consumer', title: 'Connect the offer to everyday life.', description: 'Give people a reason to care and a clear next step. Bring the customer’s need, the message, and the campaign into the same conversation.' },
+  { id: 'b2b', label: 'Business to business', title: 'Help buyers understand your expertise.', description: 'Position a complex offer, turn expert knowledge into useful content, and support suitable business inquiries.' },
+  { id: 'b2c', label: 'Business to consumer', title: 'Connect an offer to a customer’s next step.', description: 'Explain the experience, answer practical questions, and build a focused route to a booking, inquiry, or purchase.' },
 ];
+const legacyDestinations = Object.fromEntries([
+  ...audiences.map((audience) => [audience.id, withBase(`/industries/${audience.id}/`)]),
+  ...industries.map((industry) => [industry.id, withBase(`/industries/${industry.audience}/#${industry.id}`)]),
+]);
 ---
-<Layout title="Marketing for B2B & B2C businesses" description="Brand strategy, content, and campaign applications for professional services, IT, recruiting, home services, lifestyle, and consumer businesses.">
-  <section class="page-hero container"><p class="eyebrow">Who we help</p><h1>Your audience.<br/>Our starting point.</h1><p class="lede">A business buyer and a local customer make different decisions. We shape the message around the people you want to reach, using the same three core services.</p><div class="anchor-nav"><a href="#b2b">B2B businesses<span>↘</span></a><a href="#b2c">B2C businesses<span>↘</span></a></div><p class="section-note">These are areas of service focus and examples of application, rather than claims of past client experience.</p></section>
-  {audiences.map((audience) => <section class:list={['section', { tinted: audience.id === 'b2c' }]} id={audience.id}><div class="container"><div class="section-heading"><div><p class="eyebrow">{audience.label}</p><h2>{audience.title}</h2></div><p>{audience.description}</p></div><div class="industry-details">{industries.filter((industry) => industry.audience === audience.id).map((industry) => <article id={industry.id}><div><h3>{industry.name}</h3><span>{industry.examples}</span></div><div><p class="industry-challenge">{industry.challenge}</p><p>{industry.approach}</p><p class="industry-action"><span>Possible next step</span>{industry.action}</p></div><a class="round-arrow" href={withBase("/book-call/")} aria-label={`Discuss marketing for ${industry.name}`}><Arrow/></a></article>)}</div>{projects.filter((project) => audience.id === 'b2b' ? project.visual === 'northline' : project.visual === 'daybreak').map((project) => <aside class="industry-example"><div><p class="eyebrow">See the approach / sample concept</p><h3>{project.title}</h3><p>{project.summary}</p></div><a class="text-link" href={withBase(`/work/${project.slug}/`)}>Explore the example<Arrow/></a></aside>)}</div></section>)}
-  <CTA title="Let’s put your business in the picture."/>
+<Layout title="Who we help: B2B & B2C businesses" description="Explore Mindlab’s brand strategy, written content, and paid campaign approach for business buyers and consumer audiences.">
+  <section class="page-hero container audience-overview-hero"><p class="eyebrow">Who we help</p><h1>Start with the people<br/>you want to reach.</h1><p class="lede">Business buyers and everyday customers need different reasons to act. Explore how the same three services apply to each audience.</p></section>
+  <section class="section audience-overview"><div class="container audience-overview-grid">{audiences.map((audience) => <article class:list={['audience-overview-panel', `overview-${audience.id}`]} id={audience.id}><p class="eyebrow">{audience.label}</p><h2>{audience.title}</h2><p>{audience.description}</p><a class="text-link" href={withBase(`/industries/${audience.id}/`)}>Explore {audience.id.toUpperCase()} marketing<Arrow/></a><ul>{industries.filter((industry) => industry.audience === audience.id).map((industry) => <li id={industry.id}><a href={withBase(`/industries/${industry.audience}/#${industry.id}`)}>{industry.name}<span aria-hidden="true">↗</span></a></li>)}</ul></article>)}</div></section>
+  <section class="section audience-overview-next"><div class="container cta-inner"><div><p class="eyebrow">The same core services</p><h2>Strategy. Content. Campaigns.</h2><p>Choose a focused project or ongoing support. Every engagement starts with an agreed scope and the same published package fees.</p></div><a class="button button-outline" href={withBase('/pricing/')}>Compare packages & pricing<Arrow/></a></div></section>
+  <CTA title="Let’s put your business in the picture." description="Tell us who you want to reach, what you offer, and the next step you want your marketing to support."/>
 </Layout>
+<script define:vars={{ legacyDestinations }}>
+  const followLegacyAnchor = () => {
+    const key = location.hash.slice(1);
+    if (Object.hasOwn(legacyDestinations, key)) location.replace(legacyDestinations[key]);
+  };
+  followLegacyAnchor();
+  window.addEventListener('hashchange', followLegacyAnchor);
+</script>

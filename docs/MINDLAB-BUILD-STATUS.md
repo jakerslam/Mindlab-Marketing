@@ -10,7 +10,7 @@ This owner-private Sites deployment is a review of the website design and conten
 
 ## Included
 
-- Home, Services, dedicated Pricing, Industries, Our thinking, two expanded fictional demonstrations, three original practical guides, firm-focused About, call page, draft privacy information, and 404.
+- Home, Services, dedicated Pricing, Who we help overview, separate B2B and B2C pages, Our thinking, two expanded fictional demonstrations, three original practical guides, firm-focused About, call page, draft privacy information, and 404.
 - Shared validated package data, clear setup and media fees, and a working first-month calculator.
 - Responsive navigation, accessible FAQ disclosures, focus states, reduced-motion support, local fonts, metadata, sitemap, and preview noindex behavior.
 - Provider boundaries for content, inquiries, scheduling, and optional consent-gated analytics.
@@ -18,7 +18,7 @@ This owner-private Sites deployment is a review of the website design and conten
 
 ## Verified
 
-The current build checks 47 Astro/TypeScript files with zero errors/warnings/hints. The published-Sanity build produces 14 HTML pages and verifies 543 local URLs, assets, and anchors plus metadata, unique IDs, and sample disclosures. Pricing uses compact service rows with a collapsed estimator. Services and Industries dropdowns support keyboard and nested mobile navigation. Desktop and narrow layouts, guide navigation, related service links, pricing, and selected-package handoff were checked in the browser. Detailed verification and limits remain recorded in `VERIFICATION.md`.
+The current build checks 49 Astro/TypeScript files with zero errors/warnings/hints. The published-Sanity build produces 16 HTML pages and verifies 636 local URLs, assets, and anchors plus metadata, unique IDs, and sample disclosures. Pricing uses compact service rows with a collapsed estimator. Services, Who we help, and About dropdowns support desktop hover, keyboard controls, and nested mobile navigation without top-level arrows. About contains About Mindlab and Our thinking. The audience pages have distinct service applications, examples, guides, and calls to action; old industry anchors remain supported. Desktop and narrow layouts, audience and guide navigation, related service links, pricing, and selected-package handoff were checked in the browser. Detailed verification and limits remain recorded in `VERIFICATION.md`.
 
 ## Integration and launch status
 

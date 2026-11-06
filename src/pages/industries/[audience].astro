@@ -1,0 +1,36 @@
+---
+import Layout from '@/layouts/Layout.astro';
+import Arrow from '@/components/Arrow.astro';
+import CTA from '@/components/CTA.astro';
+import ProjectArtifact from '@/components/ProjectArtifact.astro';
+import WorkVisual from '@/components/WorkVisual.astro';
+import GuideList from '@/components/GuideList.astro';
+import { getContent } from '@/content';
+import { audiencePages, type Audience } from '@/content/audiences';
+import { serviceDetails } from '@/domain/services';
+import { withBase } from '@/lib/urls';
+
+export function getStaticPaths() {
+  return (Object.keys(audiencePages) as Audience[]).map((audience) => ({ params: { audience }, props: { audience } }));
+}
+const { audience } = Astro.props;
+const page = audiencePages[audience];
+const otherAudience = audience === 'b2b' ? 'b2c' : 'b2b';
+const { industries, projects, packages, guides } = await getContent();
+const sectors = industries.filter((industry) => industry.audience === audience);
+const project = projects.find((item) => item.slug === page.projectSlug);
+const relatedGuides = guides.filter((guide) => page.guideSlugs.includes(guide.slug));
+---
+<Layout title={page.title} description={page.description}>
+  <section class:list={['page-hero', 'container', 'audience-landing-hero', `audience-${audience}`]}>
+    <div><a class="back-link" href={withBase('/industries/')}>← Who we help</a><p class="eyebrow">Marketing for {page.label}</p><h1>{page.headline}</h1><p class="lede">{page.introduction}</p><div class="hero-actions"><a class="button" href={withBase('/services/')}>Explore the services<Arrow/></a><a class="text-link" href="#industries">Find your industry<Arrow/></a></div></div>
+    <aside class="buyer-question"><p class="eyebrow">The buying question</p><p class="buyer-question-quote">{page.question}</p><p>{page.questionContext}</p><span>Offer · Message · Next step</span></aside>
+  </section>
+  <section class="section audience-priorities"><div class="container"><div class="section-heading"><div><p class="eyebrow">Start with the decision</p><h2>Give the marketing<br/>a specific job.</h2></div><p>{audience === 'b2b' ? 'A useful explanation helps a business buyer understand your service and decide whether a conversation is relevant.' : 'A useful message helps someone recognize the offer, understand the experience, and decide what to do next.'}</p></div><div class="audience-priority-grid">{page.priorities.map((priority, index) => <article><span class="mono">0{index + 1} /</span><h3>{priority.title}</h3><p>{priority.body}</p></article>)}</div></div></section>
+  {project && <section class="section audience-sample-section"><div class="container audience-sample"><div><p class="eyebrow">The approach in practice / {project.label}</p><h2>{project.title}</h2><p>{project.summary}</p><p class="audience-sample-note">An original demonstration featuring a fictional business. No client relationship or campaign results are claimed.</p><a class="text-link" href={withBase(`/work/${project.slug}/`)}>Explore the demonstration<Arrow/></a></div><div>{project.artifacts[0] ? <ProjectArtifact artifact={project.artifacts[0]} theme={project.visual} compact/> : <WorkVisual visual={project.visual}/>}</div></div></section>}
+  <section class="section"><div class="container"><div class="section-heading"><div><p class="eyebrow">How the services apply</p><h2>One brief.<br/>The support you need.</h2></div><p>The same three packages, with the work shaped around your audience and offer. Start with one service or bring them together.</p></div><div class="audience-service-list">{packages.map((pkg) => <article><div><h3>{pkg.name}</h3><p>{serviceDetails[pkg.id].description}</p></div><p>{page.applications[pkg.id]}</p><div><a class="text-link" href={withBase(`/services/#${pkg.id}`)}>View scope<Arrow/></a><a class="audience-pricing-link" href={withBase(`/pricing/#${pkg.id}`)}>See pricing ↗</a></div></article>)}</div></div></section>
+  <section class="section tinted" id="industries"><div class="container"><div class="section-heading"><div><p class="eyebrow">Where the services fit</p><h2>{audience === 'b2b' ? 'Business services. Different buying questions.' : 'Consumer businesses. Different customer needs.'}</h2></div><p>Explore how positioning, written content, and paid campaigns can support different services and customer decisions.</p></div><div class="industry-details">{sectors.map((industry) => <article id={industry.id}><div><h3>{industry.name}</h3><span>{industry.examples}</span></div><div><p class="industry-challenge">{industry.challenge}</p><p>{industry.approach}</p><p class="industry-action"><span>Possible next step</span>{industry.action}</p></div><a class="round-arrow" href={withBase('/book-call/')} aria-label={`Discuss marketing for ${industry.name}`}><Arrow/></a></article>)}</div></div></section>
+  {relatedGuides.length > 0 && <section class="section audience-guides"><div class="container"><div class="section-heading"><div><p class="eyebrow">Before you begin</p><h2>Put a better brief<br/>behind the next move.</h2></div><p>Practical guides to the decisions, inputs, and process behind the work.</p></div><GuideList guides={relatedGuides}/></div></section>}
+  <div class="container audience-switch"><span>Reaching a different audience?</span><a class="text-link" href={withBase(`/industries/${otherAudience}/`)}>Explore {audiencePages[otherAudience].label}<Arrow/></a></div>
+  <CTA title={page.cta.title} description={page.cta.description}/>
+</Layout>

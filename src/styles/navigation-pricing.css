@@ -1,12 +1,12 @@
 /* Navigation disclosures retain the approved header sizing and scroll behavior. */
 .nav-dropdown { position: relative; }
 .nav-dropdown-toggle { display: inline-flex; align-items: center; gap: 7px; position: relative; border: 0; background: transparent; padding: 12px 0; min-height: 44px; font-size: 14px; font-weight: 550; color: var(--ink); }
-.nav-dropdown-toggle > svg { flex: none; transition: transform .18s ease; }
-.nav-dropdown-toggle[aria-expanded='true'] > svg { transform: rotate(180deg); }
 .nav-dropdown-toggle:hover, .nav-dropdown-toggle[data-current], .nav-dropdown-toggle[aria-expanded='true'] { color: var(--violet); }
-.nav-dropdown-toggle[data-current]::after { content: ''; position: absolute; width: 4px; height: 4px; border-radius: 50%; background: var(--violet); bottom: 3px; left: calc(50% - 8px); }
+.nav-dropdown-toggle[data-current]::after { content: ''; position: absolute; width: 4px; height: 4px; border-radius: 50%; background: var(--violet); bottom: 3px; left: calc(50% - 2px); }
 .nav-dropdown-panel { position: absolute; top: calc(100% + 12px); left: -22px; width: 350px; max-width: calc(100vw - 48px); padding: 12px; border: 1px solid var(--line); border-radius: 10px; background: #fff; box-shadow: 0 16px 40px rgba(20,21,26,.12); }
+.nav-dropdown-panel::before { content: ''; position: absolute; top: -14px; height: 14px; left: 0; right: 0; }
 .nav-industries-panel { left: 50%; transform: translateX(-50%); width: 540px; }
+.nav-about-panel { left: auto; right: 0; width: 240px; }
 .nav-dropdown-panel ul { list-style: none; margin: 0; padding: 0; }
 .nav-dropdown-panel a { display: flex; align-items: center; justify-content: space-between; gap: 15px; min-height: 44px; border-radius: 5px; padding: 11px 12px; font-size: 14px; }
 .nav-dropdown-panel a:hover { background: var(--lavender); color: var(--violet); }
@@ -70,6 +70,7 @@
   .nav-dropdown-toggle { width: 100%; justify-content: space-between; padding: 12px 0; font-size: 16px; }
   .nav-dropdown-toggle[data-current]::after { display: none; }
   .nav-dropdown-panel, .nav-industries-panel { position: static; transform: none; width: 100%; max-width: none; padding: 4px 0 10px 14px; margin: 0 0 10px; border: 0; border-left: 2px solid var(--line); border-radius: 0; background: transparent; box-shadow: none; }
+  .nav-dropdown-panel::before { display: none; }
   .nav-dropdown-panel a { font-size: 14px; padding-inline: 12px; }
   .dropdown-services small { font-size: 12px; }
   .dropdown-industry-groups { gap: 8px; border-top: 0; padding-top: 0; }
