@@ -15,10 +15,14 @@ const documents = [
   ...content.packages.map((item) => ({ _id: `package-${item.id}`, _type: 'servicePackage', ...item })),
   ...content.industries.map((item, order) => ({ _id: `industry-${item.id}`, _type: 'industry', ...item, order })),
   ...content.projects.map((item, order) => ({ _id: `project-${item.id}`, _type: 'project', ...item, decisions: item.decisions.map((decision, index) => ({ ...decision, _key: `${item.id}-${index}`, _type: 'object' })), order })),
+  ...(content.guides || []).map((item, order) => ({ _id: `guide-${item.slug}`, _type: 'guide', ...item, sections: item.sections.map((section, index) => ({ ...section, _key: `section-${index}`, _type: 'object' })), order })),
   ...content.faqs.map((item, order) => ({ _id: `faq-${order + 1}`, _type: 'faq', ...item, order })),
 ];
 // createIfNotExists never overwrites an editor's changes on a repeated import.
-const mutations = documents.map((document) => ({ createIfNotExists: document }));
+const keyArrays = (value) => Array.isArray(value)
+  ? value.map((item, index) => item && typeof item === 'object' ? { _key: `item-${index}`, _type: 'object', ...keyArrays(item) } : item)
+  : value && typeof value === 'object' ? Object.fromEntries(Object.entries(value).map(([key, item]) => [key, keyArrays(item)])) : value;
+const mutations = documents.map((document) => ({ createIfNotExists: keyArrays(document) }));
 if (cliSession) {
   const { getCliClient } = await import('sanity/cli');
   const client = getCliClient({ apiVersion: '2026-11-01' }).withConfig({ projectId: project, dataset, useCdn: false });

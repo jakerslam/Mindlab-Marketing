@@ -34,3 +34,18 @@ Navigation uses 14px text on desktop and 16px in the mobile menu. Footer links a
 ## Header scroll behavior
 
 After 32px of scrolling, the bar contracts from 92px to 64px on desktop and from 77px to 60px on mobile, with a soft bottom shadow. The header reserves its original space to keep the content position stable. The dropdown follows the current bar height, text sizes stay unchanged, and existing reduced-motion styles disable the transitions. Browser checks covered the scroll state and shadow, return to the top, stable main-content offset, navigation clicks, menu alignment, 44px mobile menu control, and horizontal overflow. Astro/TypeScript checking passed, followed by the final build and all 266 generated URL, asset, and anchor checks.
+
+## Editorial expansion · November 6, 2026
+
+The visitor can browse concrete sample deliverables and original guides, follow a guide to a relevant service, compare pricing, and carry the chosen package to the inquiry page. Published content flows through the Sanity adapter and validated domain models into static HTML.
+
+- Our thinking now includes two expanded fictional demonstrations, three complete guides, and a usable briefing checklist. The demonstrations contain eight deliverable sections: positioning/messages, sample writing, ad variants, a landing-page brief, and a proposed test plan. Proposed measurement is distinguished from campaign results.
+- About uses a firm-focused layout and current service descriptions. The owner explicitly deferred personal profiles and public contact details. No team size, biography, client evidence, or performance claims were invented.
+- Sanity accepted one atomic six-record editorial update after a revision/draft check: homepage introduction, two examples, and three new guides. A separate public read verified 21 published records, keyed nested arrays, all guide sections, and exact preservation of every package field.
+- The updated Studio schema and manifest deployed successfully to `https://mindlab-solutions.sanity.studio/`. An authenticated browser editing session was not exercised.
+- Astro/TypeScript: 46 files, zero errors/warnings/hints. The published-Sanity build generated 14 HTML pages and passed 377 local URL/asset/anchor checks, metadata, unique IDs, sample disclosures, and sitemap checks.
+- Browser: desktop article/overview layouts, Pricing, About, service navigation, guide-to-service navigation, article contents links, mobile menu navigation, and selected-package handoff were checked. At 360px, the inspected Home, Our thinking, Northline example, and guide had no horizontal document overflow. No browser console errors were captured in the checked preview tab.
+- Demand Campaigns handoff displayed `$1,250 / month + $500 one-time setup. Media additional.` on the inquiry page. No inquiry was submitted and no booking was created in this pass.
+- A branded share image was rendered and visually inspected; Open Graph metadata uses an absolute site URL through the shared base-path helper.
+
+GitHub Pages remains in preview/noindex mode. Public contact setup, final launch approval, accepted inquiry delivery, booking confirmation, automatic CMS rebuild hooks, and optional analytics remain outside the completed editorial changes. The original private review deployment was not refreshed in this pass.

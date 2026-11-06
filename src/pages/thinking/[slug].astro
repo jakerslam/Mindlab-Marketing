@@ -1,0 +1,21 @@
+---
+import Layout from '@/layouts/Layout.astro';
+import CTA from '@/components/CTA.astro';
+import Arrow from '@/components/Arrow.astro';
+import { withBase } from '@/lib/urls';
+import { getContent } from '@/content';
+export async function getStaticPaths() {
+  const { guides, packages } = await getContent();
+  return guides.map((guide) => ({ params: { slug: guide.slug }, props: { guide, related: packages.find((pkg) => pkg.id === guide.relatedPackage)! } }));
+}
+const { guide, related } = Astro.props;
+const words = [guide.introduction, ...guide.sections.flatMap((section) => [section.heading, ...section.paragraphs, ...section.list])].join(' ').split(/\s+/).length;
+const minutes = Math.max(1, Math.ceil(words / 200));
+---
+<Layout title={guide.title} description={guide.summary}>
+  <article class="guide-article">
+    <header class="page-hero container guide-hero"><a class="back-link" href={withBase('/work/#guides')}>← All guides & examples</a><p class="eyebrow">{guide.category} / {minutes} minute read</p><h1>{guide.title}</h1><p class="lede">{guide.summary}</p></header>
+    <div class="container guide-layout"><aside class="guide-contents"><p class="eyebrow">In this guide</p><nav aria-label="Article contents">{guide.sections.map((section, index) => <a href={`#section-${index + 1}`}>{section.heading}</a>)}</nav><a class="text-link" href={withBase(`/services/#${related.id}`)}>{related.name}<Arrow/></a></aside><div class="guide-body"><p class="guide-introduction">{guide.introduction}</p>{guide.sections.map((section, index) => <section id={`section-${index + 1}`}><h2>{section.heading}</h2>{section.paragraphs.map((paragraph) => <p>{paragraph}</p>)}{section.list.length > 0 && <ul>{section.list.map((item) => <li>{item}</li>)}</ul>}</section>)}<div class="guide-next"><p class="eyebrow">Put the idea to work</p><h2>{related.name}</h2><p>{related.description}</p><a class="text-link" href={withBase(`/services/#${related.id}`)}>Explore this service<Arrow/></a><a class="text-link" href={withBase(`/pricing/#${related.id}`)}>See scope & pricing<Arrow/></a></div></div></div>
+  </article>
+  <CTA title="Let’s talk about your next step."/>
+</Layout>

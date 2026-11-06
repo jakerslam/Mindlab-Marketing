@@ -32,11 +32,11 @@ The terminal prints the local preview URL. `npm run check` checks Astro and Type
 
 ## Current state
 
-The local preview includes Home, Services, a dedicated Pricing page, Industries, two explicitly fictional sample concepts with detail pages, About, the call page, privacy information, and a 404. It includes a selective React cost calculator and a customized shadcn/ui Button. Content pages render static HTML; no React runtime is needed on the homepage. Fonts are self-hosted. Insights is intentionally deferred until original articles are ready.
+The site includes Home, Services, a dedicated Pricing page, Industries, Our thinking, two expanded fictional demonstrations, three original practical guides, a firm-focused About page, the call page, privacy information, and a 404. It includes a selective React cost calculator and a customized shadcn/ui Button. Content pages render static HTML; no React runtime is needed on the homepage. Fonts are self-hosted.
 
-**This is a review build, not a live lead-generation site.** A private review deployment can be published through Sites; its identity is in `.openai/hosting.json`. `CONTENT_SOURCE=sanity` is the configured default and `SITE_STAGE=preview` makes pages noindex and disallows crawling. Local draft content is used only when explicitly selected. No provider is silently substituted. Missing inquiry and calendar destinations show an honest calls-opening-soon state; no submission is simulated. Production builds require CMS, inquiry, calendar, contact details, and owner-reviewed content.
+The public site is hosted at **https://mindlab.solutions/** on GitHub Pages with HTTPS. It remains a public preview: `SITE_STAGE=preview` makes pages noindex and disallows crawling until the existing launch requirements are completed. `CONTENT_SOURCE=sanity` reads published content without a local fallback. The older owner-private review deployment is separate; its identity is in `.openai/hosting.json`.
 
-The Tally inquiry form and Cal.com 30-minute event are connected through `src/integrations/project.ts`. The live embed and required-field validation were checked, and the calendar reports available slots. Sanity project `o19f4dqg` now contains all 18 imported records in its public `production` dataset. The website builds from published Sanity content, and the authenticated browser editor is deployed at https://mindlab-solutions.sanity.studio/. Inquiry delivery, booking confirmation, the contact inbox, and the final host still need verification.
+The Tally inquiry form and Cal.com 30-minute event are connected through `src/integrations/project.ts`. Sanity project `o19f4dqg` contains 21 published content records in its public `production` dataset. The authenticated browser editor is deployed at https://mindlab-solutions.sanity.studio/. Accepted inquiry delivery, booking confirmation, the contact inbox, and final indexing remain unverified or incomplete. Personal profiles and public contact details were deferred by the owner for this editorial pass.
 
 ## Structure and replaceable integrations
 
@@ -54,17 +54,19 @@ Replacing a provider means implementing its boundary and migrating its records. 
 
 Editor: **https://mindlab-solutions.sanity.studio/**. Sign in with an account authorized for project `o19f4dqg`. Sanity manages authentication; opening the editor does not grant someone permission to edit.
 
-The `production` dataset contains 18 published seed records: settings, homepage introduction, 3 packages, 6 industries, 2 clearly labeled sample concepts, and 5 FAQs. The import used `createIfNotExists` and never overwrote existing records. The source now explicitly selects Sanity, and an invalid record or unavailable API stops the build.
+The `production` dataset contains 21 published records: settings, homepage introduction, 3 packages, 6 industries, 2 clearly labeled sample concepts, 3 practical guides, and 5 FAQs. The recovery importer uses `createIfNotExists` and preserves existing records. The source explicitly selects Sanity, and an invalid record or unavailable API stops the build.
 
 To edit, open the appropriate content group, change the fields, and publish. Package amounts and setup fees feed the cards, detailed service pages, and combined estimates from the same records. Stable IDs and slugs must be preserved.
 
-**Published CMS changes currently need a website rebuild and redeployment to appear in the private review.** Automatic CMS-triggered rebuilds are not connected yet. Configure a filtered publish webhook and the final production host's protected deploy hook when that host is chosen. The public site is static, so a Sanity Publish action alone does not update already-deployed HTML.
+**Published CMS changes need a website rebuild and redeployment to appear on the public site.** Use GitHub Actions → Deploy GitHub Pages → Run workflow after publishing. Automatic CMS-triggered rebuilds are not connected yet. The public site is static, so a Sanity Publish action alone does not update already-deployed HTML.
 
 For local editing use `npm run studio`. To update the hosted editor's code or schema, use `npm run studio:deploy`; `sanity.cli.ts` retains the actual deployment app ID. The deployed schema and manifest are registered with Sanity. Hosted Studio access and CORS are handled by Sanity hosting; localhost:3333 remains allowed for local editing.
 
 The importer is available for recovery or a new dataset: `npx sanity login`, then `npm run content:import:session`. It preserves existing records, including edits. The optional token-based importer uses only an ignored environment file; no write token belongs in the repository or public website build.
 
-The editor covers the introduction, package facts, industry entries, sample narratives, and FAQs. Layouts, artwork templates, and other page copy live in code. Article editing and real case-study evidence models are later extensions. Export the dataset and assets before a CMS migration. Keep private leads outside this public dataset.
+The editor covers the introduction, package facts, industry entries, sample narratives and deliverables, proposed measurement, practical guides, and FAQs. Guide slugs generate `/thinking/<slug>/` pages. Layouts and other page copy live in code. Verified client case studies need a future evidence-model extension. Export the dataset and assets before a CMS migration. Keep private leads outside this public dataset.
+
+The November editorial migration used `scripts/update-editorial-content.mjs`: first `--plan /absolute/plan.json`, then `--apply` the reviewed plan through `sanity exec --with-user-token`. It rejects intervening record revisions and drafts, creates new guides atomically, and never changes package records. Routine editing should use Studio rather than rerunning a migration.
 
 ## Connect inquiries and scheduling
 
@@ -85,7 +87,7 @@ Allowed site events: `strategy_call_click`, `package_interest`, `booking_link_op
 
 ## Hosting and production release
 
-GitHub Pages hosts the public preview at **https://jakerslam.github.io/Mindlab-Marketing/**. The custom-domain production launch is still pending. Earlier planning documents discuss GitHub Pages business-use policy suitability and Cloudflare Pages as an alternative. The output remains portable static files.
+GitHub Pages hosts the public preview at **https://mindlab.solutions/**. The custom domain and HTTPS are connected. Final production approval and indexing are still pending. The output remains portable static files.
 
 For a host connected to this GitHub repository: use the repository root, build command `npm run check && npm run build && npm run verify`, output directory `dist`, and Node `24.22.1`.
 
@@ -100,7 +102,7 @@ npm run verify
 
 Review the generated site, test real inquiry delivery and calendar availability, then connect the custom domain. Ensure the production build allows indexing, generates the correct canonical URLs and sitemap, and uses a CMS publish hook for updates. `SITE_URL` can be supplied as a host environment variable; it defaults to `https://mindlab.solutions`.
 
-The production gate validates configuration, not external service ownership or delivery. Manual provider checks are still required. The private review uses a Sites source repository and deployment. The GitHub source repository is jakerslam/Mindlab-Marketing. The public Pages preview is configured; the custom domain, final production approval, and paid resources have not been provisioned. The source and static output remain portable.
+The production gate validates configuration, not external service ownership or delivery. Manual provider checks are still required. The separate private review uses a Sites source repository and deployment. The public site uses jakerslam/Mindlab-Marketing, with its custom domain and HTTPS configured. The source and static output remain portable.
 
 ## GitHub Pages deployment
 

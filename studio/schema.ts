@@ -4,6 +4,7 @@ const required = <T extends { required(): T }>(rule: T) => rule.required();
 const text = (name: string, title: string) => defineField({ name, title, type: 'string', validation: required });
 const paragraph = (name: string, title: string) => defineField({ name, title, type: 'text', rows: 3, validation: required });
 const strings = (name: string, title: string) => defineField({ name, title, type: 'array', of: [{ type: 'string' }], validation: (rule) => rule.required().min(1) });
+const packageOptions = ['brand-blueprint', 'content-studio', 'demand-campaigns'];
 
 export const schemaTypes = [
   defineType({ name: 'siteSettings', title: 'Site settings', type: 'document', fields: [text('name', 'Business name'), paragraph('description', 'Site description')], preview: { select: { title: 'name' } } }),
@@ -31,6 +32,25 @@ export const schemaTypes = [
     paragraph('context', 'Context and fictional-business disclosure'),
     defineField({ name: 'decisions', title: 'Key decisions', type: 'array', of: [{ type: 'object', fields: [text('title', 'Heading'), paragraph('body', 'Explanation')] }], validation: (rule) => rule.required().min(1) }),
     paragraph('takeaway', 'What this demonstrates'), defineField({ name: 'order', title: 'Display order', type: 'number', validation: required }),
+    defineField({ name: 'objective', title: 'Project objective', type: 'text', rows: 2 }),
+    defineField({ name: 'artifacts', title: 'Demonstration deliverables', type: 'array', of: [{ type: 'object', fields: [
+      text('id', 'Section ID'), text('title', 'Title'),
+      defineField({ name: 'format', title: 'Presentation', type: 'string', options: { list: ['message-map', 'copy', 'plan'] }, validation: required }),
+      paragraph('introduction', 'Introduction'),
+      defineField({ name: 'items', title: 'Items', type: 'array', of: [{ type: 'object', fields: [text('label', 'Label'), text('title', 'Heading'), paragraph('body', 'Copy')] }], validation: (rule) => rule.required().min(1) }),
+    ] }] }),
+    defineField({ name: 'measurement', title: 'Proposed measurement (not results)', type: 'object', fields: [paragraph('approach', 'Context'), strings('metrics', 'What we would measure')] }),
+    defineField({ name: 'relatedPackages', title: 'Related services', type: 'array', of: [{ type: 'string', options: { list: packageOptions } }] }),
   ] }),
+  defineType({ name: 'guide', title: 'Practical guides', type: 'document', fields: [
+    defineField({ name: 'slug', title: 'URL slug', type: 'string', validation: (rule) => rule.required().regex(/^[a-z0-9-]+$/) }),
+    text('title', 'Title'), text('category', 'Topic'), paragraph('summary', 'Listing summary'), paragraph('introduction', 'Introduction'),
+    defineField({ name: 'sections', title: 'Article sections', type: 'array', of: [{ type: 'object', fields: [
+      text('heading', 'Section heading'), strings('paragraphs', 'Paragraphs'),
+      defineField({ name: 'list', title: 'Optional checklist', type: 'array', of: [{ type: 'string' }] }),
+    ] }], validation: (rule) => rule.required().min(1) }),
+    defineField({ name: 'relatedPackage', title: 'Related service', type: 'string', options: { list: packageOptions }, validation: required }),
+    defineField({ name: 'order', title: 'Display order', type: 'number', validation: required }),
+  ], preview: { select: { title: 'title', subtitle: 'category' } } }),
   defineType({ name: 'faq', title: 'Frequently asked questions', type: 'document', fields: [text('question', 'Question'), paragraph('answer', 'Answer'), defineField({ name: 'order', title: 'Display order', type: 'number', validation: required })], preview: { select: { title: 'question' } } }),
 ];

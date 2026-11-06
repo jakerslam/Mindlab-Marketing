@@ -2,17 +2,24 @@
 import { withBase } from '@/lib/urls';
 import Layout from '@/layouts/Layout.astro';
 import WorkVisual from '@/components/WorkVisual.astro';
+import ProjectArtifact from '@/components/ProjectArtifact.astro';
 import CTA from '@/components/CTA.astro';
 import Arrow from '@/components/Arrow.astro';
 import { getContent } from '@/content';
 export async function getStaticPaths() {
-  const { projects } = await getContent();
-  return projects.map((project) => ({ params: { slug: project.slug }, props: { project } }));
+  const { projects, packages } = await getContent();
+  return projects.map((project) => ({ params: { slug: project.slug }, props: { project, packages } }));
 }
-const { project } = Astro.props;
+const { project, packages } = Astro.props;
+const related = packages.filter((pkg) => project.relatedPackages.includes(pkg.id));
 ---
 <Layout title={project.title} description={project.summary}>
-  <section class="page-hero container"><a class="back-link" href={withBase("/work/")}>← All thinking</a><p class="eyebrow">{project.label} / {project.audience}</p><h1>{project.title}</h1><p class="lede">{project.summary}</p><div class="project-tags"><span>{project.service}</span><span>Original Mindlab demonstration</span></div></section>
-  <div class="container project-showcase"><WorkVisual visual={project.visual}/></div>
-  <section class="section"><div class="container project-story"><div><p class="eyebrow">The brief</p><h2>Start with<br/>the real question.</h2></div><div><p class="story-intro">{project.context}</p>{project.decisions.map((decision, index) => <article><span class="mono">0{index + 1} /</span><h3>{decision.title}</h3><p>{decision.body}</p></article>)}<div class="sample-notice"><strong>What this demonstrates</strong><p>{project.takeaway}</p></div><a class="text-link" href={withBase("/services/")}>Explore the services behind the thinking <Arrow/></a></div></div></section><CTA/>
+  <section class="page-hero container example-hero"><a class="back-link" href={withBase('/work/')}>← All thinking</a><p class="eyebrow">{project.label} / {project.audience}</p><h1>{project.title}</h1><p class="lede">{project.summary}</p><div class="project-tags"><span>{project.service}</span><span>Fictional business · Original demonstration</span></div>
+    {project.artifacts.length > 0 && <nav class="anchor-nav" aria-label="In this example"><a href="#brief">The brief<span>↘</span></a><a href="#deliverables">The deliverables<span>↘</span></a><a href="#measurement">Proposed measurement<span>↘</span></a></nav>}
+  </section>
+  <section class="example-brief border-top" id="brief"><div class="container editorial-grid"><div><p class="eyebrow">The brief</p><h2>{project.objective || 'Start with the business question.'}</h2></div><div><p>{project.context}</p><p class="example-disclosure">Sample concept. No campaign was run and no client results are claimed.</p></div></div></section>
+  {project.artifacts.length > 0 ? <section class="section tinted" id="deliverables"><div class="container"><div class="section-heading"><div><p class="eyebrow">The deliverables</p><h2>From the brief<br/>to the work.</h2></div><p>Explore the actual writing and planning choices in this demonstration. Visual presentation does not imply design or development is included in the writing package.</p></div><div class="artifact-stack">{project.artifacts.map((artifact) => <section id={artifact.id}><ProjectArtifact artifact={artifact} theme={project.visual}/></section>)}</div></div></section> : <div class="container project-showcase"><WorkVisual visual={project.visual}/></div>}
+  <section class="section"><div class="container example-decisions"><div><p class="eyebrow">The reasoning</p><h2>Why these choices?</h2></div><ol>{project.decisions.map((decision, index) => <li><span class="mono">0{index + 1} /</span><div><h3>{decision.title}</h3><p>{decision.body}</p></div></li>)}</ol></div></section>
+  <section class="section border-top" id="measurement"><div class="container editorial-grid"><div><p class="eyebrow">Proposed measurement</p><h2>What we would<br/>look for next.</h2></div><div>{project.measurement && <><p class="story-intro">{project.measurement.approach}</p><ul class="measurement-list">{project.measurement.metrics.map((metric) => <li>{metric}</li>)}</ul></>}<p>{project.takeaway}</p>{related.length > 0 && <div class="related-services"><p class="eyebrow">Explore the services</p>{related.map((pkg) => <a class="text-link" href={withBase(`/services/#${pkg.id}`)}>{pkg.name}<Arrow/></a>)}</div>}</div></div></section>
+  <CTA title="Put a similar approach to work." description="Start with your business, the decision your customer needs to make, and the support you need to get there."/>
 </Layout>

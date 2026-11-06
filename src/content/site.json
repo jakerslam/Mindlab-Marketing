@@ -4,69 +4,593 @@
     "description": "Brand strategy, thoughtful content, and focused paid campaigns for B2B and B2C businesses."
   },
   "home": {
-    "eyebrow": "A clear plan. A connected approach.",
+    "eyebrow": "Strategy. Content. Campaigns.",
     "title": "Build a clearer brand. Reach the right customers.",
-    "description": "Bring your brand strategy, content, and paid ads together. Mindlab helps B2B and B2C businesses turn a good offer into a clearer story—and a focused plan to get it seen."
+    "description": "We help B2B and B2C businesses define their positioning, publish useful written content, and run focused paid ad campaigns. Start with the support your business needs now."
   },
   "packages": [
     {
-      "id": "brand-blueprint", "number": "01", "name": "Brand Blueprint",
+      "id": "brand-blueprint",
+      "number": "01",
+      "name": "Brand Blueprint",
       "tagline": "Find your point of difference.",
       "description": "Get clear on who you serve, what you stand for, and how to talk about it. A practical foundation for your next marketing move.",
-      "price": 1250, "currency": "USD", "cadence": "project", "setup": 0,
+      "price": 1250,
+      "currency": "USD",
+      "cadence": "project",
+      "setup": 0,
       "timeline": "About 2–3 weeks after inputs and interviews.",
-      "deliverables": ["Up to 2 stakeholder interviews", "A review of 3 competitors and 1 priority buyer profile", "Positioning, value proposition, and message hierarchy", "Voice guidance and 3 content themes", "A 90-day marketing plan and presentation", "2 rounds of revisions"],
-      "exclusions": ["Logo or visual identity design", "Naming, photography, and video", "Website design or development"],
+      "deliverables": [
+        "Up to 2 stakeholder interviews",
+        "A review of 3 competitors and 1 priority buyer profile",
+        "Positioning, value proposition, and message hierarchy",
+        "Voice guidance and 3 content themes",
+        "A 90-day marketing plan and presentation",
+        "2 rounds of revisions"
+      ],
+      "exclusions": [
+        "Logo or visual identity design",
+        "Naming, photography, and video",
+        "Website design or development"
+      ],
       "idealFor": "Businesses launching, refining their offer, or struggling to explain their difference."
     },
     {
-      "id": "content-studio", "number": "02", "name": "Content Studio",
+      "id": "content-studio",
+      "number": "02",
+      "name": "Content Studio",
       "tagline": "Give your expertise a voice.",
       "description": "Turn your knowledge into useful, consistent writing. Build a content rhythm around the questions your customers actually ask.",
-      "price": 1000, "currency": "USD", "cadence": "month", "setup": 250,
+      "price": 1000,
+      "currency": "USD",
+      "cadence": "month",
+      "setup": 250,
       "timeline": "A monthly writing and review cycle.",
-      "deliverables": ["A 45-minute expert or source interview each month", "8 written social posts for 1 profile or page", "1 article up to 1,200 words OR 1 email up to 800 words", "An editorial calendar", "2 rounds of batch revisions", "A monthly review and call"],
-      "exclusions": ["Graphics, photography, and video production", "Community management", "Email distribution or automation"],
+      "deliverables": [
+        "A 45-minute expert or source interview each month",
+        "8 written social posts for 1 profile or page",
+        "1 article up to 1,200 words OR 1 email up to 800 words",
+        "An editorial calendar",
+        "2 rounds of batch revisions",
+        "A monthly review and call"
+      ],
+      "exclusions": [
+        "Graphics, photography, and video production",
+        "Community management",
+        "Email distribution or automation"
+      ],
       "idealFor": "Businesses with expertise to share and limited time to turn it into consistent content."
     },
     {
-      "id": "demand-campaigns", "number": "03", "name": "Demand Campaigns",
+      "id": "demand-campaigns",
+      "number": "03",
+      "name": "Demand Campaigns",
       "tagline": "Put your offer in the right places.",
       "description": "Build a focused paid campaign around one offer, then review and refine it. Clear scope, regular optimization, and media costs you can see.",
-      "price": 1250, "currency": "USD", "cadence": "month", "setup": 500,
+      "price": 1250,
+      "currency": "USD",
+      "cadence": "month",
+      "setup": 500,
       "timeline": "Weekly optimization and a monthly review.",
-      "deliverables": ["1 ad platform, 1 offer, and 1 market", "Up to 3 active campaigns", "Management of up to $10,000 in monthly media spend", "Up to 4 new ad copy variants per month", "A landing-page messaging brief", "Weekly optimization and a monthly report and review"],
-      "exclusions": ["Advertising spend", "New design, photography, or video production", "Landing-page development", "Product feeds, extensive tracking, or CRM implementation"],
+      "deliverables": [
+        "1 ad platform, 1 offer, and 1 market",
+        "Up to 3 active campaigns",
+        "Management of up to $10,000 in monthly media spend",
+        "Up to 4 new ad copy variants per month",
+        "A landing-page messaging brief",
+        "Weekly optimization and a monthly report and review"
+      ],
+      "exclusions": [
+        "Advertising spend",
+        "New design, photography, or video production",
+        "Landing-page development",
+        "Product feeds, extensive tracking, or CRM implementation"
+      ],
       "idealFor": "Businesses with a clear offer, a ready destination, and a separate budget for advertising."
     }
   ],
   "industries": [
-    {"id":"professional-services","name":"Professional services","audience":"b2b","examples":"Consulting, advisory, and business services","challenge":"Your expertise is valuable. Making the difference easy to understand is the next step.","approach":"Clarify your positioning, turn expert insight into useful content, and focus campaigns on the right business problem.","action":"Suitable inquiries and conversations"},
-    {"id":"technology-it","name":"Technology & IT","audience":"b2b","examples":"IT providers, MSPs, and technology consultancies","challenge":"Buyers need to understand the business value behind the technical detail.","approach":"Translate complex services into clear messages, explain common decisions, and connect campaigns to a focused offer.","action":"Discovery calls and qualified inquiries"},
-    {"id":"recruiting-training","name":"Recruiting & training","audience":"b2b","examples":"Recruitment firms and training providers","challenge":"Different audiences need different reasons to choose you.","approach":"Define a priority buyer, develop relevant expert content, and run a campaign around one specific service or program.","action":"Employer inquiries or program interest"},
-    {"id":"home-services","name":"Home & consumer services","audience":"b2c","examples":"Home improvement and local service businesses","challenge":"Customers need to see what you offer and know what to do next.","approach":"Make the offer clear, answer practical questions, and focus paid campaigns on a specific service and market.","action":"Quote requests and service inquiries"},
-    {"id":"fitness-lifestyle","name":"Fitness, beauty & lifestyle","audience":"b2c","examples":"Studios, personal care, and lifestyle businesses","challenge":"An appealing experience needs an equally clear first step.","approach":"Build a consistent voice, write content around customer concerns, and promote a defined introductory offer.","action":"Bookings, memberships, or offer inquiries"},
-    {"id":"retail-consumer","name":"Retail & consumer brands","audience":"b2c","examples":"Retailers, ecommerce, and product businesses","challenge":"The right product story connects features to a reason to care.","approach":"Refine product messaging, develop content themes, and plan a focused campaign. Stores, feeds, assets, and purchase tracking need a separate scope review.","action":"Product interest or purchases where tracking is ready"}
+    {
+      "id": "professional-services",
+      "name": "Professional services",
+      "audience": "b2b",
+      "examples": "Consulting, advisory, and business services",
+      "challenge": "Your expertise is valuable. Making the difference easy to understand is the next step.",
+      "approach": "Clarify your positioning, turn expert insight into useful content, and focus campaigns on the right business problem.",
+      "action": "Suitable inquiries and conversations"
+    },
+    {
+      "id": "technology-it",
+      "name": "Technology & IT",
+      "audience": "b2b",
+      "examples": "IT providers, MSPs, and technology consultancies",
+      "challenge": "Buyers need to understand the business value behind the technical detail.",
+      "approach": "Translate complex services into clear messages, explain common decisions, and connect campaigns to a focused offer.",
+      "action": "Discovery calls and qualified inquiries"
+    },
+    {
+      "id": "recruiting-training",
+      "name": "Recruiting & training",
+      "audience": "b2b",
+      "examples": "Recruitment firms and training providers",
+      "challenge": "Different audiences need different reasons to choose you.",
+      "approach": "Define a priority buyer, develop relevant expert content, and run a campaign around one specific service or program.",
+      "action": "Employer inquiries or program interest"
+    },
+    {
+      "id": "home-services",
+      "name": "Home & consumer services",
+      "audience": "b2c",
+      "examples": "Home improvement and local service businesses",
+      "challenge": "Customers need to see what you offer and know what to do next.",
+      "approach": "Make the offer clear, answer practical questions, and focus paid campaigns on a specific service and market.",
+      "action": "Quote requests and service inquiries"
+    },
+    {
+      "id": "fitness-lifestyle",
+      "name": "Fitness, beauty & lifestyle",
+      "audience": "b2c",
+      "examples": "Studios, personal care, and lifestyle businesses",
+      "challenge": "An appealing experience needs an equally clear first step.",
+      "approach": "Build a consistent voice, write content around customer concerns, and promote a defined introductory offer.",
+      "action": "Bookings, memberships, or offer inquiries"
+    },
+    {
+      "id": "retail-consumer",
+      "name": "Retail & consumer brands",
+      "audience": "b2c",
+      "examples": "Retailers, ecommerce, and product businesses",
+      "challenge": "The right product story connects features to a reason to care.",
+      "approach": "Refine product messaging, develop content themes, and plan a focused campaign. Stores, feeds, assets, and purchase tracking need a separate scope review.",
+      "action": "Product interest or purchases where tracking is ready"
+    }
   ],
   "projects": [
     {
-      "id":"northline","slug":"northline-advisory","title":"A clearer story for a complex service.","label":"Sample concept","audience":"B2B · Professional services","service":"Brand strategy + content","summary":"Making a fictional advisory firm's offer easier to understand, from its positioning to its first content themes.","headline":"Clarity for your next chapter.","visual":"northline",
-      "context":"Northline Advisory is a fictional business used to demonstrate our thinking. The brief: help an advisory firm explain its work to owners preparing for their next stage of growth. This is an original Mindlab concept, not a client engagement.",
-      "decisions":[{"title":"Start with the buyer's decision.","body":"Focus the message on owners weighing their next business move. Describe the decision they face before introducing the advisory process."},{"title":"Build one consistent message.","body":"Use a positioning idea—clarity for your next chapter—to connect the website introduction, service explanation, and content themes."},{"title":"Turn expertise into useful questions.","body":"Organize content around readiness, tradeoffs, and next steps. Each theme gives the business a practical way to share its thinking."}],
-      "takeaway":"The concept shows how positioning can guide content. It has not run as a campaign and has no client results or performance claims."
+      "id": "northline",
+      "slug": "northline-advisory",
+      "title": "A clearer story for a complex service.",
+      "label": "Sample concept",
+      "audience": "B2B · Professional services",
+      "service": "Brand strategy + content",
+      "summary": "A positioning statement, message map, and content direction for a fictional business advisory firm.",
+      "headline": "Clarity for your next chapter.",
+      "visual": "northline",
+      "context": "Northline Advisory is a fictional business used to demonstrate our thinking. The brief: help an advisory firm explain its work to owners preparing for their next stage of growth. This is an original Mindlab concept, not a client engagement.",
+      "decisions": [
+        {
+          "title": "Start with the buyer's decision.",
+          "body": "Focus the message on owners weighing their next business move. Describe the decision they face before introducing the advisory process."
+        },
+        {
+          "title": "Build one consistent message.",
+          "body": "Use a positioning idea—clarity for your next chapter—to connect the website introduction, service explanation, and content themes."
+        },
+        {
+          "title": "Turn expertise into useful questions.",
+          "body": "Organize content around readiness, tradeoffs, and next steps. Each theme gives the business a practical way to share its thinking."
+        }
+      ],
+      "takeaway": "The concept shows how positioning can guide content. It has not run as a campaign and has no client results or performance claims.",
+      "objective": "Help business owners understand the advisory offer before asking them to book a conversation.",
+      "relatedPackages": [
+        "brand-blueprint",
+        "content-studio"
+      ],
+      "artifacts": [
+        {
+          "id": "message-map",
+          "title": "One audience. A more useful message.",
+          "format": "message-map",
+          "introduction": "A sample message map turns a broad advisory offer into an audience, a decision, and a reason to act.",
+          "items": [
+            {
+              "label": "Audience",
+              "title": "Owners facing their next growth decision",
+              "body": "The business has momentum, but the owner needs to decide what to prioritize before committing more time and resources."
+            },
+            {
+              "label": "Positioning",
+              "title": "A practical plan for the next stage",
+              "body": "Northline Advisory helps owner-led businesses weigh their growth options and turn the next business decision into a focused action plan."
+            },
+            {
+              "label": "Voice",
+              "title": "Calm, specific, and useful",
+              "body": "Name the decision. Explain the tradeoff. Offer a practical next step. Use familiar business language instead of abstract advisory terms."
+            }
+          ]
+        },
+        {
+          "id": "headline",
+          "title": "From the service to the decision.",
+          "format": "copy",
+          "introduction": "Both versions below are part of this fictional exercise. The revised version puts the owner’s question first.",
+          "items": [
+            {
+              "label": "Starting draft",
+              "title": "Strategic advisory solutions for ambitious businesses",
+              "body": "Comprehensive support for your organization’s next phase of growth."
+            },
+            {
+              "label": "Proposed headline",
+              "title": "Know which growth move to make next.",
+              "body": "We help business owners weigh the options, set priorities, and build a practical plan for what comes next. Start with a conversation about the decision in front of you."
+            }
+          ]
+        },
+        {
+          "id": "content-direction",
+          "title": "Three questions worth publishing.",
+          "format": "plan",
+          "introduction": "Each content theme gives the owner something useful to consider before a sales conversation.",
+          "items": [
+            {
+              "label": "Theme 01 / Readiness",
+              "title": "Are you ready to grow, or already stretched?",
+              "body": "Article outline: name the opportunity; review capacity, ownership, and cash requirements; identify what must be in place; end with one readiness question for the owner."
+            },
+            {
+              "label": "Theme 02 / Tradeoffs",
+              "title": "What will you stop doing to make room?",
+              "body": "Social series: one post on competing priorities, one on the cost of maintaining them all, and one on choosing a decision criterion before evaluating options."
+            },
+            {
+              "label": "Theme 03 / Next steps",
+              "title": "What can you learn before committing?",
+              "body": "A short checklist on the assumptions to test, the information to gather, and the person responsible for the next decision."
+            }
+          ]
+        },
+        {
+          "id": "sample-post",
+          "title": "A sample post, ready to read.",
+          "format": "copy",
+          "introduction": "Writing example for a professional-services company page.",
+          "items": [
+            {
+              "label": "Social post",
+              "title": "Before adding a new growth priority, name the tradeoff.",
+              "body": "A new market, a new service, and a new hire can all sound like the next right move. The question is whether the business can support them at the same time. Before committing, write down three things: what this move is meant to change, what it will require from the business, and what you will pause to make room. If those answers are still vague, the next step may be a better brief rather than a bigger plan. What decision would become easier if the tradeoff were explicit?"
+            }
+          ]
+        }
+      ],
+      "measurement": {
+        "approach": "This is an unlaunched demonstration. A real engagement would first establish the baseline and agree what a useful inquiry looks like.",
+        "metrics": [
+          "Whether prospective buyers can explain the offer in their own words",
+          "Relevant visits and responses to the published content",
+          "Suitable inquiries and progression to a business conversation"
+        ]
+      }
     },
     {
-      "id":"daybreak","slug":"daybreak-studio","title":"A first step that feels within reach.","label":"Sample concept","audience":"B2C · Fitness & lifestyle","service":"Content + campaign planning","summary":"Connecting a fictional fitness studio's approachable voice to a focused introductory campaign.","headline":"A little stronger. Every day.","visual":"daybreak",
-      "context":"Daybreak Studio is a fictional fitness business created for this demonstration. The brief: make an introductory program feel approachable to people who are curious about training but unsure where to start. This is an original sample, not client work.",
-      "decisions":[{"title":"Name the real hesitation.","body":"Write for someone who wants to begin but worries they won't fit in. Keep the tone welcoming, specific, and free of transformation promises."},{"title":"Connect the offer and the content.","body":"Use the same message across a sample social post and an ad concept. Explain what a first session involves so the next step is easier to assess."},{"title":"Plan the campaign before spending.","body":"Choose one introductory offer, one local market, and one ad platform. Confirm the booking destination and measurement before launch."}],
-      "takeaway":"This sample demonstrates a content and campaign direction. The visual is a presentation concept; design production is separately scoped. No campaign was run and no results are claimed."
+      "id": "daybreak",
+      "slug": "daybreak-studio",
+      "title": "A first step that feels within reach.",
+      "label": "Sample concept",
+      "audience": "B2C · Fitness & lifestyle",
+      "service": "Content + campaign planning",
+      "summary": "Three ad-copy angles, a sample email, and a proposed test for a fictional fitness studio’s introductory session.",
+      "headline": "A little stronger. Every day.",
+      "visual": "daybreak",
+      "context": "Daybreak Studio is a fictional fitness business created for this demonstration. The brief: make an introductory program feel approachable to people who are curious about training but unsure where to start. This is an original sample, not client work.",
+      "decisions": [
+        {
+          "title": "Name the real hesitation.",
+          "body": "Write for someone who wants to begin but worries they won't fit in. Keep the tone welcoming, specific, and free of transformation promises."
+        },
+        {
+          "title": "Connect the offer and the content.",
+          "body": "Use the same message across a sample social post and an ad concept. Explain what a first session involves so the next step is easier to assess."
+        },
+        {
+          "title": "Plan the campaign before spending.",
+          "body": "Choose one introductory offer, one local market, and one ad platform. Confirm the booking destination and measurement before launch."
+        }
+      ],
+      "takeaway": "This sample demonstrates a content and campaign direction. The visual is a presentation concept; design production is separately scoped. No campaign was run and no results are claimed.",
+      "objective": "Make the first session understandable and help a prospective member decide whether to book.",
+      "relatedPackages": [
+        "content-studio",
+        "demand-campaigns"
+      ],
+      "artifacts": [
+        {
+          "id": "ad-copy",
+          "title": "Three ways to make a start.",
+          "format": "copy",
+          "introduction": "Proposed ad-copy variants for the same fictional introductory session. Price, availability, and session details would need approval before any real campaign.",
+          "items": [
+            {
+              "label": "Angle 01 / Belonging",
+              "title": "Your first session starts where you are.",
+              "body": "Curious about training, but not sure where to begin? Meet the studio, talk through your goals, and try a session at your own starting point. Explore Daybreak’s introductory session."
+            },
+            {
+              "label": "Angle 02 / What to expect",
+              "title": "Meet the space. Meet your starting point.",
+              "body": "A new studio is easier to picture when you know what happens first. See what Daybreak’s introductory session involves, what to bring, and how to book."
+            },
+            {
+              "label": "Angle 03 / A manageable step",
+              "title": "Start with one session.",
+              "body": "You don’t need to plan your whole routine today. Get to know Daybreak through an introductory session and decide whether the studio fits what you’re looking for."
+            }
+          ]
+        },
+        {
+          "id": "sample-email",
+          "title": "An invitation with a useful next step.",
+          "format": "copy",
+          "introduction": "Sample email body. Distribution and automation are outside the standard writing package.",
+          "items": [
+            {
+              "label": "Subject",
+              "title": "What happens at your first Daybreak session?",
+              "body": "Preview: A chance to meet the studio and find your starting point."
+            },
+            {
+              "label": "Email body",
+              "title": "A first visit should feel easier to picture.",
+              "body": "If you’ve been thinking about trying Daybreak, start with a look at our introductory session. We’ll talk through what you’re looking for, introduce the space, and help you find a comfortable starting point. Before you choose a time, the session page explains what’s included, what to bring, and the price. Read through the details, then decide whether you’d like to join us. Your next step: explore the introductory session."
+            }
+          ]
+        },
+        {
+          "id": "landing-brief",
+          "title": "Keep the promise consistent after the click.",
+          "format": "message-map",
+          "introduction": "A messaging brief for the session page. Page design, development, and booking setup would be separately scoped.",
+          "items": [
+            {
+              "label": "Opening",
+              "title": "Your first session starts here.",
+              "body": "Explain who the session is for and what someone can expect from the first visit. Use the same introductory-session language as the ad."
+            },
+            {
+              "label": "Decision details",
+              "title": "Make the practical questions easy to answer.",
+              "body": "Show the approved price, session length, location, what to bring, cancellation terms, and current availability before the booking action."
+            },
+            {
+              "label": "Action",
+              "title": "Choose an introductory session.",
+              "body": "Use one clear booking route. Confirm that a completed booking is recorded and that the person receives the expected confirmation."
+            }
+          ]
+        },
+        {
+          "id": "test-plan",
+          "title": "Learn from one deliberate change.",
+          "format": "plan",
+          "introduction": "A proposed starting test, subject to budget, platform capabilities, and booking readiness.",
+          "items": [
+            {
+              "label": "Keep consistent",
+              "title": "One offer, market, and destination",
+              "body": "Use the same introductory session, local audience criteria, approved visual assets, booking page, and agreed budget."
+            },
+            {
+              "label": "Change",
+              "title": "The main message angle",
+              "body": "Compare a belonging-led message with an explanation of what the first session involves. Start with a small set of variants the budget can support."
+            },
+            {
+              "label": "Review",
+              "title": "Follow the journey beyond the click",
+              "body": "Check ad response, relevant landing-page visits, completed bookings, and any practical friction. Agree the review period before launch and avoid conclusions from a handful of clicks."
+            }
+          ]
+        }
+      ],
+      "measurement": {
+        "approach": "No campaign was run. Before launch, test the booking journey and agree the reporting definitions, budget, and review window.",
+        "metrics": [
+          "Relevant landing-page visits and engagement with session details",
+          "Completed introductory-session bookings, where tracking is configured",
+          "Cost per completed booking and attendance, where those records are available"
+        ]
+      }
     }
   ],
   "faqs": [
-    {"question":"Do we need all three services?","answer":"No. Start with the work that solves your immediate problem. If your positioning is already clear, you can begin with Content Studio or Demand Campaigns. We can review fit together before agreeing a scope."},
-    {"question":"Is advertising spend included?","answer":"No. Demand Campaigns is a management fee. Your media budget is additional and paid through your advertising account. The package covers up to $10,000 in monthly media spend; larger budgets need a separate scope."},
-    {"question":"Does Content Studio include design or video?","answer":"The listed package is writing-only. Graphics, photography, video, community management, and email distribution or automation are separately scoped."},
-    {"question":"How long is the engagement?","answer":"Brand Blueprint is a project, usually taking about 2–3 weeks after inputs and interviews. Our proposed retainer terms start with 90 days, then continue monthly with 30 days' notice. Your written agreement confirms the final terms."},
-    {"question":"Who owns the accounts and work?","answer":"Your business owns its advertising accounts and data. Ownership and transfer of deliverables follow the written agreement. We do not guarantee a number of leads, sales, or revenue."}
+    {
+      "question": "Do we need all three services?",
+      "answer": "No. Start with the work that solves your immediate problem. If your positioning is already clear, you can begin with Content Studio or Demand Campaigns. We can review fit together before agreeing a scope."
+    },
+    {
+      "question": "Is advertising spend included?",
+      "answer": "No. Demand Campaigns is a management fee. Your media budget is additional and paid through your advertising account. The package covers up to $10,000 in monthly media spend; larger budgets need a separate scope."
+    },
+    {
+      "question": "Does Content Studio include design or video?",
+      "answer": "The listed package is writing-only. Graphics, photography, video, community management, and email distribution or automation are separately scoped."
+    },
+    {
+      "question": "How long is the engagement?",
+      "answer": "Brand Blueprint is a project, usually taking about 2–3 weeks after inputs and interviews. Our proposed retainer terms start with 90 days, then continue monthly with 30 days' notice. Your written agreement confirms the final terms."
+    },
+    {
+      "question": "Who owns the accounts and work?",
+      "answer": "Your business owns its advertising accounts and data. Ownership and transfer of deliverables follow the written agreement. We do not guarantee a number of leads, sales, or revenue."
+    }
+  ],
+  "guides": [
+    {
+      "slug": "before-you-spend-on-ads",
+      "title": "What to clarify before spending on ads.",
+      "category": "Campaign planning",
+      "summary": "Six questions that turn “we should run ads” into a usable campaign brief.",
+      "introduction": "An advertising budget is easier to use well when the business decisions around it are made first. Before choosing an audience or writing an ad, work through the offer, destination, and follow-up together. The answers do not need to fill a long document. They need to be specific enough to guide the campaign.",
+      "relatedPackage": "demand-campaigns",
+      "sections": [
+        {
+          "heading": "Start with one offer and one action.",
+          "paragraphs": [
+            "“Promote the business” leaves too many decisions open. Choose the service, product, or introductory offer the campaign will focus on, then name the action you want someone to take. A quote request and a purchase need different messages, destinations, and follow-up.",
+            "Write a sentence that names the offer, intended audience, and next step. If several audiences or offers compete for the same sentence, choose the first priority before expanding the brief."
+          ],
+          "list": []
+        },
+        {
+          "heading": "Define who can actually use the offer.",
+          "paragraphs": [
+            "Describe the customer’s situation, need, and ability to take the next step. Include the market you can serve and any practical limits. For a local service, location matters. For a B2B offer, the buyer’s business problem and role may matter more than a broad industry label.",
+            "Treat this as a starting hypothesis. The campaign should help you learn whether the offer and message reach suitable people."
+          ],
+          "list": []
+        },
+        {
+          "heading": "Check the destination before buying the visit.",
+          "paragraphs": [
+            "Read the destination as someone seeing the offer for the first time. Can they understand what is included, whether it fits them, and what happens next? Test the form, checkout, or booking route on a phone as well as a larger screen.",
+            "If the destination needs development, creative production, or substantial tracking work, identify that scope before launch. An ad management fee does not automatically cover those tasks."
+          ],
+          "list": []
+        },
+        {
+          "heading": "Separate the budgets and define the evidence.",
+          "paragraphs": [
+            "List the agency fee, launch or onboarding cost, media budget, and any production or technical costs separately. Then agree what you can measure reliably. A calendar click is different from a completed booking, and a submitted inquiry still needs to be assessed for fit.",
+            "Establish the starting position and a review window before making changes. Evaluate results in the context of spend, the buying cycle, and the volume of useful actions."
+          ],
+          "list": []
+        },
+        {
+          "heading": "Give the next step an owner.",
+          "paragraphs": [
+            "Decide who receives an inquiry, who follows up, and who approves campaign changes. A campaign brief should describe what the business will do after the click as clearly as what the ad will say."
+          ],
+          "list": [
+            "Offer: what exactly are we promoting?",
+            "Audience: who needs it, and where can we serve them?",
+            "Action: what should they do next?",
+            "Destination: is that action working?",
+            "Budget and measurement: what is separate, and what counts?",
+            "Ownership: who approves, responds, and reviews?"
+          ]
+        }
+      ]
+    },
+    {
+      "slug": "one-interview-a-month-of-content",
+      "title": "How one expert interview becomes a month of content.",
+      "category": "Content process",
+      "summary": "A worked example of turning a business conversation into themes, post ideas, and an article.",
+      "introduction": "Useful content often starts with the questions a business answers every week. An interview gives those answers a structure. The writing work is to find the specific insight, explain it in the company’s voice, and give each piece a purpose. Here is an original fictional example using Northline Advisory.",
+      "relatedPackage": "content-studio",
+      "sections": [
+        {
+          "heading": "Ask about decisions, not just topics.",
+          "paragraphs": [
+            "A question such as “What should we post about growth?” usually produces a list of broad themes. More useful prompts ask what customers are deciding, what they misunderstand, and what information changes the conversation.",
+            "For the fictional Northline interview, the central prompt is: “What do owners overlook before adding another growth priority?” The sample answer is: “They discuss the new opportunity before deciding what the business can stop doing to make room.” This is an invented source excerpt for the demonstration."
+          ],
+          "list": []
+        },
+        {
+          "heading": "Find the idea that can support several pieces.",
+          "paragraphs": [
+            "The useful idea is the tradeoff behind a growth decision. It can support a short explanation, a practical question, a checklist, and a longer article without repeating the same paragraph.",
+            "Keep a source note for each angle so the writer and reviewer can trace the idea back to the conversation. Check the meaning with the expert before adding claims or examples they did not provide."
+          ],
+          "list": [
+            "Readiness: is the business able to support the new priority?",
+            "Tradeoffs: what must pause to make room?",
+            "Next steps: what can the owner learn before committing?"
+          ]
+        },
+        {
+          "heading": "Give each post a different job.",
+          "paragraphs": [
+            "An eight-post writing plan can combine explanation, practical prompts, and a route to a deeper article. The format should follow the point, rather than forcing every post into the same template. This sample plan demonstrates the structure; it is not a completed monthly delivery."
+          ],
+          "list": [
+            "1. Explain why every new priority creates a tradeoff.",
+            "2. Ask what the business would pause to make room.",
+            "3. Share a three-question readiness checklist.",
+            "4. Explain the difference between an opportunity and a priority.",
+            "5. Describe an assumption an owner can test first.",
+            "6. Answer a common objection to narrowing the plan.",
+            "7. Introduce the longer article with its most useful question.",
+            "8. Invite readers to review one decision using the checklist."
+          ]
+        },
+        {
+          "heading": "Build one article around the full explanation.",
+          "paragraphs": [
+            "A proposed article, “Before your next growth move, name the tradeoff,” can expand the same idea: describe the competing priorities, explain the capacity question, work through a fictional example, and end with a short decision checklist.",
+            "This gives the article a different purpose from the posts. It develops the reasoning and provides a useful resource to link to when the same question comes up again."
+          ],
+          "list": []
+        },
+        {
+          "heading": "Review the batch before publishing.",
+          "paragraphs": [
+            "Check accuracy, voice, examples, and the action each piece asks the reader to take. Collect feedback through one approval route so the writing can be revised consistently.",
+            "Content Studio includes a monthly source interview, eight written social posts for one profile or page, and one article up to 1,200 words or one email up to 800 words. The editorial calendar and review cycle connect those pieces. Graphics, community management, and email distribution are separately scoped."
+          ],
+          "list": []
+        }
+      ]
+    },
+    {
+      "slug": "brand-strategy-or-a-new-logo",
+      "title": "Brand strategy or a new logo: what does your business need?",
+      "category": "Brand strategy",
+      "summary": "Identify whether the problem is the message, the visual identity, or both before commissioning the work.",
+      "introduction": "A new logo can change how a business looks. Positioning changes how the business explains its offer and why someone should choose it. Both can matter, but they solve different parts of the problem. Start by identifying what your customers and your own team are struggling to understand.",
+      "relatedPackage": "brand-blueprint",
+      "sections": [
+        {
+          "heading": "Look for the question behind the request.",
+          "paragraphs": [
+            "“We need a refresh” might mean the visuals feel dated. It might also mean the offer has changed, the company is serving a different audience, or every sales conversation starts with a long explanation.",
+            "Write down what should become easier after the work. If the answer is “people should understand what we do and who it is for,” positioning and messaging deserve attention before visual execution."
+          ],
+          "list": []
+        },
+        {
+          "heading": "Check whether the offer is easy to explain.",
+          "paragraphs": [
+            "Ask a few people close to the business to describe the priority customer, the problem you solve, and the reason to choose your offer. Differences can reveal decisions that a logo brief alone cannot settle.",
+            "A useful strategy brings those decisions together in a positioning statement, value proposition, message hierarchy, and voice guidance. These give later writing and design work a shared direction."
+          ],
+          "list": [
+            "Who are we prioritizing?",
+            "What are they trying to decide or achieve?",
+            "What do we offer them?",
+            "Which reasons to believe can we actually support?",
+            "What should we emphasize first?"
+          ]
+        },
+        {
+          "heading": "Assess the visual system on its own terms.",
+          "paragraphs": [
+            "If the message is settled but the identity is inconsistent, hard to use, or poorly suited to the business, visual identity work may be the next need. That could involve a logo, typography, colors, photography, or application guidelines.",
+            "Write those requirements into a separate design brief. A strategy document can inform visual decisions, but the strategy deliverable and the identity production should each have an explicit scope."
+          ],
+          "list": []
+        },
+        {
+          "heading": "Connect the decisions to the next 90 days.",
+          "paragraphs": [
+            "A positioning exercise is more useful when the business knows where the message will appear next. Choose the service introduction, content themes, and campaign brief that need attention first.",
+            "For example, the fictional Northline concept starts with the owner’s growth decision, then uses that positioning to shape a headline and content themes. The sample shows how the reasoning informs the writing. It does not represent a completed client engagement."
+          ],
+          "list": []
+        },
+        {
+          "heading": "Choose a scope that matches the problem.",
+          "paragraphs": [
+            "Brand Blueprint covers stakeholder input, a competitor review, one priority buyer profile, positioning, voice guidance, three content themes, and a 90-day plan. Logo and visual identity design, naming, photography, video, and website development are separately scoped.",
+            "Bring your existing materials and the decisions you need to make. The first conversation should help establish which work is useful now and which work depends on it."
+          ],
+          "list": []
+        }
+      ]
+    }
   ]
 }

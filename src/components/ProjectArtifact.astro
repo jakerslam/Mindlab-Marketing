@@ -1,0 +1,15 @@
+---
+import type { Artifact } from '@/domain/content';
+interface Props { artifact: Artifact; theme?: 'northline' | 'daybreak'; compact?: boolean; headingLevel?: 3 | 4 }
+const { artifact, theme = 'northline', compact = false, headingLevel = 3 } = Astro.props;
+const Heading = compact ? 'p' : headingLevel === 3 ? 'h3' : 'h4';
+const previewIndex = artifact.format === 'message-map' && artifact.items.length > 1 ? 1 : 0;
+const items = compact ? artifact.items.slice(previewIndex, previewIndex + 1) : artifact.items;
+---
+<div class:list={['artifact', `artifact-${theme}`, `artifact-${artifact.format}`, { 'artifact-compact': compact }]}>
+  <div class="artifact-topline"><span>{theme === 'northline' ? 'Northline Advisory' : 'Daybreak Studio'}</span><span>Sample concept</span></div>
+  <Heading class="artifact-heading">{artifact.title}</Heading>
+  {!compact && <p class="artifact-intro">{artifact.introduction}</p>}
+  <div class="artifact-items">{items.map((item) => <div class="artifact-item"><span class="artifact-label">{item.label}</span><p class="artifact-title">{item.title}</p><p>{item.body}</p></div>)}</div>
+  {compact && <p class="artifact-footer">An excerpt from the original demonstration</p>}
+</div>

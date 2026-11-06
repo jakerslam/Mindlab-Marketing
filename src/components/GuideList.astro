@@ -1,0 +1,8 @@
+---
+import type { Guide } from '@/domain/content';
+import { withBase } from '@/lib/urls';
+import Arrow from './Arrow.astro';
+interface Props { guides: Guide[] }
+const { guides } = Astro.props;
+---
+<div class="guide-list">{guides.map((guide, index) => <article><span class="mono">0{index + 1} / {guide.category}</span><div><h3><a href={withBase(`/thinking/${guide.slug}/`)}>{guide.title}<Arrow/></a></h3><p>{guide.summary}</p></div></article>)}</div>

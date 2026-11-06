@@ -13,7 +13,8 @@ export async function getSanityContent(): Promise<WebsiteContent> {
     "home": *[_type == "homePage" && _id == "home-page"][0]{eyebrow, title, description},
     "packages": *[_type == "servicePackage"] | order(number asc) {id, number, name, tagline, description, price, currency, cadence, setup, timeline, deliverables, exclusions, idealFor},
     "industries": *[_type == "industry"] | order(order asc) {id, name, audience, examples, challenge, approach, action},
-    "projects": *[_type == "project"] | order(order asc) {id, slug, title, label, audience, service, summary, headline, visual, context, decisions[]{title, body}, takeaway},
+    "projects": *[_type == "project"] | order(order asc) {id, slug, title, label, audience, service, summary, headline, visual, context, decisions[]{title, body}, takeaway, objective, "artifacts": coalesce(artifacts[]{id, title, format, introduction, items[]{label, title, body}}, []), measurement{approach, metrics}, "relatedPackages": coalesce(relatedPackages, [])},
+    "guides": *[_type == "guide"] | order(order asc) {slug, title, category, summary, introduction, sections[]{heading, paragraphs, "list": coalesce(list, [])}, relatedPackage},
     "faqs": *[_type == "faq"] | order(order asc) {question, answer}
   }`;
   const url = `https://${project}.api.sanity.io/v2026-11-01/data/query/${dataset}?perspective=published&query=${encodeURIComponent(query)}`;

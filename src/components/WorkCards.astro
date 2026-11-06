@@ -2,9 +2,10 @@
 import { withBase } from '@/lib/urls';
 import type { Project } from '@/domain/content';
 import WorkVisual from './WorkVisual.astro';
+import ProjectArtifact from './ProjectArtifact.astro';
 import Arrow from './Arrow.astro';
 interface Props { projects: Project[]; headingLevel?: 2 | 3 }
 const { projects, headingLevel = 3 } = Astro.props;
 const Heading = headingLevel === 2 ? 'h2' : 'h3';
 ---
-<div class="work-grid">{projects.map((project) => <article class="work-card"><a href={withBase(`/work/${project.slug}/`)} class="work-image-link" aria-label={`View sample: ${project.title}`}><WorkVisual visual={project.visual}/></a><div class="work-meta"><span>{project.label}</span><span>{project.audience}</span></div><a class="work-title" href={withBase(`/work/${project.slug}/`)}><Heading>{project.title}</Heading><Arrow/></a><p>{project.summary}</p></article>)}</div>
+<div class="work-grid">{projects.map((project) => <article class="work-card"><div class="work-preview">{project.artifacts[0] ? <ProjectArtifact artifact={project.artifacts[0]} theme={project.visual} compact headingLevel={4}/> : <WorkVisual visual={project.visual}/>}</div><div class="work-meta"><span>{project.label}</span><span>{project.audience}</span></div><a class="work-title" href={withBase(`/work/${project.slug}/`)}><Heading>{project.title}</Heading><Arrow/></a><p>{project.summary}</p></article>)}</div>
