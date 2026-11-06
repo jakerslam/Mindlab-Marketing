@@ -57,7 +57,7 @@ Define structured records for:
 - Work examples with project context, the team's role, permissions, and evidence behind any result.
 - Articles, authors, team biographies, images, and page metadata.
 
-Store price amounts as numbers with an explicit currency and billing cadence. After approval, the website reads package facts from these records wherever a price or scope appears. This keeps homepage previews and detailed service sections consistent.
+Store price amounts as numbers with an explicit currency and billing cadence. After approval, the website reads package facts from these records wherever a price or scope appears. This keeps the Pricing page, calculator, and booking summaries consistent.
 
 The editor manages content inside designed components. Layout changes, new component types, and integration changes continue through code review.
 

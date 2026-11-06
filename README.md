@@ -32,7 +32,7 @@ The terminal prints the local preview URL. `npm run check` checks Astro and Type
 
 ## Current state
 
-The local preview includes Home, Services and pricing, Industries, two explicitly fictional sample concepts with detail pages, About, the call page, privacy information, and a 404. It includes a selective React cost calculator and a customized shadcn/ui Button. Content pages render static HTML; no React runtime is needed on the homepage. Fonts are self-hosted. Insights is intentionally deferred until original articles are ready.
+The local preview includes Home, Services, a dedicated Pricing page, Industries, two explicitly fictional sample concepts with detail pages, About, the call page, privacy information, and a 404. It includes a selective React cost calculator and a customized shadcn/ui Button. Content pages render static HTML; no React runtime is needed on the homepage. Fonts are self-hosted. Insights is intentionally deferred until original articles are ready.
 
 **This is a review build, not a live lead-generation site.** A private review deployment can be published through Sites; its identity is in `.openai/hosting.json`. `CONTENT_SOURCE=sanity` is the configured default and `SITE_STAGE=preview` makes pages noindex and disallows crawling. Local draft content is used only when explicitly selected. No provider is silently substituted. Missing inquiry and calendar destinations show an honest calls-opening-soon state; no submission is simulated. Production builds require CMS, inquiry, calendar, contact details, and owner-reviewed content.
 

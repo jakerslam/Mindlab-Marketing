@@ -20,3 +20,9 @@ The browser logged a transient Vite stylesheet-reload failure while dependencies
 Root-domain and `/Mindlab-Marketing` builds each passed all 10 pages and 233 local URL, asset, and anchor checks. Canonical URLs also respect the deployment base. The official Pages workflow YAML parsed successfully. The signed-in GitHub CLI enabled Pages without using a personal token from chat.
 
 The initial artifact-based publication timed out in GitHub's `updating_pages` phase. Branch-based publishing succeeded from `codex/pages-static`; both the normal public URL and a fresh request returned HTTP 200. Browser checks on the live Pages site confirmed service navigation, the $6,500 Demand Campaigns estimate, the prefixed package handoff, the Tally form, and the 30-minute Cal.com link. No browser console errors were reported in those checks. The editable source was restored after a deployment-branch merge using a regular revert commit.
+
+## Dedicated Pricing page
+
+Package fees and setup fees were halved in Sanity and the seed content. The full comparison, combined package, and calculator now live at `/pricing/`; Home links to that page and Services focuses on scope. Header, footer, service pricing links, and the booking-page return link point to Pricing. Existing `#packages` anchors on Home and Services remain as short links to the new page.
+
+Astro checked 40 files with zero errors, warnings, or hints. The root-domain build passed 11 pages and 266 URL, asset, and anchor checks. Browser checks confirmed mobile navigation to Pricing, no horizontal overflow at 360px and 861px viewport settings, desktop navigation without logo overlap, calculator totals of $4,750 initially / $4,250 ongoing for Demand Campaigns with $3,000 media, selected-package handoff, and return to Pricing. The homepage has no package price cards, and no browser console errors were recorded in these checks.

@@ -6,11 +6,11 @@ The first website is implemented in `site/` using Astro, TypeScript, Tailwind CS
 
 **Private review:** https://mindlab-solutions-review.jakerslam.chatgpt.site
 
-This owner-private Sites deployment is a review of the website design and content. A public GitHub Pages preview is configured at https://jakerslam.github.io/Mindlab-Marketing/. The connection to mindlab.solutions and final production approval remain to be finalized. The app and static output are portable to the planned GitHub-backed host.
+This owner-private Sites deployment is a review of the website design and content. The public website is hosted on GitHub Pages at https://mindlab.solutions/ with HTTPS enforced. Final production content approval and indexing remain to be finalized. The app and static output are portable to the planned GitHub-backed host.
 
 ## Included
 
-- Home, Services and package pricing, Industries, Our Thinking, two original fictional sample details, About, call page, draft privacy information, and 404.
+- Home, Services, a dedicated Pricing page, Industries, Our Thinking, two original fictional sample details, About, call page, draft privacy information, and 404.
 - Shared validated package data, clear setup and media fees, and a working first-month calculator.
 - Responsive navigation, accessible FAQ disclosures, focus states, reduced-motion support, local fonts, metadata, sitemap, and preview noindex behavior.
 - Provider boundaries for content, inquiries, scheduling, and optional consent-gated analytics.

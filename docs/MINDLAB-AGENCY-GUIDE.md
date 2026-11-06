@@ -265,7 +265,8 @@ Mindlab's website and sales conversations should use the same package names, sco
 ## Website structure
 
 - **Home:** explain who Mindlab helps, the problems addressed, the three core services, relevant work, the process, and the next step.
-- **Services and Packages:** show pricing, deliverables, fit, exclusions, and how combined delivery works.
+- **Services:** explain deliverables, fit, exclusions, and the working rhythm.
+- **Pricing:** compare package fees, setup costs, included scope, combined delivery, and first-month estimates.
 - **Industries:** explain the B2B and B2C applications and provide relevant examples for the selected markets.
 - **Work and Insights:** publish permissioned projects, substantiated results, useful analysis, and clearly labeled demonstrations.
 - **About:** introduce the people doing the work, their actual experience, and the working approach.

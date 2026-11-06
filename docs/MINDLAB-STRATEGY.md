@@ -108,7 +108,8 @@ Proposed navigation:
 | Page | Buyer question it should answer |
 | --- | --- |
 | **Home** | Is Mindlab relevant to a business like ours, and why should we keep reading? |
-| **Services & Packages** | What do we receive, what does it cost, and which engagement fits? |
+| **Services** | What do we receive, who is it for, and how does the work run? |
+| **Pricing** | What does each package cost, what is included, and what would the first month total? |
 | **Work & Insights** | Can the team demonstrate clear thinking and relevant execution? |
 | **About** | Who will do the work, and how will we collaborate? |
 | **Book a Call** | What happens next, and what should we bring? |

@@ -1,0 +1,71 @@
+---
+import { withBase } from '@/lib/urls';
+import Layout from '@/layouts/Layout.astro';
+import Arrow from '@/components/Arrow.astro';
+import PackageCards from '@/components/PackageCards.astro';
+import PackagePlanner from '@/components/PackagePlanner';
+import FAQ from '@/components/FAQ.astro';
+import CTA from '@/components/CTA.astro';
+import { getContent } from '@/content';
+import { formatPrice } from '@/domain/content';
+
+const { packages, faqs } = await getContent();
+const retainers = packages.filter((pkg) => pkg.cadence === 'month');
+const combinedPrice = retainers.reduce((total, pkg) => total + pkg.price, 0);
+const combinedSetup = retainers.reduce((total, pkg) => total + pkg.setup, 0);
+const plannerPackages = packages.map(({ id, name, price, setup, cadence }) => ({ id, name, price, setup, cadence }));
+---
+<Layout title="Packages & pricing" description="Compare Mindlab’s brand strategy, content, and paid campaign packages. See service fees, setup costs, included deliverables, and an interactive budget estimate.">
+  <section class="page-hero container">
+    <p class="eyebrow">Packages & pricing</p>
+    <h1>Clear scope.<br/>Clear pricing.</h1>
+    <p class="lede">A focused project or ongoing support. Compare the work, see the fees, and choose a starting point that fits your business.</p>
+    <div class="anchor-nav">
+      <a href="#packages">Compare packages<span>↘</span></a>
+      <a href="#estimate">Estimate your budget<span>↘</span></a>
+      <a href={withBase('/services/')}>Explore the services<Arrow/></a>
+    </div>
+  </section>
+
+  <section class="section tinted" id="packages">
+    <div class="container">
+      <div class="section-heading">
+        <div><p class="eyebrow">Compare your options</p><h2>Know what<br/>you’re starting with.</h2></div>
+        <p>Clear fees and clear boundaries. Each package covers one focused scope, with setup and advertising costs shown separately.</p>
+      </div>
+      <PackageCards packages={packages} detailed/>
+      <p class="section-note">All prices in USD. Advertising spend, taxes, and separately scoped production or technical work are additional. Final scope and terms are confirmed in your agreement.</p>
+      <div class="combined-package" id="combined">
+        <div>
+          <p class="eyebrow">Better connected, when you need both</p>
+          <h3>Content and Campaigns</h3>
+          <p>The full Content Studio and Demand Campaigns scopes, with one coordinated monthly review. Brand Blueprint stays a separate project if you need it.</p>
+        </div>
+        <div>
+          <p class="combined-price">{formatPrice(combinedPrice)}<span> / month</span></p>
+          <p>+ {formatPrice(combinedSetup)} combined setup. Media additional.</p>
+          <a class="text-link" href={withBase('/book-call/?service=combined')} data-track="package_interest" data-service="combined">Discuss the combined option <Arrow/></a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="section" id="estimate">
+    <div class="container">
+      <div class="section-heading">
+        <div><p class="eyebrow">Put the numbers together</p><h2>A clearer view<br/>of the cost.</h2></div>
+        <p>Separate the service fee, setup, and advertising budget. Use this guide to understand a possible first month.</p>
+      </div>
+      <PackagePlanner packages={plannerPackages} client:visible/>
+      <noscript><p>JavaScript enables the interactive estimate. All service prices, setup fees, and exclusions are listed above.</p></noscript>
+    </div>
+  </section>
+
+  <section class="section border-top">
+    <div class="container faq-grid">
+      <div><p class="eyebrow">Before we begin</p><h2>Questions,<br/>answered.</h2><p>Final scope, prices, and terms are confirmed in your written agreement.</p></div>
+      <FAQ items={faqs}/>
+    </div>
+  </section>
+  <CTA/>
+</Layout>

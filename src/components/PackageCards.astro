@@ -7,7 +7,7 @@ interface Props { packages: Package[]; detailed?: boolean }
 const { packages, detailed = false } = Astro.props;
 ---
 <div class="package-grid">
-  {packages.map((pkg) => <article class:list={['package-card', { 'package-featured': pkg.id === 'content-studio' }]}>
+  {packages.map((pkg) => <article id={pkg.id} class:list={['package-card', { 'package-featured': pkg.id === 'content-studio' }]}>
     <div class="package-topline"><span class="mono">{pkg.number} /</span><span>{pkg.cadence === 'project' ? 'One-time project' : 'Monthly partnership'}</span></div>
     <h3>{pkg.name}</h3><p class="package-tagline">{pkg.tagline}</p>
     <p class="package-price">{formatPrice(pkg.price)}<span> / {pkg.cadence}</span></p>

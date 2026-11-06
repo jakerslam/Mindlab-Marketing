@@ -3,7 +3,6 @@ import { withBase } from '@/lib/urls';
 import Layout from '@/layouts/Layout.astro';
 import Arrow from '@/components/Arrow.astro';
 import HeroArtwork from '@/components/HeroArtwork.astro';
-import PackageCards from '@/components/PackageCards.astro';
 import WorkCards from '@/components/WorkCards.astro';
 import FAQ from '@/components/FAQ.astro';
 import CTA from '@/components/CTA.astro';
@@ -12,7 +11,7 @@ const content = await getContent();
 ---
 <Layout title="Clear thinking. Connected marketing." description={content.settings.description}>
   <section class="hero"><div class="container hero-grid">
-    <div class="hero-copy"><p class="eyebrow"><span class="status-dot"></span>{content.home.eyebrow}</p><h1>{content.home.title}</h1><p class="hero-description">{content.home.description}</p><div class="hero-actions"><a class="button" href={withBase("/book-call/")} data-track="strategy_call_click" data-location="hero">Book a strategy call <Arrow/></a><a class="text-link" href={withBase("/services/#packages")}>Explore packages <Arrow/></a></div><p class="hero-footnote">Brand strategy · Content · Paid campaigns</p></div>
+    <div class="hero-copy"><p class="eyebrow"><span class="status-dot"></span>{content.home.eyebrow}</p><h1>{content.home.title}</h1><p class="hero-description">{content.home.description}</p><div class="hero-actions"><a class="button" href={withBase("/book-call/")} data-track="strategy_call_click" data-location="hero">Book a strategy call <Arrow/></a><a class="text-link" href={withBase("/pricing/")}>Explore packages <Arrow/></a></div><p class="hero-footnote">Brand strategy · Content · Paid campaigns</p></div>
     <HeroArtwork/>
   </div></section>
   <div class="intro-strip"><div class="container"><span>Built around your business.</span><div><span>B2B & B2C</span><i></i><span>Clear deliverables</span><i></i><span>Connected thinking</span></div><span class="mono">A LITTLE CLARITY GOES A LONG WAY. ↘</span></div></div>
@@ -40,7 +39,7 @@ const content = await getContent();
     ['Review & improve', 'Look at what happened, share what we learned, and decide the next move.'],
   ].map(([title, body], i) => <li><span class="process-number">0{i + 1}<span>↗</span></span><h3>{title}</h3><p>{body}</p></li>)}</ol></div></section>
 
-  <section class="section" id="packages"><div class="container"><div class="section-heading"><div><p class="eyebrow">A clear place to start</p><h2>Good work.<br/>Defined scope.</h2></div><div><p>Choose a focused project or ongoing support. Here’s what the work costs, before we talk.</p><a class="text-link" href={withBase("/services/#packages")}>All packages & details <Arrow/></a></div></div><PackageCards packages={content.packages}/><p class="section-note">Prices in USD. Setup fees and media costs shown separately. Final scope and terms confirmed in your agreement.</p></div></section>
+  <section class="section border-top" id="packages"><div class="container cta-inner"><div><p class="eyebrow">A clear place to start</p><h2>Good work. Defined scope.</h2><p>Choose a focused project or ongoing support. Compare what’s included, see the fees, and find the right starting point.</p></div><a class="button button-outline" href={withBase("/pricing/")}>Compare packages & pricing <Arrow/></a></div></section>
 
   <section class="section approach-section"><div class="container approach-grid"><div class="approach-art" aria-hidden="true"><div></div><div></div><div></div><span>CLEAR THINKING.<br/>CONNECTED WORK.</span></div><div><p class="eyebrow">The Mindlab approach</p><h2>Thoughtful by design.<br/>Practical by nature.</h2><p>We believe a marketing plan should make your next decision easier. That means asking useful questions, being clear about the work, and keeping your business goal in view.</p><a class="text-link" href={withBase("/about/")}>Get to know our approach <Arrow/></a></div></div></section>
 
