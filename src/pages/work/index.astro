@@ -1,36 +1,9 @@
 ---
 import Layout from '@/layouts/Layout.astro';
 import { withBase } from '@/lib/urls';
-import ProjectArtifact from '@/components/ProjectArtifact.astro';
-import WorkVisual from '@/components/WorkVisual.astro';
-import GuideList from '@/components/GuideList.astro';
-import Arrow from '@/components/Arrow.astro';
-import CTA from '@/components/CTA.astro';
-import { getContent } from '@/content';
-const { projects, guides } = await getContent();
-const briefQuestions = [
-  ['The offer', 'What are we asking people to consider?'],
-  ['The audience', 'Who needs it, and what matters to them?'],
-  ['The next step', 'What should someone do after reading?'],
-  ['The evidence', 'Which reasons to believe can we support?'],
-  ['The constraints', 'What budget, inputs, and approvals shape the work?'],
-  ['The review', 'What will we measure, and who will act on it?'],
-];
+const destination = withBase('/about/#our-thinking');
 ---
-<Layout title="Our thinking: examples & practical guides" description="Explore original brand strategy, writing, and campaign demonstrations, plus practical guides to planning your next marketing move.">
-  <section class="page-hero container thinking-hero">
-    <p class="eyebrow">Our thinking</p><h1>See how the work<br/> comes together.</h1>
-    <p class="lede">Brand strategy, content, and campaign examples. The decisions behind them, and practical ideas you can use in your own business.</p>
-    <div class="anchor-nav"><a href="#examples">Explore the examples<span>↘</span></a>{guides.length > 0 && <a href="#guides">Read the guides<span>↘</span></a>}<a href="#brief">Start a better brief<span>↘</span></a></div>
-  </section>
-  <section class="section thinking-examples" id="examples"><div class="container">
-    <div class="collection-heading"><h2>Ideas put into practice.</h2><p>Original sample projects featuring fictional brands.<br/>No client relationship or campaign results are claimed.</p></div>
-    {projects.map((project, index) => <article class:list={['featured-example', { 'featured-example-reverse': index % 2 === 1 }]}>
-      <div class="featured-preview">{project.artifacts[0] ? <ProjectArtifact artifact={project.artifacts[0]} theme={project.visual} compact headingLevel={3}/> : <WorkVisual visual={project.visual}/>}</div>
-      <div class="featured-copy"><p class="eyebrow">0{index + 1} / {project.label}</p><p class="example-audience">{project.audience}</p><h3>{project.title}</h3><p>{project.summary}</p><p class="example-service">{project.service}</p><a class="text-link" href={withBase(`/work/${project.slug}/`)}>Read the example <Arrow/></a></div>
-    </article>)}
-  </div></section>
-  {guides.length > 0 && <section class="section tinted" id="guides"><div class="container"><div class="section-heading"><div><p class="eyebrow">Practical guides</p><h2>Useful questions.<br/>A place to start.</h2></div><p>Make the next decision with a better brief, a working example, or a closer look at the process.</p></div><GuideList guides={guides}/></div></section>}
-  <section class="section brief-section" id="brief"><div class="container"><div class="section-heading"><div><p class="eyebrow">A method you can use</p><h2>Six questions.<br/>A better starting brief.</h2></div><p>Use these prompts before commissioning a brand plan, a piece of content, or a campaign. Bring the answers to the conversation.</p></div><ol class="brief-grid">{briefQuestions.map(([title, question], index) => <li><span class="mono">0{index + 1} / {title}</span><p>{question}</p></li>)}</ol><a class="text-link" href={withBase('/services/')}>Find the service behind the work <Arrow/></a></div></section>
-  <CTA title="Have a brief in mind?" description="Tell us about the offer, the audience, and the next step you want to make possible."/>
+<Layout title="Our thinking has a new home" description="Find Mindlab’s sample work and practical guides on the About page." canonicalPath="/about/" noindex>
+  <meta slot="head" http-equiv="refresh" content={`0;url=${destination}`}/>
+  <section class="page-hero container"><p class="eyebrow">About Mindlab</p><h1>Our thinking,<br/>all in one place.</h1><p class="lede">Our sample work and practical guides are now part of About Mindlab.</p><a class="button" href={destination}>Explore our thinking →</a></section>
 </Layout>

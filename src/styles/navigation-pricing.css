@@ -6,7 +6,6 @@
 .nav-dropdown-panel { position: absolute; top: calc(100% + 12px); left: -22px; width: 350px; max-width: calc(100vw - 48px); padding: 12px; border: 1px solid var(--line); border-radius: 10px; background: #fff; box-shadow: 0 16px 40px rgba(20,21,26,.12); }
 .nav-dropdown-panel::before { content: ''; position: absolute; top: -14px; height: 14px; left: 0; right: 0; }
 .nav-industries-panel { left: 50%; transform: translateX(-50%); width: 540px; }
-.nav-about-panel { left: auto; right: 0; width: 240px; }
 .nav-dropdown-panel ul { list-style: none; margin: 0; padding: 0; }
 .nav-dropdown-panel a { display: flex; align-items: center; justify-content: space-between; gap: 15px; min-height: 44px; border-radius: 5px; padding: 11px 12px; font-size: 14px; }
 .nav-dropdown-panel a:hover { background: var(--lavender); color: var(--violet); }

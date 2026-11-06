@@ -14,7 +14,7 @@ const { project, packages } = Astro.props;
 const related = packages.filter((pkg) => project.relatedPackages.includes(pkg.id));
 ---
 <Layout title={project.title} description={project.summary}>
-  <section class="page-hero container example-hero"><a class="back-link" href={withBase('/work/')}>← All thinking</a><p class="eyebrow">{project.label} / {project.audience}</p><h1>{project.title}</h1><p class="lede">{project.summary}</p><div class="project-tags"><span>{project.service}</span><span>Fictional business · Original demonstration</span></div>
+  <section class="page-hero container example-hero"><a class="back-link" href={withBase('/about/#our-thinking')}>← About / Our thinking</a><p class="eyebrow">{project.label} / {project.audience}</p><h1>{project.title}</h1><p class="lede">{project.summary}</p><div class="project-tags"><span>{project.service}</span><span>Fictional business · Original demonstration</span></div>
     {project.artifacts.length > 0 && <nav class="anchor-nav" aria-label="In this example"><a href="#brief">The brief<span>↘</span></a><a href="#deliverables">The deliverables<span>↘</span></a><a href="#measurement">Proposed measurement<span>↘</span></a></nav>}
   </section>
   <section class="example-brief border-top" id="brief"><div class="container editorial-grid"><div><p class="eyebrow">The brief</p><h2>{project.objective || 'Start with the business question.'}</h2></div><div><p>{project.context}</p><p class="example-disclosure">Sample concept. No campaign was run and no client results are claimed.</p></div></div></section>

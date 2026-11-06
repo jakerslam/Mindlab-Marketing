@@ -6,7 +6,7 @@ import { getContent } from '@/content';
 import { serviceDetails } from '@/domain/services';
 const { packages, industries } = await getContent();
 const links = [['Services', '/services/'], ['Pricing', '/pricing/'], ['Who we help', '/industries/'], ['About', '/about/']];
-const dropdownIds: Record<string, string> = { '/services/': 'services-nav', '/industries/': 'industries-nav', '/about/': 'about-nav' };
+const dropdownIds: Record<string, string> = { '/services/': 'services-nav', '/industries/': 'industries-nav' };
 const path = Astro.url.pathname;
 const isCurrent = (href: string) => path.startsWith(withBase(href)) || (href === '/about/' && ['/work/', '/thinking/'].some((section) => path.startsWith(withBase(section))));
 ---
@@ -17,10 +17,9 @@ const isCurrent = (href: string) => path.startsWith(withBase(href)) || (href ===
     <nav id="main-nav" class="main-nav" aria-label="Main navigation">
       {links.map(([name, href]) => dropdownIds[href] ? <div class="nav-dropdown">
         <button class="nav-dropdown-toggle" type="button" aria-expanded="false" aria-controls={dropdownIds[href]} data-current={isCurrent(href) ? 'true' : undefined}>{name}</button>
-        <div id={dropdownIds[href]} class:list={['nav-dropdown-panel', { 'nav-industries-panel': href === '/industries/', 'nav-about-panel': href === '/about/' }]} hidden>
+        <div id={dropdownIds[href]} class:list={['nav-dropdown-panel', { 'nav-industries-panel': href === '/industries/' }]} hidden>
           {href === '/services/' && <><a class="dropdown-overview" href={withBase('/services/')}>All services<Arrow/></a><ul class="dropdown-services">{packages.map((pkg) => <li><a href={withBase(`/services/#${pkg.id}`)}><span>{pkg.name}</span><small>{serviceDetails[pkg.id].description}</small></a></li>)}</ul><a class="dropdown-footer" href={withBase('/pricing/')}>Compare packages & pricing<Arrow/></a></>}
           {href === '/industries/' && <><a class="dropdown-overview" href={withBase('/industries/')}>Overview<Arrow/></a><div class="dropdown-industry-groups">{(['b2b', 'b2c'] as const).map((audience) => <div><a class="dropdown-group-title" href={withBase(`/industries/${audience}/`)}>{audience === 'b2b' ? 'B2B businesses' : 'B2C businesses'}<span aria-hidden="true">↗</span></a><ul>{industries.filter((industry) => industry.audience === audience).map((industry) => <li><a href={withBase(`/industries/${audience}/#${industry.id}`)}>{industry.name}</a></li>)}</ul></div>)}</div></>}
-          {href === '/about/' && <ul><li><a href={withBase('/about/')} aria-current={path.startsWith(withBase('/about/')) ? 'page' : undefined}>About Mindlab<Arrow/></a></li><li><a href={withBase('/work/')} aria-current={['/work/', '/thinking/'].some((section) => path.startsWith(withBase(section))) ? 'page' : undefined}>Our thinking<Arrow/></a></li></ul>}
         </div>
       </div> : <a href={withBase(href)} aria-current={isCurrent(href) ? 'page' : undefined}>{name}</a>)}
       <a class="button button-small" href={withBase("/book-call/")} data-track="strategy_call_click" data-location="header">Let’s talk <Arrow/></a>
