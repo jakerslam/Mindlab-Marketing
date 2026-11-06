@@ -49,3 +49,13 @@ The visitor can browse concrete sample deliverables and original guides, follow 
 - A branded share image was rendered and visually inspected; Open Graph metadata uses an absolute site URL through the shared base-path helper.
 
 GitHub Pages remains in preview/noindex mode. Public contact setup, final launch approval, accepted inquiry delivery, booking confirmation, automatic CMS rebuild hooks, and optional analytics remain outside the completed editorial changes. The original private review deployment was not refreshed in this pass.
+
+## Compact pricing and navigation dropdowns · November 6, 2026
+
+Pricing now uses three horizontal service rows on desktop and stacked blocks on mobile. Agency fees, setup, media exclusions, writing-only scope, and the managed-spend cap remain visible. Full scope links and selected-package handoff are preserved. The combined option is a compact strip, the estimator starts collapsed, and an incoming `#estimate` link opens it automatically. No content records, package fees, scope, or integrations changed.
+
+Services and Industries are disclosure buttons. Services contains the overview and three package anchors. Industries contains the overview plus B2B/B2C groups and six industry anchors. The dropdowns support click/tap, Enter/Space, Arrow Up/Down from the trigger, Escape with focus restoration, dismissal outside the menu, and closing when focus leaves the header. Mobile navigation nests the same destinations and scrolls within the available viewport.
+
+The published-content build generates 14 HTML pages and passes 543 local URL/asset/anchor checks. Astro/TypeScript checks 47 files without errors, warnings, or hints. Browser checks covered desktop pricing, both dropdowns, keyboard opening/focus restoration, outside clicks, industry and service anchors, mobile menu dismissal, and no horizontal document overflow at the checked 360px and 861px widths. A dropdown clipping issue at 861px was fixed by centering the industry panel beneath its trigger.
+
+The first desktop price moved from about 1,030px to about 420px from the document top in the inspected 1280px viewport. The collapsed calculator opened and hydrated, then produced $4,750 initially and $4,250 ongoing for Demand Campaigns with an illustrative $3,000 media budget. The new pricing-row link carried Demand Campaigns and its unchanged $1,250/month + $500 setup fee to the call page. No accepted inquiry or booking was created. No browser console errors were captured in these preview checks.

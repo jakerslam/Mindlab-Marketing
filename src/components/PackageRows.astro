@@ -1,0 +1,32 @@
+---
+import { withBase } from '@/lib/urls';
+import { formatPrice, type Package } from '@/domain/content';
+import { serviceDetails } from '@/domain/services';
+import Arrow from './Arrow.astro';
+interface Props { packages: Package[] }
+const { packages } = Astro.props;
+const actions: Record<Package['id'], string> = {
+  'brand-blueprint': 'Discuss strategy',
+  'content-studio': 'Discuss content',
+  'demand-campaigns': 'Discuss campaigns',
+};
+---
+<div class="pricing-rows">
+  {packages.map((pkg) => <article class="pricing-row" id={pkg.id}>
+    <div class="pricing-row-description">
+      <p class="eyebrow">{pkg.cadence === 'project' ? 'Strategy project' : pkg.id === 'content-studio' ? 'Monthly content' : 'Paid advertising'}</p>
+      <h2>{pkg.name}</h2>
+      <p>{serviceDetails[pkg.id].description}</p>
+      {pkg.id === 'content-studio' && <p class="pricing-boundary">Writing only. Graphics, video, and distribution are separately scoped.</p>}
+      {pkg.id === 'demand-campaigns' && <p class="pricing-boundary">{pkg.deliverables.find((item) => /media spend/i.test(item))}</p>}
+      <a class="pricing-scope" href={withBase(`/services/#${pkg.id}`)}>View full scope & exclusions <span aria-hidden="true">↗</span></a>
+    </div>
+    <div class="pricing-row-fee">
+      <p class="pricing-amount">{formatPrice(pkg.price)}</p>
+      <p class="pricing-cadence">{pkg.cadence === 'project' ? 'one-time project' : 'per month'}</p>
+      <p class="pricing-setup">{pkg.setup ? `+ ${formatPrice(pkg.setup)} one-time ${pkg.id === 'content-studio' ? 'onboarding' : 'launch'}` : 'No additional setup fee'}</p>
+      {pkg.id === 'demand-campaigns' && <p class="pricing-setup">Advertising spend is additional.</p>}
+    </div>
+    <a class="button pricing-row-action" href={withBase(`/book-call/?service=${pkg.id}`)} data-track="package_interest" data-service={pkg.id}>{actions[pkg.id]}<Arrow/></a>
+  </article>)}
+</div>

@@ -18,7 +18,7 @@ This owner-private Sites deployment is a review of the website design and conten
 
 ## Verified
 
-The editorial pass checks 46 Astro/TypeScript files with zero errors/warnings/hints. The published-Sanity build produces 14 HTML pages and verifies 377 local URLs, assets, and anchors plus metadata, unique IDs, and sample disclosures. Desktop and narrow layouts, guide navigation, related service links, pricing, mobile navigation, and selected-package handoff were checked in the browser. Earlier verification and its limits remain recorded in `VERIFICATION.md`.
+The current build checks 47 Astro/TypeScript files with zero errors/warnings/hints. The published-Sanity build produces 14 HTML pages and verifies 543 local URLs, assets, and anchors plus metadata, unique IDs, and sample disclosures. Pricing uses compact service rows with a collapsed estimator. Services and Industries dropdowns support keyboard and nested mobile navigation. Desktop and narrow layouts, guide navigation, related service links, pricing, and selected-package handoff were checked in the browser. Detailed verification and limits remain recorded in `VERIFICATION.md`.
 
 ## Integration and launch status
 

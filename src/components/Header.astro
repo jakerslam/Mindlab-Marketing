@@ -2,6 +2,9 @@
 import { withBase } from '@/lib/urls';
 import Mark from './Mark.astro';
 import Arrow from './Arrow.astro';
+import { getContent } from '@/content';
+import { serviceDetails } from '@/domain/services';
+const { packages, industries } = await getContent();
 const links = [['Services', '/services/'], ['Pricing', '/pricing/'], ['Industries', '/industries/'], ['Our thinking', '/work/'], ['About', '/about/']];
 const path = Astro.url.pathname;
 const isCurrent = (href: string) => path.startsWith(withBase(href)) || (href === '/work/' && path.startsWith(withBase('/thinking/')));
@@ -11,7 +14,12 @@ const isCurrent = (href: string) => path.startsWith(withBase(href)) || (href ===
     <a class="wordmark" href={withBase("/")} aria-label="Mindlab Solutions home"><Mark/><span>mindlab<span class="wordmark-dot">.</span></span></a>
     <button class="menu-toggle" aria-expanded="false" aria-controls="main-nav" type="button"><span>Menu</span><svg width="20" height="20" viewBox="0 0 20 20" fill="none" stroke="currentColor" aria-hidden="true"><path d="M3 6h14M3 13h14"/></svg></button>
     <nav id="main-nav" class="main-nav" aria-label="Main navigation">
-      {links.map(([name, href]) => <a href={withBase(href)} aria-current={isCurrent(href) ? 'page' : undefined}>{name}</a>)}
+      {links.map(([name, href]) => name === 'Services' || name === 'Industries' ? <div class="nav-dropdown">
+        <button class="nav-dropdown-toggle" type="button" aria-expanded="false" aria-controls={`${name.toLowerCase()}-nav`} data-current={isCurrent(href) ? 'true' : undefined}>{name}<svg width="12" height="12" viewBox="0 0 12 12" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true"><path d="m2 4 4 4 4-4"/></svg></button>
+        <div id={`${name.toLowerCase()}-nav`} class:list={['nav-dropdown-panel', { 'nav-industries-panel': name === 'Industries' }]} hidden>
+          {name === 'Services' ? <><a class="dropdown-overview" href={withBase('/services/')}>All services<Arrow/></a><ul class="dropdown-services">{packages.map((pkg) => <li><a href={withBase(`/services/#${pkg.id}`)}><span>{pkg.name}</span><small>{serviceDetails[pkg.id].description}</small></a></li>)}</ul><a class="dropdown-footer" href={withBase('/pricing/')}>Compare packages & pricing<Arrow/></a></> : <><a class="dropdown-overview" href={withBase('/industries/')}>All industries<Arrow/></a><div class="dropdown-industry-groups">{(['b2b', 'b2c'] as const).map((audience) => <div><a class="dropdown-group-title" href={withBase(`/industries/#${audience}`)}>{audience === 'b2b' ? 'B2B businesses' : 'B2C businesses'}<span aria-hidden="true">↗</span></a><ul>{industries.filter((industry) => industry.audience === audience).map((industry) => <li><a href={withBase(`/industries/#${industry.id}`)}>{industry.name}</a></li>)}</ul></div>)}</div></>}
+        </div>
+      </div> : <a href={withBase(href)} aria-current={isCurrent(href) ? 'page' : undefined}>{name}</a>)}
       <a class="button button-small" href={withBase("/book-call/")} data-track="strategy_call_click" data-location="header">Let’s talk <Arrow/></a>
     </nav>
   </div>
@@ -24,13 +32,54 @@ const isCurrent = (href: string) => path.startsWith(withBase(href)) || (href ===
   updateHeader();
   window.addEventListener('scroll', updateHeader, { passive: true });
   window.addEventListener('pageshow', updateHeader);
-  const close = () => { toggle?.setAttribute('aria-expanded', 'false'); nav?.classList.remove('is-open'); };
+  const dropdowns = [...document.querySelectorAll<HTMLElement>('.nav-dropdown')].map((element) => ({
+    element,
+    button: element.querySelector<HTMLButtonElement>('.nav-dropdown-toggle')!,
+    panel: element.querySelector<HTMLElement>('.nav-dropdown-panel')!,
+  }));
+  const setDropdown = (dropdown: typeof dropdowns[number], open: boolean) => {
+    dropdown.button.setAttribute('aria-expanded', String(open));
+    dropdown.panel.hidden = !open;
+  };
+  const closeDropdowns = () => dropdowns.forEach((dropdown) => setDropdown(dropdown, false));
+  const close = () => { closeDropdowns(); toggle?.setAttribute('aria-expanded', 'false'); nav?.classList.remove('is-open'); };
+  dropdowns.forEach((dropdown) => {
+    const open = () => { closeDropdowns(); setDropdown(dropdown, true); };
+    dropdown.button.addEventListener('click', () => {
+      const expanded = dropdown.button.getAttribute('aria-expanded') === 'true';
+      if (expanded) setDropdown(dropdown, false); else open();
+    });
+    dropdown.button.addEventListener('keydown', (event) => {
+      if (event.key !== 'ArrowDown' && event.key !== 'ArrowUp') return;
+      event.preventDefault();
+      open();
+      const items = [...dropdown.panel.querySelectorAll<HTMLAnchorElement>('a')];
+      (event.key === 'ArrowDown' ? items[0] : items.at(-1))?.focus();
+    });
+    dropdown.element.addEventListener('focusout', (event) => {
+      if (!dropdown.element.contains(event.relatedTarget as Node | null)) setDropdown(dropdown, false);
+    });
+  });
   toggle?.addEventListener('click', () => {
     const open = toggle.getAttribute('aria-expanded') !== 'true';
+    if (!open) closeDropdowns();
     toggle.setAttribute('aria-expanded', String(open));
     nav?.classList.toggle('is-open', open);
   });
-  document.addEventListener('keydown', (event) => { if (event.key === 'Escape') { close(); toggle?.focus(); } });
+  document.addEventListener('keydown', (event) => {
+    if (event.key !== 'Escape') return;
+    const expanded = dropdowns.find((dropdown) => dropdown.button.getAttribute('aria-expanded') === 'true');
+    if (expanded) { setDropdown(expanded, false); expanded.button.focus(); }
+    else if (toggle?.getAttribute('aria-expanded') === 'true') { close(); toggle.focus(); }
+  });
+  document.addEventListener('pointerdown', (event) => {
+    const target = event.target as Node;
+    if (!header?.contains(target)) close();
+    else if (!dropdowns.some((dropdown) => dropdown.element.contains(target))) closeDropdowns();
+  });
+  header?.addEventListener('focusout', (event) => {
+    if (!header.contains(event.relatedTarget as Node | null)) close();
+  });
   nav?.querySelectorAll('a').forEach((link) => link.addEventListener('click', close));
   window.matchMedia('(min-width: 861px)').addEventListener('change', close);
 </script>
