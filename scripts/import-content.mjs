@@ -5,6 +5,7 @@ const project = process.env.SANITY_PROJECT_ID || projectConfig.sanity.projectId;
 const dataset = process.env.SANITY_DATASET || projectConfig.sanity.dataset;
 const token = process.env.SANITY_WRITE_TOKEN;
 const cliSession = process.argv.includes('--cli-session');
+const industriesOnly = process.argv.includes('--industries-only');
 if ((!token && !cliSession) || !/^[a-z0-9]+$/.test(project) || !/^[a-z0-9_-]+$/.test(dataset)) {
   throw new Error('Sign in with sanity login and run npm run content:import:session, or set a write token in your ignored .env file.');
 }
@@ -22,10 +23,16 @@ const documents = [
 const keyArrays = (value) => Array.isArray(value)
   ? value.map((item, index) => item && typeof item === 'object' ? { _key: `item-${index}`, _type: 'object', ...keyArrays(item) } : item)
   : value && typeof value === 'object' ? Object.fromEntries(Object.entries(value).map(([key, item]) => [key, keyArrays(item)])) : value;
-const mutations = documents.map((document) => ({ createIfNotExists: keyArrays(document) }));
+const selectedDocuments = industriesOnly ? documents.filter((document) => document._type === 'industry') : documents;
+const mutations = selectedDocuments.map((document) => ({ createIfNotExists: keyArrays(document) }));
 if (cliSession) {
   const { getCliClient } = await import('sanity/cli');
   const client = getCliClient({ apiVersion: '2026-11-01' }).withConfig({ projectId: project, dataset, useCdn: false });
+  if (industriesOnly) {
+    const draftIds = selectedDocuments.map((document) => `drafts.${document._id}`);
+    const drafts = await client.fetch('*[_id in $draftIds]{_id}', { draftIds }, { perspective: 'raw' });
+    if (drafts.length) throw new Error('Unpublished industry edits exist. Review them in Studio before importing.');
+  }
   await client.mutate(mutations);
 } else {
   const response = await fetch(`https://${project}.api.sanity.io/v2026-11-01/data/mutate/${dataset}`, {
@@ -34,4 +41,4 @@ if (cliSession) {
   });
   if (!response.ok) throw new Error(`Content import failed (${response.status}). Check dataset, token permissions, and the Sanity dashboard.`);
 }
-console.log(`Seed import accepted for ${documents.length} documents. Existing documents were preserved. Review the published records in Studio.`);
+console.log(`${industriesOnly ? 'Industry' : 'Seed'} import accepted for ${selectedDocuments.length} documents. Existing documents were preserved. Review the published records in Studio.`);

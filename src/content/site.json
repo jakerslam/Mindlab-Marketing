@@ -143,6 +143,96 @@
       "challenge": "The right product story connects features to a reason to care.",
       "approach": "Refine product messaging, develop content themes, and plan a focused campaign. Stores, feeds, assets, and purchase tracking need a separate scope review.",
       "action": "Product interest or purchases where tracking is ready"
+    },
+    {
+      "id": "finance-insurance",
+      "name": "Finance & insurance",
+      "audience": "b2b",
+      "examples": "Business finance, commercial insurance, and financial service providers",
+      "challenge": "Business buyers need a clear explanation of the service, its fit, and the next step.",
+      "approach": "Clarify the offer, turn approved expertise into useful written content, and focus campaigns on a specific business audience.",
+      "action": "Business inquiries and introductory conversations"
+    },
+    {
+      "id": "manufacturing-industrial",
+      "name": "Manufacturing & industrial",
+      "audience": "b2b",
+      "examples": "Manufacturers, industrial suppliers, and specialist producers",
+      "challenge": "Technical capabilities need to connect to a buyer’s operational priorities.",
+      "approach": "Explain the application, purchasing considerations, and reasons to choose your business through positioning, written content, and focused campaigns.",
+      "action": "Product inquiries, specification requests, or quote requests"
+    },
+    {
+      "id": "construction-engineering",
+      "name": "Construction & engineering",
+      "audience": "b2b",
+      "examples": "Commercial contractors, engineering firms, and construction specialists",
+      "challenge": "Buyers need to understand the projects you suit and the expertise you bring.",
+      "approach": "Define the right project and buyer, explain your capabilities, and build content and campaign copy around relevant business questions.",
+      "action": "Project inquiries and tender conversations"
+    },
+    {
+      "id": "logistics-distribution",
+      "name": "Logistics & distribution",
+      "audience": "b2b",
+      "examples": "Freight businesses, distributors, and warehousing providers",
+      "challenge": "Buyers need to connect your capabilities to their routes, products, and service requirements.",
+      "approach": "Make the offer and coverage clear, write around purchasing questions, and focus campaigns on the business accounts you want to reach.",
+      "action": "Service inquiries and quote requests"
+    },
+    {
+      "id": "other-b2b",
+      "name": "Other",
+      "audience": "b2b",
+      "examples": "Other B2B businesses and specialist service providers",
+      "challenge": "Your business may not fit one of the industry labels above.",
+      "approach": "Start with your offer, business buyers, and the decision you want to support. We’ll discuss where brand strategy, written content, or paid campaigns could help.",
+      "action": "A conversation about your business and priorities"
+    },
+    {
+      "id": "healthcare-wellness",
+      "name": "Healthcare & wellness",
+      "audience": "b2c",
+      "examples": "Clinics, wellness practices, and appointment-based care businesses",
+      "challenge": "People need clear service information and an understandable route to an appointment.",
+      "approach": "Explain your services using information approved by your practice, answer practical customer questions, and connect campaign copy to a ready inquiry or booking page.",
+      "action": "Service inquiries and appointment requests"
+    },
+    {
+      "id": "real-estate-property",
+      "name": "Real estate & property",
+      "audience": "b2c",
+      "examples": "Real estate agencies, letting businesses, and property services",
+      "challenge": "Customers need to understand your offer, local focus, and how to get started.",
+      "approach": "Clarify your positioning, create written content around customer questions, and focus campaigns on a specific service and market.",
+      "action": "Property inquiries, viewing requests, or consultation requests"
+    },
+    {
+      "id": "food-hospitality",
+      "name": "Food & hospitality",
+      "audience": "b2c",
+      "examples": "Restaurants, cafés, accommodation, and event venues",
+      "challenge": "An appealing experience needs a clear reason to visit, book, or inquire.",
+      "approach": "Define the offer, write around the experience and practical details, and connect focused campaign copy to your existing booking or inquiry destination.",
+      "action": "Reservations, event inquiries, or booking interest"
+    },
+    {
+      "id": "automotive-services",
+      "name": "Automotive services",
+      "audience": "b2c",
+      "examples": "Repair shops, detailing businesses, and vehicle service providers",
+      "challenge": "Customers need to understand the service and feel ready to request a quote or book.",
+      "approach": "Make the offer clear, answer common service questions, and focus written content and campaigns on your local audience and next action.",
+      "action": "Quote requests and service bookings"
+    },
+    {
+      "id": "other-b2c",
+      "name": "Other",
+      "audience": "b2c",
+      "examples": "Other consumer businesses and customer-facing services",
+      "challenge": "Your business may not fit one of the industry labels above.",
+      "approach": "Tell us about your customers, offer, and the action you want to support. We’ll discuss how the core services could fit your business.",
+      "action": "A conversation about your customers and next step"
     }
   ],
   "projects": [

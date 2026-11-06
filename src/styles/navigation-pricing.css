@@ -16,7 +16,7 @@
 .dropdown-services span { font-weight: 600; }
 .dropdown-services small { font-size: 12px; color: var(--muted); }
 .nav-dropdown-panel .dropdown-footer { margin-top: 10px; padding-top: 15px; border-radius: 0; border-top: 1px solid var(--line); color: var(--violet); font-size: 13px; }
-.dropdown-industry-groups { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; border-top: 1px solid var(--line); padding-top: 10px; }
+.dropdown-industry-groups { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; border-top: 1px solid var(--line); padding-top: 10px; max-height: calc(100dvh - var(--header-current-height) - 130px); overflow-y: auto; overscroll-behavior: contain; }
 .nav-dropdown-panel .dropdown-group-title { color: var(--violet); font-size: 12px; font-weight: 650; }
 .dropdown-industry-groups li a { line-height: 1.5; }
 
@@ -72,7 +72,7 @@
   .nav-dropdown-panel::before { display: none; }
   .nav-dropdown-panel a { font-size: 14px; padding-inline: 12px; }
   .dropdown-services small { font-size: 12px; }
-  .dropdown-industry-groups { gap: 8px; border-top: 0; padding-top: 0; }
+  .dropdown-industry-groups { gap: 8px; border-top: 0; padding-top: 0; max-height: none; overflow: visible; }
   .nav-dropdown-panel .dropdown-footer { margin-top: 7px; }
   .pricing-hero { padding-top: 44px; padding-bottom: 32px; }
   .pricing-row { grid-template-columns: minmax(0,1fr) minmax(190px,.65fr); gap: 10px 32px; padding-block: 28px; }

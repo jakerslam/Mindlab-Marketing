@@ -41,9 +41,19 @@ Mindlab's service focus includes both business buyers and consumer audiences. Th
 | Professional services | Consulting, advisory, fractional leadership, specialist business services | Positioning, expert content, case studies, qualified sales inquiries |
 | Technology and IT services | Managed services, implementation firms, technology consultancies | Service messaging, buyer education, campaign development |
 | Recruiting and training | Staffing firms, recruiters, corporate training providers | Audience-specific offers, employer or buyer content, suitable inquiries |
+| Finance and insurance | Business finance, commercial insurance, financial service providers | Clear service positioning, approved expert content, business inquiries |
+| Manufacturing and industrial | Manufacturers, industrial suppliers, specialist producers | Capability messaging, purchasing information, quote or specification requests |
+| Construction and engineering | Commercial contractors, engineering firms, construction specialists | Project fit, capability content, project inquiries |
+| Logistics and distribution | Freight businesses, distributors, warehousing providers | Coverage and service messaging, buyer questions, quote requests |
+| Other B2B businesses | Specialist businesses outside the named sectors | Define the buyer, offer, and suitable next step before agreeing scope |
 | Home and consumer services | Cleaning, landscaping, repair, home improvement, local appointment-based services | Service differentiation, customer education, bookings and quote requests |
 | Fitness beauty and lifestyle | Fitness studios, salons, beauty businesses, lifestyle services | Brand messaging, customer stories, membership or appointment campaigns |
 | Retail and consumer brands | Independent retailers, ecommerce businesses, specialty products | Product positioning, promotional content, purchase campaigns |
+| Healthcare and wellness | Clinics, wellness practices, appointment-based care businesses | Practice-approved service information, customer questions, appointment inquiries |
+| Real estate and property | Real estate agencies, letting businesses, property services | Service positioning, local customer content, property or viewing inquiries |
+| Food and hospitality | Restaurants, cafés, accommodation, event venues | Offer messaging, practical details, reservation or event inquiries |
+| Automotive services | Repair shops, detailing businesses, vehicle service providers | Service messaging, customer questions, quote requests and bookings |
+| Other B2C businesses | Consumer businesses outside the named sectors | Define the customer, offer, and desired action before agreeing scope |
 
 ## How delivery changes by audience
 

@@ -38,7 +38,7 @@ Pricing uses compact service rows and an optional, collapsed budget estimator. E
 
 The public site is hosted at **https://mindlab.solutions/** on GitHub Pages with HTTPS. It remains a public preview: `SITE_STAGE=preview` makes pages noindex and disallows crawling until the existing launch requirements are completed. `CONTENT_SOURCE=sanity` reads published content without a local fallback. The older owner-private review deployment is separate; its identity is in `.openai/hosting.json`.
 
-The Tally inquiry form and Cal.com 30-minute event are connected through `src/integrations/project.ts`. Sanity project `o19f4dqg` contains 21 published content records in its public `production` dataset. The authenticated browser editor is deployed at https://mindlab-solutions.sanity.studio/. Accepted inquiry delivery, booking confirmation, the contact inbox, and final indexing remain unverified or incomplete. About includes Jay Haslam and Daiana Costa with owner-provided biographies and neutral silhouette placeholders. Public contact details remain deferred.
+The Tally inquiry form and Cal.com 30-minute event are connected through `src/integrations/project.ts`. Sanity project `o19f4dqg` contains 31 published content records in its public `production` dataset. The authenticated browser editor is deployed at https://mindlab-solutions.sanity.studio/. Accepted inquiry delivery, booking confirmation, the contact inbox, and final indexing remain unverified or incomplete. About includes Jay Haslam and Daiana Costa with owner-provided biographies and neutral silhouette placeholders. Public contact details remain deferred.
 
 ## Structure and replaceable integrations
 
@@ -56,7 +56,7 @@ Replacing a provider means implementing its boundary and migrating its records. 
 
 Editor: **https://mindlab-solutions.sanity.studio/**. Sign in with an account authorized for project `o19f4dqg`. Sanity manages authentication; opening the editor does not grant someone permission to edit.
 
-The `production` dataset contains 21 published records: settings, homepage introduction, 3 packages, 6 industries, 2 clearly labeled sample concepts, 3 practical guides, and 5 FAQs. The recovery importer uses `createIfNotExists` and preserves existing records. The source explicitly selects Sanity, and an invalid record or unavailable API stops the build.
+The `production` dataset contains 31 published records: settings, homepage introduction, 3 packages, 16 industry entries, 2 clearly labeled sample concepts, 3 practical guides, and 5 FAQs. Each audience has seven named sectors followed by Other. These entries feed navigation, the overview, audience pages, and homepage. The recovery importer uses `createIfNotExists` and preserves existing content. The source explicitly selects Sanity, and an invalid record or unavailable API stops the build.
 
 To edit, open the appropriate content group, change the fields, and publish. Package amounts and setup fees feed the cards, detailed service pages, and combined estimates from the same records. Stable IDs and slugs must be preserved.
 
@@ -65,6 +65,8 @@ To edit, open the appropriate content group, change the fields, and publish. Pac
 For local editing use `npm run studio`. To update the hosted editor's code or schema, use `npm run studio:deploy`; `sanity.cli.ts` retains the actual deployment app ID. The deployed schema and manifest are registered with Sanity. Hosted Studio access and CORS are handled by Sanity hosting; localhost:3333 remains allowed for local editing.
 
 The importer is available for recovery or a new dataset: `npx sanity login`, then `npm run content:import:session`. It preserves existing records, including edits. The optional token-based importer uses only an ignored environment file; no write token belongs in the repository or public website build.
+
+To add only missing industry records from the seed, use `npm run content:import:session -- --industries-only`. This mode selects industry documents only and checks for unpublished industry drafts before importing through the signed-in CLI. Existing copy is preserved; edits to existing entries should be made in Studio.
 
 The editor covers the introduction, package facts, industry entries, sample narratives and deliverables, proposed measurement, practical guides, and FAQs. Guide slugs generate `/thinking/<slug>/` pages. Layouts and other page copy live in code. Verified client case studies need a future evidence-model extension. Export the dataset and assets before a CMS migration. Keep private leads outside this public dataset.
 
