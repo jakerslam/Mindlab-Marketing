@@ -21,7 +21,6 @@
   --portrait-bg: light-dark(#eaeae6, #252831);
   --portrait-ink: light-dark(#c5c5c9, #595e6d);
   --header-bg: light-dark(rgb(247 247 244 / .97), rgb(20 21 26 / .97));
-  --header-compact-bg: light-dark(rgb(247 247 244 / .86), rgb(20 21 26 / .86));
   --header-line: light-dark(rgb(222 222 226 / .55), rgb(83 85 101 / .55));
   --art-center: light-dark(#e7e0fc, #302646);
   --art-mid: light-dark(#efecf8, #231f30);
@@ -34,7 +33,7 @@ button { color: inherit; }
 .tinted, .audience-sample-section { background: var(--tint); }
 .audience-section, .site-footer, .brief-section, .firm-disciplines { background: var(--contrast-bg); }
 .site-header::before { background: var(--header-bg); border-color: var(--header-line); }
-.site-header.is-scrolled::before { background: var(--header-compact-bg); }
+.site-header.is-scrolled::before { background: color-mix(in srgb, var(--tint) 90%, transparent); }
 .button, .round-arrow:hover, .service-row:hover .round-arrow, .calendar-unavailable > .button { background: var(--button-bg); color: #fff; }
 .button:hover { background: var(--button-hover); }
 .button-outline, .package-card .button { background: transparent; color: var(--ink); }
@@ -70,13 +69,12 @@ button { color: inherit; }
 .visually-hidden, .theme-options input { position: absolute; width: 1px; height: 1px; padding: 0; margin: -1px; overflow: hidden; clip-path: inset(50%); white-space: nowrap; border: 0; }
 .footer-bottom { align-items: center; flex-wrap: wrap; }
 .theme-switch { border: 0; padding: 0; margin: 0; }
-.theme-options { display: inline-flex; padding: 3px; border: 1px solid #46424f; border-radius: 8px; gap: 2px; background: #1c1b24; }
+.theme-options { display: inline-flex; padding: 3px; border: 1px solid #46424f; border-radius: 999px; gap: 2px; background: #1c1b24; }
 .theme-options label { position: relative; cursor: pointer; }
-.theme-options span { display: flex; align-items: center; justify-content: center; min-height: 36px; min-width: 53px; padding: 6px 10px; border-radius: 5px; font-size: 12px; line-height: 1.3; color: #d2cedc; }
-.theme-options input:checked + span { color: #271b47; background: #eeeafe; }
-.theme-options input:focus-visible + span { outline: 2px solid #c0aaff; outline-offset: 4px; }
-.theme-options label:hover span { color: #fff; }
-.theme-options label:hover input:checked + span { color: #271b47; }
+.theme-option-icon { display: grid; place-items: center; width: 36px; height: 36px; border-radius: 50%; color: #d2cedc; }
+.theme-options label:hover .theme-option-icon { color: #fff; }
+.theme-options input:checked + .theme-option-icon { color: #271b47; background: #eeeafe; }
+.theme-options input:focus-visible + .theme-option-icon { outline: 2px solid #c0aaff; outline-offset: -2px; }
 
 /* One brief sweep every twelve seconds; the rest of the cycle is still. */
 .main-nav > .button { position: relative; overflow: hidden; }

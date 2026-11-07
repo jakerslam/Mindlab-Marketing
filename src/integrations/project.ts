@@ -6,4 +6,9 @@ export const projectConfig = {
   tallyFormId: 'zEN7DM',
   bookingUrl: 'https://cal.com/jacob-haslam-zfpxbo/30min',
   callDurationMinutes: 30,
+  socialProfiles: [
+    { name: 'LinkedIn', url: '' },
+    { name: 'Instagram', url: '' },
+    { name: 'Facebook', url: '' },
+  ],
 } as const;

@@ -1,0 +1,26 @@
+---
+import Layout from '@/layouts/Layout.astro';
+import { withBase } from '@/lib/urls';
+---
+<Layout title="Terms of Use" description="Terms for visiting the Mindlab LLC website and using its content.">
+  <section class="page-hero container">
+    <h1>Terms of Use</h1>
+    <p class="lede">These terms cover your use of the Mindlab LLC website.</p>
+  </section>
+  <section class="section section-compact">
+    <div class="container reading-width privacy-copy">
+      <h2>Using our site and materials</h2>
+      <p>You may browse this site, share links to its pages, and refer to its materials when evaluating our services. Mindlab LLC and its licensors retain their respective rights in the site copy, designs, and portfolio materials. Ask for permission before republishing or using those materials commercially, except where the law permits your use.</p>
+      <p>Use the site lawfully and respect other people’s rights. Keep inquiries relevant to your business needs and avoid sending spam or attempting to disrupt the site.</p>
+
+      <h2>Portfolio examples</h2>
+      <p>We label fictional companies, mock campaigns, and illustrative figures as concept work. These examples show how we approach a brief. Client results belong to the specific engagements in which they were measured.</p>
+
+      <h2>Working with Mindlab</h2>
+      <p>The website describes our services and packages for general information. The scope, fees, revisions, and responsibilities for a project are set out in its signed service agreement. An inquiry or introductory call begins a conversation about fit.</p>
+
+      <h2>External tools and questions</h2>
+      <p>Third-party services, including scheduling and inquiry providers, may have their own terms. See <a href={withBase('/privacy/')}>Privacy &amp; Cookies</a> for how these tools handle information. To ask about these terms or request permission to use our materials, <a href={withBase('/book-call/')}>contact Mindlab</a>.</p>
+    </div>
+  </section>
+</Layout>
