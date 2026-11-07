@@ -103,3 +103,11 @@ Repetitive section labels were removed in favor of direct headings. Audience, ar
 - Desktop Home, Pricing, About, and B2B layouts and mobile Home, About navigation, and calendar layouts were inspected. The checked 360px pages had no horizontal document overflow. At this width, the call heading stays on two lines and the calendar section begins about 333px from the top. No console errors were captured in the checked preview tab.
 
 The site does not report confirmed booking or accepted inquiry events. Real client proof, final portraits, accepted inquiry delivery, owner notifications, a monitored public inbox, and the existing production approval/indexing gate remain outstanding. The older private review deployment was not refreshed.
+
+## About team placement and lighter topbar · November 6, 2026
+
+Team profiles now appear only on About under “Our team.” The homepage team block and its unused styles were removed. About uses a smaller heading (about 44px at a 1280px viewport, 34px at 360px) and a shorter introduction area. Approved biographies and silhouette placeholders remain intact.
+
+The scrolled topbar uses 3px blur and an 86% opaque background. Its visible height is 60px on desktop and 56px on mobile, with a 25px wordmark and 28px mark. Navigation text sizes stay unchanged. The original header height is reserved in the document; reduced-motion styles continue to disable transitions.
+
+Astro/TypeScript checked 54 files with zero errors, warnings, or hints. The published-Sanity build passed 16 pages and 790 local URL/asset/anchor checks, metadata, unique IDs, sample disclosures, and sitemap checks. Browser checks confirmed the smaller About heading, both profiles, the absence of a homepage team block, desktop and mobile compact states, stable 92px desktop content offset, aligned desktop dropdown, keyboard opening and Escape, mobile navigation below the 56px bar, 44px menu control, menu dismissal, and restoration of the expanded header at the top. The inspected 360px layout had no horizontal overflow and no console errors were captured. No CMS records, fees, integrations, or deployment settings changed.

@@ -257,7 +257,7 @@ article[id] {
 /* Navigation */
 .site-header {
 	--header-height: 92px;
-	--header-compact-height: 64px;
+	--header-compact-height: 60px;
 	--header-current-height: var(--header-height);
 	position: sticky;
 	top: 0;
@@ -276,12 +276,14 @@ article[id] {
 	background: rgba(247, 247, 244, 0.97);
 	border-bottom: 1px solid rgba(222, 222, 226, 0.55);
 	backdrop-filter: blur(12px);
-	transition: height 0.22s ease, box-shadow 0.22s ease;
+	transition: height 0.22s ease, box-shadow 0.22s ease, background-color 0.22s ease;
 }
 .site-header.is-scrolled {
 	--header-current-height: var(--header-compact-height);
 }
 .site-header.is-scrolled::before {
+	background: rgba(247, 247, 244, 0.86);
+	backdrop-filter: blur(3px);
 	box-shadow: 0 4px 16px rgba(20, 21, 26, 0.1);
 }
 .header-inner {
@@ -310,6 +312,22 @@ article[id] {
 }
 .wordmark-dot {
 	color: var(--violet);
+}
+.header-inner .wordmark {
+	min-height: 44px;
+}
+.header-inner .wordmark > span {
+	transition: font-size 0.22s ease;
+}
+.header-inner .wordmark > svg {
+	transition: width 0.22s ease, height 0.22s ease;
+}
+.site-header.is-scrolled .wordmark > span {
+	font-size: 25px;
+}
+.site-header.is-scrolled .wordmark > svg {
+	width: 28px;
+	height: 28px;
 }
 .main-nav {
 	display: flex;
@@ -2022,7 +2040,7 @@ article[id] {
 	}
 	.site-header {
 		--header-height: 77px;
-		--header-compact-height: 60px;
+		--header-compact-height: 56px;
 	}
 	.wordmark > span {
 		font-size: 28px;

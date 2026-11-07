@@ -38,7 +38,7 @@ Pricing uses compact service rows and an optional, collapsed budget estimator. E
 
 The public site is hosted at **https://mindlab.solutions/** on GitHub Pages with HTTPS. It remains a public preview: `SITE_STAGE=preview` makes pages noindex and disallows crawling until the existing launch requirements are completed. `CONTENT_SOURCE=sanity` reads published content without a local fallback. The older owner-private review deployment is separate; its identity is in `.openai/hosting.json`.
 
-The call page leads with the real Cal.com calendar, with a hosted-calendar fallback. The optional Tally inquiry form loads when its disclosure is opened. Both are configured through `src/integrations/project.ts`. Sanity project `o19f4dqg` contains 31 published content records in its public `production` dataset. The authenticated browser editor is deployed at https://mindlab-solutions.sanity.studio/. Accepted inquiry delivery, booking confirmation, the contact inbox, and final indexing remain unverified or incomplete. Home and About introduce Jay Haslam and Daiana Costa using shared owner-provided biographies and neutral silhouette placeholders. Public contact details remain deferred.
+The call page leads with the real Cal.com calendar, with a hosted-calendar fallback. The optional Tally inquiry form loads when its disclosure is opened. Both are configured through `src/integrations/project.ts`. Sanity project `o19f4dqg` contains 31 published content records in its public `production` dataset. The authenticated browser editor is deployed at https://mindlab-solutions.sanity.studio/. Accepted inquiry delivery, booking confirmation, the contact inbox, and final indexing remain unverified or incomplete. About introduces Jay Haslam and Daiana Costa under “Our team,” using owner-provided biographies and neutral silhouette placeholders. Public contact details remain deferred.
 
 Section headings now carry the message directly. Small context labels remain for audiences, article categories, and fictional demonstrations. Mobile hides the decorative hero artwork; the homepage uses two audience previews and one guide preview, with links to the complete lists.
 
@@ -51,7 +51,7 @@ Section headings now carry the message directly. Small context labels remain for
 - `src/integrations/config.ts`: configuration and truthful integration capabilities.
 - `src/integrations/booking.ts`, `src/components/BookingCalendar.astro`: Cal.com embed configuration and rendering, with hosted-link fallback for other schedulers.
 - `src/components/InquiryForm.astro`: optional, lazily loaded Tally form.
-- `src/content/team.ts`: shared approved team copy for Home and About.
+- `src/content/team.ts`: approved team copy for About.
 - `src/components/Analytics.astro`: consent-gated event wrapper; no tracking when unconfigured.
 - `sanity.config.ts`, `studio/schema.ts`: separate authenticated browser editor.
 
