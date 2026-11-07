@@ -1,7 +1,7 @@
 export const teamMembers = [
   {
     name: 'Jay Haslam',
-    focus: 'B2C businesses',
+    focus: 'B2C businesses & automations',
     summary: 'Sales and marketing across 18 industries, a digital marketing Nanodegree, software engineering, and business automation.',
     biography: 'Jay has sales and marketing experience across 18 industries and a Nanodegree in digital marketing. He is also a software engineer, well versed in business automation, and specializes in B2C businesses.',
   },
