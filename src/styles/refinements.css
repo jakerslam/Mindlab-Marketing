@@ -68,3 +68,5 @@
   .booking-calendar > .button { font-size: 13px; padding-inline: 16px; }
   .booking-inquiry > summary { font-size: 18px; }
 }
+
+.section-overline { color: light-dark(#756195, #b8a7d5); font-size: 14px; font-weight: 550; line-height: 1.5; letter-spacing: .015em; margin: 0 0 16px; }

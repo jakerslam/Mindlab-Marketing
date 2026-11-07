@@ -20,7 +20,7 @@ const content = await getContent();
   <div class="intro-strip"><div class="container"><span>Built around your business.</span><div><span>B2B & B2C</span><i></i><span>Focused projects</span><i></i><span>Ongoing support</span></div></div></div>
 
   <section class="section services-intro"><div class="container">
-    <div class="section-heading"><div><h2>Our services.</h2></div><p>Brand strategy, written content, and paid campaigns. Choose a focused service or bring them together around one offer.</p></div>
+    <div class="section-heading"><div><p class="section-overline">Good thinking, put to work.</p><h2>Our services.</h2></div><p>Brand strategy, written content, and paid campaigns. Choose a focused service or bring them together around one offer.</p></div>
     <div class="service-rows">{content.packages.map((pkg) => <a class="service-row" href={withBase(`/services/#${pkg.id}`)}><span class="mono service-number">{pkg.number}</span><div><h3>{pkg.name}</h3><span>{serviceDetails[pkg.id].description}</span></div><p>{pkg.description}</p><span class="round-arrow"><Arrow/></span></a>)}</div>
   </div></section>
 
@@ -35,7 +35,7 @@ const content = await getContent();
     <a class="text-link home-industry-link" href={withBase('/industries/')}>Explore all industries <Arrow/></a>
   </div></section>
 
-  <section class="section process-section"><div class="container"><div class="section-heading"><div><h2>How we work.</h2></div><div><p>Agree what the work needs to do, who provides the inputs, and how it will be reviewed.</p><a class="text-link" href={withBase('/about/')}>The Mindlab approach<Arrow/></a></div></div><ol class="process-grid">{[
+  <section class="section process-section"><div class="container"><div class="section-heading"><div><p class="section-overline">From brief to launch.</p><h2>How we work.</h2></div><div><p>Agree what the work needs to do, who provides the inputs, and how it will be reviewed.</p><a class="text-link" href={withBase('/about/')}>The Mindlab approach<Arrow/></a></div></div><ol class="process-grid">{[
     ['Understand', 'Bring the offer, the audience, your priorities, and the materials you already have.'],
     ['Define', 'Agree deliverables, responsibilities, timing, and the review process in a written scope.'],
     ['Create & launch', 'Develop the work, collect your feedback, and prepare the approved deliverables.'],
@@ -46,6 +46,6 @@ const content = await getContent();
 
   {content.guides.length > 0 && <section class="section tinted"><div class="container"><div class="section-heading"><div><h2>Practical marketing guides.</h2></div><div><p>Useful starting points for planning your next move.</p><a class="text-link" href={withBase('/about/#guides')}>Read all guides <Arrow/></a></div></div><GuideList guides={content.guides.slice(0, 1)}/></div></section>}
 
-  <section class="section"><div class="container faq-grid"><div><h2>Common questions.</h2><a class="text-link" href={withBase('/pricing/')}>Scope, fees & more answers<Arrow/></a></div><FAQ items={content.faqs.filter((_, index) => [0, 2, 3].includes(index))}/></div></section>
+  <section class="section"><div class="container faq-grid"><div><p class="section-overline">Before we begin.</p><h2>Common questions.</h2><a class="text-link" href={withBase('/pricing/')}>Scope, fees & more answers<Arrow/></a></div><FAQ items={content.faqs.filter((_, index) => [0, 2, 3].includes(index))}/></div></section>
   <CTA/>
 </Layout>
