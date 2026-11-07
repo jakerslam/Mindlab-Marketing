@@ -5,7 +5,7 @@ import Arrow from './Arrow.astro';
 import { getContent } from '@/content';
 import { serviceDetails } from '@/domain/services';
 const { packages, industries } = await getContent();
-const links = [['Services', '/services/'], ['Pricing', '/pricing/'], ['Who we help', '/industries/'], ['About', '/about/']];
+const links = [['Services', '/services/'], ['Pricing', '/pricing/'], ['Industries', '/industries/'], ['About', '/about/']];
 const dropdownIds: Record<string, string> = { '/services/': 'services-nav', '/industries/': 'industries-nav' };
 const path = Astro.url.pathname;
 const isCurrent = (href: string) => path.startsWith(withBase(href)) || (href === '/about/' && ['/work/', '/thinking/'].some((section) => path.startsWith(withBase(section))));
