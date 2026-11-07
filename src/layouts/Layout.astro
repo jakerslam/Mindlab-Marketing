@@ -7,9 +7,11 @@ import '@/styles/editorial.css';
 import '@/styles/navigation-pricing.css';
 import '@/styles/audiences.css';
 import '@/styles/refinements.css';
+import '@/styles/theme.css';
 import Header from '@/components/Header.astro';
 import Footer from '@/components/Footer.astro';
 import Analytics from '@/components/Analytics.astro';
+import ThemeInit from '@/components/ThemeInit.astro';
 import { integrations } from '@/integrations/config';
 interface Props { title: string; description: string; noindex?: boolean; canonicalPath?: string }
 const { title, description, noindex = false, canonicalPath } = Astro.props;
@@ -22,6 +24,8 @@ const socialImage = new URL(withBase('/images/mindlab-share.png'), Astro.site);
     <meta charset="UTF-8"/>
     <meta name="viewport" content="width=device-width, initial-scale=1"/>
     <meta name="theme-color" content="#F7F7F4"/>
+    <meta name="color-scheme" content="light dark"/>
+    <ThemeInit/>
     <title>{title} | Mindlab Solutions</title>
     <meta name="description" content={description}/>
     <link rel="canonical" href={canonical}/>

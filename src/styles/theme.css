@@ -1,0 +1,96 @@
+/* Shared colors follow the system until the visitor chooses a theme. */
+:root {
+  color-scheme: light dark;
+  --paper: light-dark(#f7f7f4, #14151a);
+  --ink: light-dark(#14151a, #efeff2);
+  --muted: light-dark(#525865, #b6b8c4);
+  --violet: light-dark(#5b35d5, #bca7ff);
+  --lavender: light-dark(#eeeafe, #2b2343);
+  --line: light-dark(#dedee2, #383a46);
+  --surface: light-dark(#fff, #1d1f27);
+  --tint: light-dark(#efefeb, #1a1c23);
+  --contrast-bg: light-dark(#14151a, #0e0f14);
+  --button-bg: light-dark(#5b35d5, #6840d7);
+  --button-hover: light-dark(#4625b1, #7950e0);
+  --cta-bg: light-dark(#e9e2fb, #29213b);
+  --secondary-ink: light-dark(#3f365a, #d0c3ec);
+  --sage: light-dark(#e4eae3, #233029);
+  --sage-line: light-dark(#bec7bc, #435447);
+  --peach: light-dark(#f1dfd3, #362b26);
+  --peach-line: light-dark(#d0bcae, #625044);
+  --portrait-bg: light-dark(#eaeae6, #252831);
+  --portrait-ink: light-dark(#c5c5c9, #595e6d);
+  --header-bg: light-dark(rgb(247 247 244 / .97), rgb(20 21 26 / .97));
+  --header-compact-bg: light-dark(rgb(247 247 244 / .86), rgb(20 21 26 / .86));
+  --header-line: light-dark(rgb(222 222 226 / .55), rgb(83 85 101 / .55));
+  --art-center: light-dark(#e7e0fc, #302646);
+  --art-mid: light-dark(#efecf8, #231f30);
+  --art-orbit: light-dark(#d7cee9, #45355e);
+}
+:root[data-theme='light'] { color-scheme: light; }
+:root[data-theme='dark'] { color-scheme: dark; }
+button { color: inherit; }
+::selection { background: #dcd1ff; color: #251e36; }
+.tinted, .audience-sample-section { background: var(--tint); }
+.audience-section, .site-footer, .brief-section, .firm-disciplines { background: var(--contrast-bg); }
+.site-header::before { background: var(--header-bg); border-color: var(--header-line); }
+.site-header.is-scrolled::before { background: var(--header-compact-bg); }
+.button, .round-arrow:hover, .service-row:hover .round-arrow, .calendar-unavailable > .button { background: var(--button-bg); color: #fff; }
+.button:hover { background: var(--button-hover); }
+.button-outline, .package-card .button { background: transparent; color: var(--ink); }
+.button-outline:hover, .package-card .button:hover { background: var(--lavender); }
+.nav-dropdown-panel, .package-card, .planner-controls, .booking-panel, .consent-banner, .skip-link { background: var(--surface); }
+.package-featured { background: var(--lavender); }
+.cta-section { background: var(--cta-bg); }
+.guide-list > article, .values-grid article, .industry-details, .industry-details article, .anchor-nav a,
+.button-outline, .round-arrow, .process-number, .package-card, .combined-package, .planner, .planner-result dl,
+.planner-controls input, .planner-controls select, .booking-panel, .menu-toggle, .main-nav { border-color: var(--line); }
+.booking-intro .selected-package { border-color: var(--line); }
+.hero-footnote, .intro-strip .mono, .package-topline, .back-link { color: var(--muted); }
+.detail-tagline { color: var(--secondary-ink); }
+.sample-notice { background: var(--lavender); color: var(--muted); border-color: var(--violet); }
+.sample-notice strong { color: var(--ink); }
+.work-meta > span:first-child { color: var(--violet); border-color: var(--line); }
+.audience-overview-panel, .buyer-question, .about-example, .service-sample { background: var(--sage); }
+.audience-overview-panel.overview-b2c, .audience-b2c .buyer-question, .about-example-daybreak { background: var(--peach); }
+.audience-overview-panel > ul, .buyer-question > span, .service-sample { border-color: var(--sage-line); }
+.overview-b2c > ul, .audience-b2c .buyer-question > span { border-color: var(--peach-line); }
+.team-portrait { background: var(--portrait-bg); color: var(--portrait-ink); }
+.calendar-embed { background: #fff; color-scheme: light; }
+/* Provider-owned form text stays readable on its existing light canvas. */
+#inquiry-container { border-radius: 8px; color-scheme: light; }
+:root[data-theme='dark'] #inquiry-container { background: #fff; padding: 24px; }
+.hero-art { background: radial-gradient(ellipse at 55% 50%, var(--art-center) 0%, var(--art-mid) 40%, var(--paper) 72%); }
+.art-orbit { border-color: var(--art-orbit); }
+/* Artwork is an intentional light artboard in both themes. */
+.strategy-note { color: #14151a; }
+.content-note { background: #5b35d5; }
+.art-stamp { color: #5b35d5; }
+
+.visually-hidden, .theme-options input { position: absolute; width: 1px; height: 1px; padding: 0; margin: -1px; overflow: hidden; clip-path: inset(50%); white-space: nowrap; border: 0; }
+.footer-bottom { align-items: center; flex-wrap: wrap; }
+.theme-switch { border: 0; padding: 0; margin: 0; }
+.theme-options { display: inline-flex; padding: 3px; border: 1px solid #46424f; border-radius: 8px; gap: 2px; background: #1c1b24; }
+.theme-options label { position: relative; cursor: pointer; }
+.theme-options span { display: flex; align-items: center; justify-content: center; min-height: 36px; min-width: 53px; padding: 6px 10px; border-radius: 5px; font-size: 12px; line-height: 1.3; color: #d2cedc; }
+.theme-options input:checked + span { color: #271b47; background: #eeeafe; }
+.theme-options input:focus-visible + span { outline: 2px solid #c0aaff; outline-offset: 4px; }
+.theme-options label:hover span { color: #fff; }
+.theme-options label:hover input:checked + span { color: #271b47; }
+
+/* One brief sweep every twelve seconds; the rest of the cycle is still. */
+.main-nav > .button { position: relative; overflow: hidden; }
+.main-nav > .button::after { content: ''; position: absolute; inset: 0 auto 0 0; width: 45%; pointer-events: none; background: linear-gradient(90deg, transparent, rgb(255 255 255 / .3), transparent); transform: translateX(-160%) skewX(-20deg); animation: talk-shimmer 12s ease-in-out 3s infinite; }
+@keyframes talk-shimmer {
+  0% { transform: translateX(-160%) skewX(-20deg); }
+  8%, 100% { transform: translateX(360%) skewX(-20deg); }
+}
+@media (max-width: 860px) {
+  .nav-dropdown-panel { background: transparent; }
+}
+@media (max-width: 600px) {
+  :root[data-theme='dark'] #inquiry-container { padding: 16px; }
+}
+@media (prefers-reduced-motion: reduce) {
+  .main-nav > .button::after { animation: none; display: none; }
+}

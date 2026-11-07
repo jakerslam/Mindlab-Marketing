@@ -2,9 +2,9 @@
 
 @theme inline {
 	--font-sans: 'Inter Variable', sans-serif;
-	--color-background: #f7f7f4;
-	--color-foreground: #14151a;
-	--color-primary: #5b35d5;
+	--color-background: var(--paper);
+	--color-foreground: var(--ink);
+	--color-primary: var(--button-bg);
 	--color-primary-foreground: #fff;
 }
 

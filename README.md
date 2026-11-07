@@ -42,6 +42,12 @@ The call page leads with the real Cal.com calendar, with a hosted-calendar fallb
 
 Section headings now carry the message directly. Small context labels remain for audiences, article categories, and fictional demonstrations. Mobile hides the decorative hero artwork; the homepage uses two audience previews and one guide preview, with links to the complete lists.
 
+## Appearance
+
+The footer offers Light, System, and Dark, with System as the default. A local browser preference carries between pages and visits; System follows device appearance changes. Theme initialization runs in the head before page paint. CSS color-scheme also follows the device when JavaScript is unavailable, while the interactive control stays hidden. The choice is not an analytics event. Public branding remains Mindlab Solutions; the footer copyright reads Mindlab LLC.
+
+The site palette covers navigation, content, audience panels, and the estimator. Decorative artwork and provider-owned booking/inquiry widgets retain readable light canvases. A brief shimmer crosses the header’s Let’s talk button every 12 seconds; reduced-motion preferences disable it.
+
 ## Structure and replaceable integrations
 
 - `src/domain/content.ts`: provider-independent, validated content models.
@@ -53,6 +59,7 @@ Section headings now carry the message directly. Small context labels remain for
 - `src/components/InquiryForm.astro`: optional, lazily loaded Tally form.
 - `src/content/team.ts`: approved team copy for About.
 - `src/components/Analytics.astro`: consent-gated event wrapper; no tracking when unconfigured.
+- `src/components/ThemeInit.astro`, `ThemeSwitch.astro`, and `src/styles/theme.css`: appearance preference, accessible footer radios, palette, and reduced-motion-aware shimmer.
 - `sanity.config.ts`, `studio/schema.ts`: separate authenticated browser editor.
 
 Replacing a provider means implementing its boundary and migrating its records. It does not require redesigning the marketing pages. The current Tally integration is an iframe. Booking uses an inline Cal.com calendar or a generic hosted link and does not report confirmed meetings to site analytics. Inquiry contents are never sent through the site's analytics wrapper. Keep private leads outside the website CMS and repository.
