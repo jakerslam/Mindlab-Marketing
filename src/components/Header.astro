@@ -30,10 +30,17 @@ const isCurrent = (href: string) => path.startsWith(withBase(href)) || (href ===
   const header = document.querySelector<HTMLElement>('.site-header');
   const toggle = document.querySelector<HTMLButtonElement>('.menu-toggle');
   const nav = document.querySelector<HTMLElement>('#main-nav');
-  const updateHeader = () => header?.classList.toggle('is-scrolled', window.scrollY > 32);
+  const story = document.querySelector('[data-home-story]');
+  const motion = window.matchMedia('(prefers-reduced-motion: no-preference)');
+  const updateHeader = () => {
+    const heroReady = !story || !motion.matches || story.hasAttribute('data-hero-reveal-complete');
+    header?.classList.toggle('is-scrolled', heroReady && window.scrollY > 32);
+  };
   updateHeader();
   window.addEventListener('scroll', updateHeader, { passive: true });
   window.addEventListener('pageshow', updateHeader);
+  story?.addEventListener('hero-reveal-change', updateHeader);
+  motion.addEventListener('change', updateHeader);
   const hoverNavigation = window.matchMedia('(min-width: 861px) and (hover: hover) and (pointer: fine)');
   const dropdowns = [...document.querySelectorAll<HTMLElement>('.nav-dropdown')].map((element) => ({
     element,

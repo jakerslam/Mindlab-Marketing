@@ -114,6 +114,7 @@ const content = await getContent();
       tracks.forEach(({ track, visibleParts, pinTop, distance, tall }, trackIndex) => {
         const top = track.getBoundingClientRect().top;
         const progress = clamp((pinTop - top) / distance);
+        let fullyRevealed = true;
         visibleParts.forEach((part, partIndex) => {
           let opacity: number;
           if (!tall) {
@@ -127,12 +128,17 @@ const content = await getContent();
             opacity = clamp((start - part.getBoundingClientRect().top + revealTravel) / (viewport * 0.35));
           }
           if (trackIndex === 0) opacity = Math.min(opacity, clamp(window.scrollY / 160));
+          fullyRevealed &&= opacity >= 1;
           part.style.setProperty('--story-opacity', opacity.toFixed(3));
           if (part === artwork) {
             const spread = clamp((opacity - 0.15) / 0.85);
             artwork.style.setProperty('--stack-amount', String(1 - spread * spread * (3 - 2 * spread)));
           }
         });
+        if (trackIndex === 0 && story.hasAttribute('data-hero-reveal-complete') !== fullyRevealed) {
+          story.toggleAttribute('data-hero-reveal-complete', fullyRevealed);
+          story.dispatchEvent(new Event('hero-reveal-change'));
+        }
       });
     };
 
@@ -144,10 +150,11 @@ const content = await getContent();
       const headerHeight = header
         ? Number.parseFloat(getComputedStyle(header).getPropertyValue('--header-compact-height')) || 60
         : 0;
-      for (const entry of tracks) {
+      tracks.forEach((entry, index) => {
         const panelHeight = entry.panel.offsetHeight;
-        entry.tall = panelHeight > viewport - headerHeight;
-        entry.pinTop = entry.tall ? viewport - panelHeight : (viewport + headerHeight - panelHeight) / 2;
+        const clearance = index === 0 ? header?.offsetHeight ?? headerHeight : headerHeight;
+        entry.tall = panelHeight > viewport - clearance;
+        entry.pinTop = entry.tall ? viewport - panelHeight : (viewport + clearance - panelHeight) / 2;
         entry.distance = motion.matches
           ? Math.round(Math.max(300, Math.min(460, viewport * 0.5)))
           : 0;
@@ -155,7 +162,7 @@ const content = await getContent();
         entry.track.style.setProperty('--story-distance', `${entry.distance}px`);
         entry.track.style.setProperty('--story-pin-top', `${entry.pinTop}px`);
         entry.track.toggleAttribute('data-story-pinned', entry.distance > 0);
-      }
+      });
       if (artwork?.offsetWidth) {
         cards?.forEach((card, index) => {
           const offset = stack[index];
