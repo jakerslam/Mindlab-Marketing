@@ -5,6 +5,8 @@ import Arrow from '@/components/Arrow.astro';
 import HeroArtwork from '@/components/HeroArtwork.astro';
 import WorkCards from '@/components/WorkCards.astro';
 import GuideList from '@/components/GuideList.astro';
+import TeamPortrait from '@/components/TeamPortrait.astro';
+import { teamMembers } from '@/content/team';
 import { serviceDetails } from '@/domain/services';
 import { integrations } from '@/integrations/config';
 import FAQ from '@/components/FAQ.astro';
@@ -14,38 +16,43 @@ const content = await getContent();
 ---
 <Layout title="Clear thinking. Connected marketing." description={content.settings.description}>
   <section class="hero"><div class="container hero-grid">
-    <div class="hero-copy"><p class="eyebrow"><span class="status-dot"></span>{content.home.eyebrow}</p><h1>{content.home.title}</h1><p class="hero-description">{content.home.description}</p><div class="hero-actions"><a class="button" href={withBase("/book-call/")} data-track="strategy_call_click" data-location="hero">Book a {integrations.callDurationMinutes}-minute intro call <Arrow/></a><a class="text-link" href={withBase("/pricing/")}>Explore packages <Arrow/></a></div><p class="hero-footnote">Brand strategy · Content · Paid campaigns</p></div>
+    <div class="hero-copy"><h1>{content.home.title}</h1><p class="hero-description">{content.home.description}</p><div class="hero-actions"><a class="button" href={withBase('/book-call/')} data-track="strategy_call_click" data-location="hero">Book a {integrations.callDurationMinutes}-minute intro call <Arrow/></a><a class="text-link" href={withBase('/pricing/')}>Explore packages <Arrow/></a></div></div>
     <HeroArtwork/>
   </div></section>
-  <div class="intro-strip"><div class="container"><span>Built around your business.</span><div><span>B2B & B2C</span><i></i><span>Focused projects</span><i></i><span>Ongoing support</span></div><span class="mono">FROM THE BRIEF TO THE WORK. ↘</span></div></div>
+  <div class="intro-strip"><div class="container"><span>Built around your business.</span><div><span>B2B & B2C</span><i></i><span>Focused projects</span><i></i><span>Ongoing support</span></div></div></div>
 
   <section class="section services-intro"><div class="container">
-    <div class="section-heading"><div><p class="eyebrow">The work we do</p><h2>Define the message.<br/>Put it to work.</h2></div><p>Positioning and a plan. Writing your customers can use. Paid campaigns built around a specific offer. Choose a focused service or bring them together.</p></div>
+    <div class="section-heading"><div><h2>Our services.</h2></div><p>Brand strategy, written content, and paid campaigns. Choose a focused service or bring them together around one offer.</p></div>
     <div class="service-rows">{content.packages.map((pkg) => <a class="service-row" href={withBase(`/services/#${pkg.id}`)}><span class="mono service-number">{pkg.number}</span><div><h3>{pkg.name}</h3><span>{serviceDetails[pkg.id].description}</span></div><p>{pkg.description}</p><span class="round-arrow"><Arrow/></span></a>)}</div>
   </div></section>
 
+  <section class="section home-team-section"><div class="container">
+    <div class="section-heading"><div><h2>Meet Jay and Daiana.</h2></div><div><p>Two backgrounds in sales and marketing, with experience across business and consumer audiences.</p><a class="text-link" href={withBase('/about/#who-we-are')}>More about us <Arrow/></a></div></div>
+    <div class="home-team-grid">{teamMembers.map((member) => <article class="home-team-card"><TeamPortrait/><div><h3>{member.name}</h3><p class="team-focus">{member.focus}</p><p>{member.summary}</p></div></article>)}</div>
+  </div></section>
+
   <section class="section work-section"><div class="container">
-    <div class="section-heading"><div><p class="eyebrow">Inside the work</p><h2>The message.<br/>The decisions behind it.</h2></div><div><p>Explore a positioning map, finished writing, and campaign ideas through two original demonstrations featuring fictional businesses.</p><a class="text-link" href={withBase("/about/#our-thinking")}>Explore our thinking <Arrow/></a></div></div>
+    <div class="section-heading"><div><h2>Explore sample work.</h2></div><div><p>See the positioning, writing, and campaign decisions in two original demonstrations featuring fictional businesses.</p><a class="text-link" href={withBase('/about/#our-thinking')}>Explore our thinking <Arrow/></a></div></div>
     <WorkCards projects={content.projects}/>
   </div></section>
 
   <section class="section audience-section"><div class="container">
-    <div class="audience-intro"><p class="eyebrow">Who we help</p><h2>Business buyers.<br/>Everyday customers.</h2><p>A different buying decision needs a different message. Our services support both B2B and B2C businesses.</p></div>
-    <div class="audience-grid"><a href={withBase("/industries/b2b/")} class="audience-panel"><span class="mono">01 / BUSINESS TO BUSINESS</span><h3>Make your<br/>expertise matter.</h3><p>Help business buyers understand your value, trust your thinking, and take the next step.</p><span class="text-link">Explore B2B <Arrow/></span></a><a href={withBase("/industries/b2c/")} class="audience-panel"><span class="mono">02 / BUSINESS TO CONSUMER</span><h3>Give people<br/>a reason to choose.</h3><p>Connect your offer to an everyday need, with a clear story and a focused campaign.</p><span class="text-link">Explore B2C <Arrow/></span></a></div>
-    <div class="industry-preview">{content.industries.map((industry) => <a href={withBase(`/industries/${industry.audience}/#${industry.id}`)}>{industry.name === 'Other' ? `Other ${industry.audience.toUpperCase()} businesses` : industry.name}<Arrow/></a>)}</div>
+    <div class="audience-intro"><h2>Who we help.</h2><p>A different buying decision needs a different message. Our services support both B2B and B2C businesses.</p></div>
+    <div class="audience-grid"><a href={withBase('/industries/b2b/')} class="audience-panel"><span class="mono">B2B businesses</span><h3>Make your<br/>expertise matter.</h3><p>Help business buyers understand your value, trust your thinking, and take the next step.</p><span class="text-link">Explore B2B <Arrow/></span></a><a href={withBase('/industries/b2c/')} class="audience-panel"><span class="mono">B2C businesses</span><h3>Give people<br/>a reason to choose.</h3><p>Connect your offer to an everyday need, with a clear story and a focused campaign.</p><span class="text-link">Explore B2C <Arrow/></span></a></div>
+    <a class="text-link home-industry-link" href={withBase('/industries/')}>Explore all industries <Arrow/></a>
   </div></section>
 
-  <section class="section process-section"><div class="container"><div class="section-heading"><div><p class="eyebrow">How we work</p><h2>A brief. A scope.<br/>A working process.</h2></div><div><p>Agree what the work needs to do, who provides the inputs, and how it will be reviewed.</p><a class="text-link" href={withBase('/about/')}>The Mindlab approach<Arrow/></a></div></div><ol class="process-grid">{[
+  <section class="section process-section"><div class="container"><div class="section-heading"><div><h2>How we work.</h2></div><div><p>Agree what the work needs to do, who provides the inputs, and how it will be reviewed.</p><a class="text-link" href={withBase('/about/')}>The Mindlab approach<Arrow/></a></div></div><ol class="process-grid">{[
     ['Understand', 'Bring the offer, the audience, your priorities, and the materials you already have.'],
     ['Define', 'Agree deliverables, responsibilities, timing, and the review process in a written scope.'],
     ['Create & launch', 'Develop the work, collect your feedback, and prepare the approved deliverables.'],
     ['Review & improve', 'Review the work and available evidence, then agree what should happen next.'],
   ].map(([title, body], i) => <li><span class="process-number">0{i + 1}<span>↗</span></span><h3>{title}</h3><p>{body}</p></li>)}</ol></div></section>
 
-  <section class="section border-top" id="packages"><div class="container cta-inner"><div><p class="eyebrow">A clear place to start</p><h2>Good work. Defined scope.</h2><p>Choose a focused project or ongoing support. Compare what’s included, see the fees, and find the right starting point.</p></div><a class="button button-outline" href={withBase("/pricing/")}>Compare packages & pricing <Arrow/></a></div></section>
+  <section class="section border-top" id="packages"><div class="container cta-inner"><div><h2>Packages and pricing.</h2><p>Compare what’s included, see the fees, and find the right starting point for a focused project or ongoing support.</p></div><a class="button button-outline" href={withBase('/pricing/')}>Compare packages & pricing <Arrow/></a></div></section>
 
-  {content.guides.length > 0 && <section class="section tinted"><div class="container"><div class="section-heading"><div><p class="eyebrow">From our thinking</p><h2>Before the next<br/>marketing move.</h2></div><p>Practical guides to briefing campaigns, turning expertise into content, and deciding where brand strategy fits.</p></div><GuideList guides={content.guides}/></div></section>}
+  {content.guides.length > 0 && <section class="section tinted"><div class="container"><div class="section-heading"><div><h2>Practical marketing guides.</h2></div><div><p>Useful starting points for planning your next move.</p><a class="text-link" href={withBase('/about/#guides')}>Read all guides <Arrow/></a></div></div><GuideList guides={content.guides.slice(0, 1)}/></div></section>}
 
-  <section class="section"><div class="container faq-grid"><div><p class="eyebrow">A few good questions</p><h2>Find your<br/>starting point.</h2><a class="text-link" href={withBase('/pricing/')}>Scope, fees & more answers<Arrow/></a></div><FAQ items={content.faqs.filter((_, index) => [0, 2, 3].includes(index))}/></div></section>
+  <section class="section"><div class="container faq-grid"><div><h2>Common questions.</h2><a class="text-link" href={withBase('/pricing/')}>Scope, fees & more answers<Arrow/></a></div><FAQ items={content.faqs.filter((_, index) => [0, 2, 3].includes(index))}/></div></section>
   <CTA/>
 </Layout>

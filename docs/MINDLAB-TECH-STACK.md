@@ -19,7 +19,7 @@ The providers below are replaceable integration options. The implementation must
 | Content management | Sanity Studio and Content Lake | Browser editing for public-facing copy, approved package records, articles, work, industries, and team profiles |
 | Hosting and deployment | Cloudflare Pages Free connected to GitHub, proposed as the production alternative to GitHub Pages | Publish the pre-rendered website using the GitHub workflow while keeping hosting costs at zero within plan limits |
 | Inquiries | Tally Free for a cost-first launch; Formspree Professional is the optional custom-form alternative | Embed an inquiry form, retain accepted responses, and send owner notifications |
-| Scheduling | Cal.com hosted booking page | Offer the 30-minute strategy call after a successful inquiry, with a booking link as the initial integration |
+| Scheduling | Cal.com inline calendar with hosted fallback | Offer a direct 30-minute intro call, with an optional inquiry form below |
 | Marketing measurement | Google Analytics 4 through Google Tag Manager, plus Search Console | Measure relevant website actions and review search visibility |
 | Development workflow | GitHub, a locked dependency file, formatting, and focused browser checks | Keep changes reviewable and releases reproducible |
 
@@ -43,7 +43,7 @@ For Mindlab, the recommendation is **Astro with selective React components, Type
 
 If the team prefers Svelte, use Astro's Svelte integration and evaluate shadcn-svelte for comparable components. shadcn-svelte identifies itself as a community-led port of shadcn/ui. Changing the interactive UI choice does not require changing the provider-independent content models and integration boundaries. [shadcn-svelte](https://www.shadcn-svelte.com/docs)
 
-Do not install both React and Svelte for interchangeable widgets in this initial site. Select individual components when a real UI requirement warrants them. The embedded launch form and hosted booking link do not require a React wrapper merely to be displayed.
+Do not install both React and Svelte for interchangeable widgets in this initial site. Select individual components when a real UI requirement warrants them. The embedded inquiry form and calendar do not require a React wrapper merely to be displayed.
 
 ## Content editing
 
@@ -77,18 +77,18 @@ Resolve compatible stable framework and dependency versions when scaffolding, co
 
 ## Inquiry and booking flow
 
-1. The visitor chooses a service or reaches Book a Call from another page.
-2. The form collects name, email, company, and the primary goal. Website, package interest, audience type, and budget can be optional.
-3. For the cost-first option, the booking page contains a real embedded Tally form. Tally stores accepted responses and sends configured owner notifications.
-4. Use the provider's supported completion and failure handling. Any site-level success state must follow a confirmed accepted submission. Test how retries and entered information behave in the actual embed.
-5. The confirmation offers the actual Cal.com strategy-call booking link. Load an optional calendar embed only on the relevant booking or confirmation view if it improves the experience.
-6. A named Mindlab contact reviews the inquiry and follows up. Check notification delivery and dashboard records as part of launch verification.
+1. The visitor chooses a service or reaches Book a Call from another page. A service link retains the selected package and its fees.
+2. The call page shows the real Cal.com calendar first. The visitor chooses a date and time, then supplies name and email, with optional notes. A hosted-calendar fallback remains available.
+3. Visitors who prefer a message can open the optional Tally form below. Its widget loads only when opened. The current form collects name, company, and email, plus optional phone and service context.
+4. Tally stores accepted responses and sends configured owner notifications. Notification recipients, accepted inquiry delivery, and retained package interest still need end-to-end verification.
+5. Use each provider's supported completion and failure handling. The site does not simulate acceptance or report confirmed bookings from calendar clicks. No inquiry is required before scheduling.
+6. A Mindlab contact reviews inquiries and follows up. Verify a real accepted inquiry, notification delivery, and a confirmed booking separately before enabling completion measurement.
 
 Tally offers free embedding, unlimited forms and submissions under its fair-use policy, owner notifications, and a custom completion page. Its Free form retains Tally branding; removing branding, custom CSS, and some collaboration features require Pro. This makes it the proposed cost-saving option when an embedded form is acceptable. [Tally pricing](https://tally.so/pricing), [Tally embeds](https://tally.so/help/embed-your-form)
 
 Formspree remains the alternative for a custom HTML inquiry form. Free includes 50 submissions monthly and 30 days of history, and is described as for testing and development. Professional is $30 month to month or $240 annually, equivalent to $20 monthly. Choose it when the required production features or custom workflow justify that cost. [Formspree plans and features](https://formspree.io/plans)
 
-Cal.com supports hosted booking links and website embeds. Begin with a link to the configured event to keep the opening pages light. [Cal.com embedding](https://cal.com/features/embed)
+Cal.com supports hosted booking links and website embeds. The calendar runtime loads only on the call page; other marketing pages link to that page. [Cal.com embedding](https://cal.com/features/embed)
 
 Keep public marketing content in Sanity and private inquiry records in the form service. Sanity's free datasets are public, which makes them appropriate for approved website material. Choose Growth if private datasets or editor-specific roles are required. [Sanity plans](https://www.sanity.io/pricing)
 

@@ -12,7 +12,7 @@ The first implementation should include only the selected working integrations a
 | --- | --- | --- | --- | --- |
 | Public content and browser editing | Sanity | Another CMS, a local content source, or a future Mindlab CMS | Page, package, industry, article, project, person, and asset models | Map content, rich text, references, images, publishing, and previews. Recreate editor workflows where needed |
 | Inquiry capture | Tally embed | Formspree custom form or a future Mindlab inquiry API | Inquiry field definitions, service identifiers, confirmation copy, and lead export schema | Replace the integration component or submission adapter. Import historical responses and verify the new flow |
-| Call booking | Cal.com link | Another scheduler or a future Mindlab booking service | The 30-minute call offer, link placement, event definitions, and client-facing next steps | Configure the new calendar and notifications. Handle existing bookings and update public links |
+| Call booking | Cal.com inline calendar with hosted fallback | Another scheduler or a future Mindlab booking service | The 30-minute call offer, placement, event definitions, and client-facing next steps | Replace the embed adapter or use a hosted link. Configure the new calendar and notifications; handle existing bookings |
 | Marketing measurement | GA4 through Tag Manager | Another analytics provider or a future first-party collection service | Event names, allowed properties, consent behavior, and business definitions | Map event payloads, implement the sender, and validate tracking. Historical reports need separate treatment |
 | Static hosting | GitHub-backed static deployment with production host to be settled | Cloudflare Pages, Vercel, or another suitable static host | Source code, domain, page URLs, and generated static output | Update the build pipeline, deployment hooks, headers, redirects, and DNS as needed |
 | Lead notifications | Initially handled by the inquiry provider | A separate delivery provider or Mindlab notification service when inquiry capture is owned | Message requirements, recipients, and delivery expectations | Configure delivery, domain authentication where relevant, and failure handling |
@@ -41,7 +41,7 @@ Use one configuration location to select the installed adapters. An illustrative
 const integrations = {
   content: "sanity",
   leadCapture: "tally-embed",
-  booking: "cal-link",
+  booking: "cal-embed",
   analytics: "gtm",
 };
 ```
@@ -58,6 +58,8 @@ Suggested boundaries:
 - **Analytics:** accept a Mindlab event name and an allowed property object, then translate them for the configured provider.
 
 Invalid configuration or missing required credentials must fail visibly during setup or build. A live inquiry path must never silently fall back to sample data or display success without an accepted submission.
+
+The current implementation uses `src/integrations/booking.ts` to recognize Cal.com event links and `BookingCalendar.astro` to load its supported runtime on the call page. Other scheduler URLs retain a hosted-link presentation. `InquiryForm.astro` loads the optional Tally widget only when opened. Both confirmed-submission and confirmed-booking capabilities remain false; a fallback-link click is not a confirmed meeting.
 
 ## Data portability
 

@@ -1,0 +1,83 @@
+/* Context is retained for audience, article category, and illustrative work. */
+.eyebrow.context-label { font-size: 12px; letter-spacing: .055em; line-height: 1.6; }
+.artifact-topline, .artifact-compact .artifact-topline, .artifact-label, .artifact-compact .artifact-label, .artifact-footer { font-size: 12px; }
+.work-meta, .guide-list .mono, .audience-panel > .mono, .about-guides .mono, .discipline-grid .mono, .values-grid .mono, .service-number, .service-row > div > span, .buyer-question > span { font-size: 12px; }
+.guide-contents-heading { font-size: 16px; margin-bottom: 20px; }
+.related-services > h3 { font-size: 18px; margin-bottom: 18px; }
+.buyer-question .buyer-question-title { font-family: var(--body); font-size: 14px; letter-spacing: 0; line-height: 1.5; margin: 0 0 22px; }
+.buyer-question > p.buyer-question-quote { font-size: 30px; }
+.art-card-tag { display: block; font-size: 13px; line-height: 1.4; font-weight: 600; }
+.hero .hero-actions .button, .hero .hero-actions .text-link { font-size: 14px; }
+.intro-strip > .container { font-size: 14px; }
+.intro-strip > .container > div { font-size: 13px; }
+.home-team-section { background: #efefeb; padding-block: 68px; }
+.home-team-grid { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 50px; }
+.home-team-card { display: grid; grid-template-columns: 88px minmax(0, 1fr); gap: 24px; }
+.home-team-card .team-portrait { width: 88px; aspect-ratio: 4 / 5; }
+.home-team-card h3 { font-size: 26px; }
+.home-team-card .team-focus { font-size: 13px; color: var(--violet); margin: 10px 0 14px; }
+.home-team-card p:last-child { font-size: 15px; margin-bottom: 0; }
+.home-industry-link { margin-top: 30px; }
+
+/* The call link leads to the calendar; an inquiry is a separate optional path. */
+.booking-intro { display: grid; grid-template-columns: minmax(0, 1.15fr) minmax(0, .85fr); gap: 30px 85px; padding-top: 56px; padding-bottom: 32px; }
+.booking-intro h1 { font-size: clamp(38px, 4.2vw, 58px); }
+.booking-intro .lede { font-size: 17px; max-width: 620px; margin-top: 22px; }
+.call-expectations { padding-top: 8px; }
+.call-expectations h2 { font-family: var(--body); font-size: 18px; letter-spacing: 0; }
+.call-expectations ul { padding-left: 20px; margin: 18px 0; color: var(--muted); font-size: 15px; }
+.call-expectations li { padding-left: 5px; margin-block: 8px; }
+.call-expectations > p { font-size: 13px; margin-bottom: 0; }
+.booking-intro .selected-package { grid-column: 1 / -1; padding: 20px 24px; margin: 0; border: 1px solid #d4cbea; border-radius: 8px; background: var(--lavender); }
+.booking-intro .selected-package > p, .booking-intro .selected-package .text-link { font-size: 14px; }
+.booking-calendar-section { padding-bottom: 34px; }
+.booking-calendar { display: grid; gap: 18px; }
+.calendar-embed { position: relative; width: 100%; min-height: 640px; border-radius: 12px; overflow: hidden; background: #fff; }
+.calendar-embed iframe { display: block; width: 100%; border: 0; }
+.calendar-loading { position: absolute; inset: 0; margin: 0; padding: 30px; font-size: 16px; }
+.booking-calendar > .button { justify-self: start; font-size: 13px; }
+.calendar-unavailable > .button { background: var(--violet); color: #fff; }
+.calendar-privacy { font-size: 13px; margin: 16px 0 0; }
+.calendar-privacy a { text-decoration: underline; text-underline-offset: 3px; }
+.booking-message-section { padding-bottom: 80px; }
+.booking-inquiry { border-block: 1px solid var(--line); }
+.booking-inquiry > summary { display: flex; justify-content: space-between; align-items: center; gap: 24px; list-style: none; padding: 24px 0; cursor: pointer; font-size: 21px; line-height: 1.5; }
+.booking-inquiry > summary::-webkit-details-marker { display: none; }
+.inquiry-plus { font-size: 28px; color: var(--violet); }
+.booking-inquiry[open] .inquiry-plus { transform: rotate(45deg); }
+.booking-inquiry-body { max-width: 760px; padding-bottom: 28px; }
+.booking-inquiry-body > p { font-size: 15px; }
+.booking-not-connected { padding: 24px 0; }
+.booking-not-connected h2 { font-size: 28px; }
+
+@media (max-width: 860px) {
+  .booking-intro { gap: 28px 40px; }
+  .home-team-grid { gap: 30px; }
+}
+@media (max-width: 720px) {
+  .booking-intro, .home-team-grid { grid-template-columns: 1fr; }
+  .booking-intro { padding-top: 42px; gap: 24px; }
+  .booking-intro h1 { font-size: 42px; }
+  .booking-intro .lede { font-size: 16px; }
+  .booking-intro .call-expectations { display: none; }
+  .call-expectations { padding-top: 0; }
+  .call-expectations ul { margin-block: 12px; }
+  .calendar-embed { min-height: 620px; }
+  .home-team-section { padding-block: 50px; }
+  .home-team-card { grid-template-columns: 72px minmax(0, 1fr); gap: 22px; }
+  .home-team-card .team-portrait { width: 72px; }
+}
+@media (max-width: 600px) {
+  .booking-intro h1 { font-size: 36px; line-height: 1.15; }
+  .hero .hero-art { display: none; }
+  .hero .hero-grid { row-gap: 0; }
+  .hero .hero-description { font-size: 16px; }
+  .hero .hero-actions .button, .hero .hero-actions .text-link { font-size: 14px; }
+  .intro-strip > .container { font-size: 13px; }
+  .intro-strip > .container > div { flex-wrap: wrap; gap: 8px 12px; font-size: 12px; }
+  .section .section-note, .pricing-note { font-size: 13px; }
+  .audience-panel .text-link { font-size: 14px; }
+  .home-team-card h3 { font-size: 24px; }
+  .booking-calendar > .button { font-size: 13px; padding-inline: 16px; }
+  .booking-inquiry > summary { font-size: 18px; }
+}

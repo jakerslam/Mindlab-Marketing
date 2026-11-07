@@ -5,4 +5,4 @@ import { integrations } from '@/integrations/config';
 interface Props { title?: string; description?: string }
 const { title = 'What should your marketing do next?', description = 'Tell us about your business, your priorities, and the support you need. We’ll discuss the right starting point.' } = Astro.props;
 ---
-<section class="cta-section section"><div class="container cta-inner"><div><p class="eyebrow">Start a conversation</p><h2>{title}</h2><p>{description}</p></div><a class="button" href={withBase("/book-call/")} data-track="strategy_call_click" data-location="final-cta">Book a {integrations.callDurationMinutes}-minute intro call <Arrow/></a></div></section>
+<section class="cta-section section"><div class="container cta-inner"><div><h2>{title}</h2><p>{description}</p></div><a class="button" href={withBase("/book-call/")} data-track="strategy_call_click" data-location="final-cta">Book a {integrations.callDurationMinutes}-minute intro call <Arrow/></a></div></section>

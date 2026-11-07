@@ -1,0 +1,49 @@
+---
+import { integrations } from '@/integrations/config';
+import Arrow from './Arrow.astro';
+const booking = integrations.booking;
+---
+{booking && <div class="booking-calendar">
+  {booking.embed && <div id="mindlab-calendar" class="calendar-embed" data-cal-link={booking.embed.calLink} data-cal-origin={booking.embed.origin}><p class="calendar-loading" role="status">Loading available times…</p></div>}
+  <a class:list={['button', { 'button-outline': !!booking.embed }]} href={booking.url} target="_blank" rel="noopener noreferrer" data-track="booking_link_opened" data-location="book-call">{booking.embed ? 'Open the calendar in a new tab' : 'Choose a time'}<Arrow/></a>
+</div>}
+<script>
+  // Cal's supported command queue lets the provider runtime load asynchronously.
+  type CalCommand = unknown[];
+  type CalApi = ((...command: CalCommand) => void) & { q: CalCommand[]; ns: Record<string, unknown>; loaded: boolean };
+  const container = document.querySelector<HTMLElement>('#mindlab-calendar');
+  if (container?.dataset.calLink && container.dataset.calOrigin) {
+    const frameObserver = new MutationObserver(() => {
+      const frame = container.querySelector<HTMLIFrameElement>('iframe');
+      if (!frame) return;
+      frame.title = 'Mindlab introductory call calendar';
+      frame.addEventListener('load', () => {
+        container.querySelector('.calendar-loading')?.remove();
+        container.classList.add('is-ready');
+      }, { once: true });
+      frameObserver.disconnect();
+    });
+    frameObserver.observe(container, { childList: true, subtree: true });
+    const calWindow = window as Window & { Cal?: CalApi };
+    if (!calWindow.Cal) {
+      const queue: CalCommand[] = [];
+      const api = Object.assign((...command: CalCommand) => { queue.push(command); }, { q: queue, ns: {}, loaded: true });
+      calWindow.Cal = api;
+      const script = document.createElement('script');
+      script.src = `${container.dataset.calOrigin}/embed/embed.js`;
+      script.async = true;
+      script.addEventListener('error', () => {
+        frameObserver.disconnect();
+        container.hidden = true;
+        container.parentElement?.classList.add('calendar-unavailable');
+      });
+      document.head.append(script);
+    }
+    calWindow.Cal('init', { origin: container.dataset.calOrigin });
+    calWindow.Cal('inline', {
+      elementOrSelector: '#mindlab-calendar',
+      calLink: container.dataset.calLink,
+      config: { layout: 'month_view', theme: 'light' },
+    });
+  }
+</script>

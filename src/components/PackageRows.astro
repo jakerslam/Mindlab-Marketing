@@ -14,7 +14,6 @@ const actions: Record<Package['id'], string> = {
 <div class="pricing-rows">
   {packages.map((pkg) => <article class="pricing-row" id={pkg.id}>
     <div class="pricing-row-description">
-      <p class="eyebrow">{pkg.cadence === 'project' ? 'Strategy project' : pkg.id === 'content-studio' ? 'Monthly content' : 'Paid advertising'}</p>
       <h2>{pkg.name}</h2>
       <p>{serviceDetails[pkg.id].description}</p>
       {pkg.id === 'content-studio' && <p class="pricing-boundary">Writing only. Graphics, video, and distribution are separately scoped.</p>}

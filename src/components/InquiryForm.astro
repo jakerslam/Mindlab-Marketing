@@ -1,0 +1,39 @@
+---
+import { integrations } from '@/integrations/config';
+import { withBase } from '@/lib/urls';
+const form = integrations.leadCapture;
+interface Props { initiallyOpen?: boolean }
+const { initiallyOpen = false } = Astro.props;
+---
+{form && <details class="booking-inquiry" id="inquiry" open={initiallyOpen}>
+  <summary><span>Prefer to send a message?</span><span class="inquiry-plus" aria-hidden="true">+</span></summary>
+  <div class="booking-inquiry-body">
+    <p>Use the form to tell us about your business and the support you need.</p>
+    <div class="form-embed" id="inquiry-container" data-form-id={form.id}><iframe id="inquiry-frame" title="Mindlab business inquiry" data-tally-src={`https://tally.so/embed/${form.id}?alignLeft=1&hideTitle=1&transparentBackground=1&dynamicHeight=1`} width="100%" height="720" loading="lazy" referrerpolicy="strict-origin-when-cross-origin"></iframe></div>
+    <p class="form-note"><a href={form.hostedUrl} target="_blank" rel="noopener noreferrer">Open the form in a new tab ↗</a></p>
+    <p class="form-note">Tally receives and stores inquiries. <a href={withBase('/privacy/')}>How we handle your information</a>.</p>
+  </div>
+</details>}
+<script>
+  const inquiry = document.querySelector<HTMLDetailsElement>('#inquiry');
+  let loaded = false;
+  const loadForm = () => {
+    if (!inquiry?.open || loaded) return;
+    loaded = true;
+    const tallyWindow = window as Window & { Tally?: { loadEmbeds(): void } };
+    if (tallyWindow.Tally) { tallyWindow.Tally.loadEmbeds(); return; }
+    const script = document.createElement('script');
+    script.src = 'https://tally.so/widgets/embed.js';
+    script.async = true;
+    script.addEventListener('load', () => tallyWindow.Tally?.loadEmbeds());
+    script.addEventListener('error', () => { loaded = false; });
+    document.head.append(script);
+  };
+  inquiry?.addEventListener('toggle', loadForm);
+  const openLinkedInquiry = () => {
+    if (inquiry && location.hash === '#inquiry') { inquiry.open = true; loadForm(); }
+  };
+  openLinkedInquiry();
+  loadForm();
+  window.addEventListener('hashchange', openLinkedInquiry);
+</script>

@@ -38,7 +38,9 @@ Pricing uses compact service rows and an optional, collapsed budget estimator. E
 
 The public site is hosted at **https://mindlab.solutions/** on GitHub Pages with HTTPS. It remains a public preview: `SITE_STAGE=preview` makes pages noindex and disallows crawling until the existing launch requirements are completed. `CONTENT_SOURCE=sanity` reads published content without a local fallback. The older owner-private review deployment is separate; its identity is in `.openai/hosting.json`.
 
-The Tally inquiry form and Cal.com 30-minute event are connected through `src/integrations/project.ts`. Sanity project `o19f4dqg` contains 31 published content records in its public `production` dataset. The authenticated browser editor is deployed at https://mindlab-solutions.sanity.studio/. Accepted inquiry delivery, booking confirmation, the contact inbox, and final indexing remain unverified or incomplete. About includes Jay Haslam and Daiana Costa with owner-provided biographies and neutral silhouette placeholders. Public contact details remain deferred.
+The call page leads with the real Cal.com calendar, with a hosted-calendar fallback. The optional Tally inquiry form loads when its disclosure is opened. Both are configured through `src/integrations/project.ts`. Sanity project `o19f4dqg` contains 31 published content records in its public `production` dataset. The authenticated browser editor is deployed at https://mindlab-solutions.sanity.studio/. Accepted inquiry delivery, booking confirmation, the contact inbox, and final indexing remain unverified or incomplete. Home and About introduce Jay Haslam and Daiana Costa using shared owner-provided biographies and neutral silhouette placeholders. Public contact details remain deferred.
+
+Section headings now carry the message directly. Small context labels remain for audiences, article categories, and fictional demonstrations. Mobile hides the decorative hero artwork; the homepage uses two audience previews and one guide preview, with links to the complete lists.
 
 ## Structure and replaceable integrations
 
@@ -47,16 +49,19 @@ The Tally inquiry form and Cal.com 30-minute event are connected through `src/in
 - `src/content/index.ts`: selects the content source once per build.
 - `src/integrations/sanity.ts`: the only Sanity query and record mapping.
 - `src/integrations/config.ts`: configuration and truthful integration capabilities.
+- `src/integrations/booking.ts`, `src/components/BookingCalendar.astro`: Cal.com embed configuration and rendering, with hosted-link fallback for other schedulers.
+- `src/components/InquiryForm.astro`: optional, lazily loaded Tally form.
+- `src/content/team.ts`: shared approved team copy for Home and About.
 - `src/components/Analytics.astro`: consent-gated event wrapper; no tracking when unconfigured.
 - `sanity.config.ts`, `studio/schema.ts`: separate authenticated browser editor.
 
-Replacing a provider means implementing its boundary and migrating its records. It does not require redesigning the marketing pages. The current Tally integration is an iframe, not a made-up submission API. Booking is a hosted link and cannot claim confirmed meetings. Inquiry contents are never sent through the site's analytics wrapper. Keep private leads outside the website CMS and repository.
+Replacing a provider means implementing its boundary and migrating its records. It does not require redesigning the marketing pages. The current Tally integration is an iframe. Booking uses an inline Cal.com calendar or a generic hosted link and does not report confirmed meetings to site analytics. Inquiry contents are never sent through the site's analytics wrapper. Keep private leads outside the website CMS and repository.
 
 ## Browser editing and publishing
 
 Editor: **https://mindlab-solutions.sanity.studio/**. Sign in with an account authorized for project `o19f4dqg`. Sanity manages authentication; opening the editor does not grant someone permission to edit.
 
-The `production` dataset contains 31 published records: settings, homepage introduction, 3 packages, 16 industry entries, 2 clearly labeled sample concepts, 3 practical guides, and 5 FAQs. Each audience has seven named sectors followed by Other. These entries feed navigation, the overview, audience pages, and homepage. The recovery importer uses `createIfNotExists` and preserves existing content. The source explicitly selects Sanity, and an invalid record or unavailable API stops the build.
+The `production` dataset contains 31 published records: settings, homepage introduction, 3 packages, 16 industry entries, 2 clearly labeled sample concepts, 3 practical guides, and 5 FAQs. Each audience has seven named sectors followed by Other. Industry records feed navigation, the overview, and audience pages; the homepage links to these destinations. The recovery importer uses `createIfNotExists` and preserves existing content. The source explicitly selects Sanity, and an invalid record or unavailable API stops the build.
 
 To edit, open the appropriate content group, change the fields, and publish. Package amounts and setup fees feed the cards, detailed service pages, and combined estimates from the same records. Stable IDs and slugs must be preserved.
 
@@ -76,8 +81,8 @@ The November editorial migration used `scripts/update-editorial-content.mjs`: fi
 
 1. The supplied live Tally form is `https://tally.so/r/zEN7DM`. It requires full name, company, and email, with optional phone and context about brand strategy, ads, and content. The privacy text matches these actual fields. Suggested follow-up: add a primary-goal question, a `service` hidden field to record package interest, and the final privacy link. The official widget forwards the selected package query; recording it requires that hidden field in Tally.
 2. Configure the owner notification recipient and a genuine completion message. Use the form provider's own accepted-submission and error behavior; do not redirect to an unverified success page. Retain Tally branding on the free tier.
-3. Put only the form ID in `PUBLIC_TALLY_FORM_ID`. The site provides an embed and a hosted-form fallback link. Inspect the actual form at mobile and desktop sizes; adjust its height if needed.
-4. The supplied booking event is `https://cal.com/jacob-haslam-zfpxbo/30min`. Its duration is 30 minutes, with America/Denver availability verified. The site now uses 30-minute call copy from shared configuration. The booking-link boundary can support another scheduler later.
+3. Put only the form ID in `PUBLIC_TALLY_FORM_ID`. The site provides an optional embed and a hosted-form fallback link. The embed loads on disclosure opening; `/book-call/#inquiry` opens it directly. Inspect the actual form at mobile and desktop sizes; adjust its height if needed.
+4. The supplied booking event is `https://cal.com/jacob-haslam-zfpxbo/30min`. The calendar loads only on the call page; no inquiry is required before choosing a time. Its 30-minute duration, America/Denver availability, and name/email/optional-notes booking form were checked. The adapter supports a generic hosted destination for another scheduler. Confirmed-booking measurement remains disabled.
 5. Set `PUBLIC_CONTACT_EMAIL` to a verified monitored inbox. Do not invent an address.
 6. Send a clearly marked test inquiry with authorization, verify it exists in the Tally dashboard and that the owner notification arrives, then verify the live calendar's availability/timezone. Check invalid input, retry behavior, retained entries, completion, and package-interest handoff.
 

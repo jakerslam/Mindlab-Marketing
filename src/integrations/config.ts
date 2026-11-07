@@ -1,4 +1,5 @@
 import { projectConfig } from './project';
+import { getBookingEmbed } from './booking';
 
 const value = (name: string) => String(import.meta.env[name] || '').trim();
 const stage = value('SITE_STAGE') || 'preview';
@@ -9,6 +10,7 @@ if (!['local', 'sanity'].includes(content)) throw new Error('CONTENT_SOURCE must
 const tallyId = value('PUBLIC_TALLY_FORM_ID') || projectConfig.tallyFormId;
 if (tallyId && !/^[a-zA-Z0-9]+$/.test(tallyId)) throw new Error('PUBLIC_TALLY_FORM_ID must contain only the Tally form ID.');
 const bookingUrl = value('PUBLIC_BOOKING_URL') || projectConfig.bookingUrl;
+const bookingEmbed = bookingUrl ? getBookingEmbed(bookingUrl) : null;
 if (bookingUrl) {
   const url = new URL(bookingUrl);
   if (url.protocol !== 'https:') throw new Error('PUBLIC_BOOKING_URL must use HTTPS.');
@@ -24,7 +26,7 @@ export const integrations = {
   stage,
   content: content as 'local' | 'sanity',
   leadCapture: tallyId ? { mode: 'embed' as const, provider: 'tally' as const, id: tallyId, hostedUrl: `https://tally.so/r/${tallyId}`, supportsConfirmedSubmission: false } : null,
-  booking: bookingUrl ? { mode: 'link' as const, url: bookingUrl, durationMinutes: callDurationMinutes, supportsConfirmedBooking: false } : null,
+  booking: bookingUrl ? { mode: bookingEmbed ? 'embed' as const : 'link' as const, url: bookingUrl, embed: bookingEmbed, durationMinutes: callDurationMinutes, supportsConfirmedBooking: false } : null,
   callDurationMinutes,
   contactEmail: email || null,
   analytics: gtmId ? { provider: 'gtm' as const, id: gtmId } : null,
