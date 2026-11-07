@@ -105,11 +105,72 @@ const content = await getContent();
       for (const part of parts) part.dataset.storyPart = '';
     }
 
+    const headingParts = new Map<Element, ReturnType<typeof prepareHeading>>();
+    const heroHeading = story.querySelector<HTMLElement>('.hero-copy h1');
+    const opening = heroHeading ? prepareHeading(heroHeading) : undefined;
+    for (const heading of story.querySelectorAll<HTMLElement>('.section-heading h2, .audience-intro h2, #packages h2, .faq-grid h2')) {
+      const part = heading.closest('[data-story-part]');
+      if (!part) continue;
+      headingParts.set(part, prepareHeading(heading));
+      part.setAttribute('data-story-heading-part', '');
+      // Fade siblings along the heading's path so no ancestor dims the typed text.
+      for (let child: Element = heading; child !== part; child = child.parentElement!) {
+        for (const sibling of child.parentElement!.children) {
+          if (sibling !== child) sibling.setAttribute('data-story-fade', '');
+        }
+      }
+    }
+
+    function prepareHeading(heading: HTMLElement) {
+      const title = heading.textContent ?? '';
+      const display = document.createElement('span');
+      display.setAttribute('aria-hidden', 'true');
+      const letters = Array.from(title, (letter) => {
+        const glyph = document.createElement('span');
+        glyph.textContent = letter;
+        glyph.dataset.typeHidden = '';
+        display.append(glyph);
+        return glyph;
+      });
+      heading.setAttribute('aria-label', title);
+      heading.replaceChildren(display);
+      return {
+        element: heading,
+        letters,
+        count: -1,
+        cursor: undefined as HTMLElement | undefined,
+        startedAt: undefined as number | undefined,
+      };
+    }
+
+    function typeHeading(heading: ReturnType<typeof prepareHeading>, progress: number) {
+      const { letters, count: previous } = heading;
+      const count = Math.floor(progress * letters.length);
+      if (previous === count) return;
+      heading.cursor?.removeAttribute('data-type-cursor');
+      for (let index = Math.max(0, Math.min(previous, count)); index < Math.max(previous, count); index++) {
+        letters[index].toggleAttribute('data-type-hidden', index >= count);
+      }
+      heading.cursor = letters.slice(count).find((letter) => letter.textContent?.trim());
+      heading.cursor?.setAttribute('data-type-cursor', '');
+      if (count === letters.length) letters.at(-1)?.setAttribute('data-type-finished', '');
+      heading.count = count;
+    }
+
     let frame = 0;
     const clamp = (value: number) => Math.max(0, Math.min(1, value));
+    const playHeading = (heading: ReturnType<typeof prepareHeading>, now: number) => {
+      heading.startedAt ??= now;
+      const progress = clamp((now - heading.startedAt) / Math.max(1, heading.letters.length * 35));
+      typeHeading(heading, progress);
+      if (progress < 1) schedule();
+    };
+
     const render = () => {
       frame = 0;
       if (!motion.matches) return;
+      const now = performance.now();
+      if (opening && opening.count < opening.letters.length) playHeading(opening, now);
       const viewport = window.innerHeight;
       tracks.forEach(({ track, visibleParts, pinTop, distance, tall }, trackIndex) => {
         const top = track.getBoundingClientRect().top;
@@ -119,17 +180,24 @@ const content = await getContent();
           let opacity: number;
           if (!tall) {
             // Advance through the parts using only the distance scrolled.
-            const stage = progress * (visibleParts.length + 0.5) - partIndex;
-            opacity = clamp(stage / 1.5);
+            opacity = clamp((progress * (visibleParts.length + 0.5) - partIndex) / 1.5);
           } else {
             // Read tall panels in normal flow, then finish the fade while their bottom stays pinned.
             const start = viewport * 0.95 - partIndex * 36;
             const revealTravel = progress * (viewport * 0.5 + (visibleParts.length - 1) * 36);
-            opacity = clamp((start - part.getBoundingClientRect().top + revealTravel) / (viewport * 0.35));
+            const revealedDistance = start - part.getBoundingClientRect().top + revealTravel;
+            opacity = clamp(revealedDistance / (viewport * 0.35));
           }
           if (trackIndex === 0) opacity = Math.min(opacity, clamp(window.scrollY / 160));
           fullyRevealed &&= opacity >= 1;
           part.style.setProperty('--story-opacity', opacity.toFixed(3));
+          const heading = headingParts.get(part);
+          if (heading && heading.count < heading.letters.length) {
+            const bounds = heading.element.getBoundingClientRect();
+            if (heading.startedAt !== undefined || (opacity >= 0.2 && bounds.top < viewport && bounds.bottom > 0)) {
+              playHeading(heading, now);
+            }
+          }
           if (part === artwork) {
             const spread = clamp((opacity - 0.15) / 0.85);
             artwork.style.setProperty('--stack-amount', String(1 - spread * spread * (3 - 2 * spread)));
@@ -204,8 +272,46 @@ const content = await getContent();
       padding-block: 48px;
     }
 
-    [data-story-part] {
+    [data-story-part]:not([data-story-heading-part]),
+    [data-story-fade] {
       opacity: var(--story-opacity, 1);
+    }
+
+    [data-type-hidden] {
+      color: transparent;
+    }
+
+    [data-type-cursor],
+    [data-type-finished] {
+      position: relative;
+    }
+
+    [data-type-cursor]::before {
+      content: '_';
+      position: absolute;
+      inset-inline-start: 0;
+      color: var(--violet);
+    }
+
+    [data-type-finished]::after {
+      content: '_';
+      position: absolute;
+      inset-inline-start: 100%;
+      color: var(--violet);
+      animation: heading-cursor-blink 1s step-end 2 forwards;
+    }
+
+    @keyframes heading-cursor-blink {
+      0% { opacity: 1; }
+      50%, 100% { opacity: 0; }
+    }
+
+    [data-story-part]:focus-within [data-type-hidden] {
+      color: inherit;
+    }
+
+    [data-story-part]:focus-within [data-type-cursor]::before {
+      content: none;
     }
 
     .hero-art :is(.art-note, .art-stamp) {
@@ -215,7 +321,9 @@ const content = await getContent();
     }
 
     [data-story-part]:focus-within,
-    [data-story-part]:target {
+    [data-story-part]:target,
+    [data-story-heading-part]:focus-within [data-story-fade],
+    [data-story-heading-part]:target [data-story-fade] {
       opacity: 1;
     }
   }
