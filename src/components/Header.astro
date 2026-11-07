@@ -33,8 +33,11 @@ const isCurrent = (href: string) => path.startsWith(withBase(href)) || (href ===
   const story = document.querySelector('[data-home-story]');
   const motion = window.matchMedia('(prefers-reduced-motion: no-preference)');
   const updateHeader = () => {
-    const heroReady = !story || !motion.matches || story.hasAttribute('data-hero-reveal-complete');
-    header?.classList.toggle('is-scrolled', heroReady && window.scrollY > 32);
+    const threshold = header?.classList.contains('is-scrolled') ? 12 : 32;
+    const collapsed = story && motion.matches
+      ? story.hasAttribute('data-hero-reveal-complete')
+      : window.scrollY > threshold;
+    header?.classList.toggle('is-scrolled', collapsed);
   };
   updateHeader();
   window.addEventListener('scroll', updateHeader, { passive: true });

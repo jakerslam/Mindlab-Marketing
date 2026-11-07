@@ -275,7 +275,6 @@ article[id] {
 	height: var(--header-current-height);
 	background: rgba(247, 247, 244, 0.97);
 	border-bottom: 1px solid rgba(222, 222, 226, 0.55);
-	backdrop-filter: blur(12px);
 	transition: height 0.22s ease, box-shadow 0.22s ease, background-color 0.22s ease;
 }
 .site-header.is-scrolled {
@@ -283,7 +282,6 @@ article[id] {
 }
 .site-header.is-scrolled::before {
 	background: rgba(247, 247, 244, 0.86);
-	backdrop-filter: blur(3px);
 	box-shadow: 0 4px 16px rgba(20, 21, 26, 0.1);
 }
 .header-inner {

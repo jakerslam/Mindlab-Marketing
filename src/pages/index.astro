@@ -13,6 +13,22 @@ import { getContent } from '@/content';
 const content = await getContent();
 ---
 <Layout title="Clear thinking. Connected marketing." description={content.settings.description}>
+  <Fragment slot="head">
+    <style is:inline>
+      @media (prefers-reduced-motion: no-preference) {
+        html[data-story-starting] [data-home-story] .home-story-panel {
+          opacity: 0;
+        }
+      }
+    </style>
+    <script is:inline>
+      document.documentElement.setAttribute('data-story-starting', '');
+      // Keep the page readable if the animation script fails to load.
+      window.addEventListener('load', () => {
+        document.documentElement.removeAttribute('data-story-starting');
+      }, { once: true });
+    </script>
+  </Fragment>
   <div class="home-story" data-home-story>
   <div class="home-story-track">
   <div class="home-story-panel">
@@ -203,9 +219,14 @@ const content = await getContent();
             artwork.style.setProperty('--stack-amount', String(1 - spread * spread * (3 - 2 * spread)));
           }
         });
-        if (trackIndex === 0 && story.hasAttribute('data-hero-reveal-complete') !== fullyRevealed) {
-          story.toggleAttribute('data-hero-reveal-complete', fullyRevealed);
-          story.dispatchEvent(new Event('hero-reveal-change'));
+        if (trackIndex === 0) {
+          const wasComplete = story.hasAttribute('data-hero-reveal-complete');
+          // Use separate thresholds to absorb small trackpad movements at the boundary.
+          const isComplete = wasComplete ? progress > 1 - 32 / distance : progress >= 1 && fullyRevealed;
+          if (wasComplete !== isComplete) {
+            story.toggleAttribute('data-hero-reveal-complete', isComplete);
+            story.dispatchEvent(new Event('hero-reveal-change'));
+          }
         }
       });
     };
@@ -252,6 +273,7 @@ const content = await getContent();
     window.addEventListener('pageshow', measure);
     motion.addEventListener('change', measure);
     measure();
+    document.documentElement.removeAttribute('data-story-starting');
   }
 </script>
 
