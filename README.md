@@ -109,6 +109,8 @@ For a host connected to this GitHub repository: use the repository root, build c
 
 For preview deployments use `SITE_STAGE=preview`. For production set the real provider configuration, `CONTENT_SOURCE=sanity`, `SITE_STAGE=production`, and `LAUNCH_CONTENT_APPROVED=true` **after** the owner reviews prices, scope, terms, sample disclosures, business/contact information, privacy and retention practices, and the original visual direction. Do not flip the flag simply to bypass the gate.
 
+For GitHub Pages, set `PUBLIC_CONTACT_EMAIL`, `LAUNCH_CONTENT_APPROVED`, and `SITE_STAGE` as repository Actions variables. The workflow defaults to preview when `SITE_STAGE` is unset. After the approved production deployment, verify that the public homepage has no `noindex` directive and that `robots.txt` advertises the sitemap. Verify the `mindlab.solutions` domain in Google Search Console using the DNS TXT record it supplies, then submit `https://mindlab.solutions/sitemap-index.xml`.
+
 ```sh
 node --env-file=.env scripts/check-release.mjs
 npm run check

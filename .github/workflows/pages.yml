@@ -15,7 +15,7 @@ concurrency:
 env:
   ASTRO_TELEMETRY_DISABLED: '1'
   CONTENT_SOURCE: sanity
-  SITE_STAGE: preview
+  SITE_STAGE: ${{ vars.SITE_STAGE || 'preview' }}
 
 jobs:
   build:
@@ -47,6 +47,8 @@ jobs:
         env:
           SITE_URL: ${{ steps.pages.outputs.origin }}
           SITE_BASE: ${{ steps.pages.outputs.base_path }}
+          PUBLIC_CONTACT_EMAIL: ${{ vars.PUBLIC_CONTACT_EMAIL }}
+          LAUNCH_CONTENT_APPROVED: ${{ vars.LAUNCH_CONTENT_APPROVED }}
         run: |
           npm run build
           npm run verify

@@ -11,9 +11,31 @@ import FAQ from '@/components/FAQ.astro';
 import CTA from '@/components/CTA.astro';
 import { getContent } from '@/content';
 const content = await getContent();
+const siteUrl = new URL(withBase('/'), Astro.site).href;
+const organizationId = `${siteUrl}#organization`;
+const searchMetadata = {
+  '@context': 'https://schema.org',
+  '@graph': [
+    {
+      '@type': 'Organization',
+      '@id': organizationId,
+      name: 'Mindlab Solutions',
+      legalName: 'Mindlab LLC',
+      url: siteUrl,
+    },
+    {
+      '@type': 'WebSite',
+      '@id': `${siteUrl}#website`,
+      name: 'Mindlab Solutions',
+      url: siteUrl,
+      publisher: { '@id': organizationId },
+    },
+  ],
+};
 ---
-<Layout title="Clear thinking. Connected marketing." description={content.settings.description}>
+<Layout title="Brand Strategy, Content & Paid Advertising" description={content.settings.description}>
   <Fragment slot="head">
+    <script type="application/ld+json" is:inline set:html={JSON.stringify(searchMetadata)}/>
     <style is:inline>
       @media (prefers-reduced-motion: no-preference) {
         html[data-story-starting] [data-home-story] .home-story-panel {
