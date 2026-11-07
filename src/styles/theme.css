@@ -60,6 +60,7 @@ button { color: inherit; }
 #inquiry-container { border-radius: 8px; color-scheme: light; }
 :root[data-theme='dark'] #inquiry-container { background: #fff; padding: 24px; }
 .hero-art { background: radial-gradient(ellipse at 55% 50%, var(--art-center) 0%, var(--art-mid) 40%, var(--paper) 72%); }
+.hero-description { color: light-dark(#000, var(--muted)); }
 .art-orbit { border-color: var(--art-orbit); }
 /* Artwork is an intentional light artboard in both themes. */
 .strategy-note { color: #14151a; }

@@ -15,9 +15,12 @@ const analytics = integrations.analytics;
     </div>
     <div class="consent-actions">
       {analytics ? <>
-        <button class="button button-outline button-small" type="button" data-consent="denied">Decline</button>
+        <button class="button button-outline button-small" type="button" data-consent="denied">Deny analytics</button>
         <button class="button button-small" type="button" data-consent="granted">Allow analytics</button>
-      </> : <button class="button button-small" type="button" data-cookie-notice-dismiss>Got it</button>}
+      </> : <>
+        <button class="button button-outline button-small" type="button" data-cookie-notice-dismiss="deny">Deny analytics</button>
+        <button class="button button-small" type="button" data-cookie-notice-dismiss>Got it</button>
+      </>}
     </div>
   </div>
   {analytics ? <script>
@@ -65,9 +68,16 @@ const analytics = integrations.analytics;
       let dismissed = false;
       try { dismissed = localStorage.getItem(key) === 'dismissed'; } catch { /* Storage may be disabled. */ }
       banner.hidden = dismissed;
-      banner.querySelector('[data-cookie-notice-dismiss]')?.addEventListener('click', () => {
-        banner.hidden = true;
-        try { localStorage.setItem(key, 'dismissed'); } catch { /* Dismissal still works on this page. */ }
+      banner.querySelectorAll('[data-cookie-notice-dismiss]').forEach((button) => {
+        button.addEventListener('click', () => {
+          banner.hidden = true;
+          try {
+            if (button.getAttribute('data-cookie-notice-dismiss') === 'deny') {
+              localStorage.setItem('mindlab-analytics-v1', 'denied');
+            }
+            localStorage.setItem(key, 'dismissed');
+          } catch { /* Dismissal still works on this page. */ }
+        });
       });
     })();
   </script>}

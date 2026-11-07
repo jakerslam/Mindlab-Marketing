@@ -57,7 +57,19 @@
 }
 @media (max-width: 600px) {
   .booking-intro h1 { font-size: 36px; line-height: 1.15; }
-  .hero .hero-art { display: none; }
+  .hero { position: relative; isolation: isolate; }
+  .hero .hero-grid > .hero-art {
+    position: absolute;
+    inset: 0;
+    width: auto;
+    height: auto;
+    margin: 0;
+    border-radius: 0;
+    transform: none;
+    translate: none;
+    pointer-events: none;
+  }
+  .hero-art .art-foreground { display: none; }
   .hero .hero-grid { row-gap: 0; }
   .hero .hero-description { font-size: 16px; }
   .hero .hero-actions .button, .hero .hero-actions .text-link { font-size: 14px; }

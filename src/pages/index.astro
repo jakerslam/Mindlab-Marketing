@@ -115,6 +115,7 @@ const searchMetadata = {
     const motion = window.matchMedia('(prefers-reduced-motion: no-preference)');
     const header = document.querySelector<HTMLElement>('.site-header');
     const artwork = story.querySelector<HTMLElement>('.hero-art');
+    const foreground = artwork?.querySelector<HTMLElement>('.art-foreground');
     const cards = artwork?.querySelectorAll<HTMLElement>('.art-note, .art-stamp');
     const stack = [
       { x: -15, y: -12, turn: 23 },
@@ -172,18 +173,24 @@ const searchMetadata = {
       });
       heading.setAttribute('aria-label', title);
       heading.replaceChildren(display);
+      const letterDelay = 35;
+      let elapsed = 0;
+      const revealTimes = letters.map((_, index) => {
+        elapsed += letterDelay * (letters[index - 1]?.textContent === '.' ? 4 : 1);
+        return elapsed;
+      });
       return {
         element: heading,
         letters,
+        revealTimes,
         count: -1,
         cursor: undefined as HTMLElement | undefined,
         startedAt: undefined as number | undefined,
       };
     }
 
-    function typeHeading(heading: ReturnType<typeof prepareHeading>, progress: number) {
+    function typeHeading(heading: ReturnType<typeof prepareHeading>, count: number) {
       const { letters, count: previous } = heading;
-      const count = Math.floor(progress * letters.length);
       if (previous === count) return;
       heading.cursor?.removeAttribute('data-type-cursor');
       for (let index = Math.max(0, Math.min(previous, count)); index < Math.max(previous, count); index++) {
@@ -199,9 +206,10 @@ const searchMetadata = {
     const clamp = (value: number) => Math.max(0, Math.min(1, value));
     const playHeading = (heading: ReturnType<typeof prepareHeading>, now: number) => {
       heading.startedAt ??= now;
-      const progress = clamp((now - heading.startedAt) / Math.max(1, heading.letters.length * 35));
-      typeHeading(heading, progress);
-      if (progress < 1) schedule();
+      const elapsed = now - heading.startedAt;
+      const nextLetter = heading.revealTimes.findIndex((time) => time > elapsed);
+      typeHeading(heading, nextLetter < 0 ? heading.letters.length : nextLetter);
+      if (nextLetter >= 0) schedule();
     };
 
     const render = () => {
@@ -258,6 +266,7 @@ const searchMetadata = {
     };
     const measure = () => {
       const viewport = window.innerHeight;
+      const showCards = Boolean(foreground?.getClientRects().length);
       const headerHeight = header
         ? Number.parseFloat(getComputedStyle(header).getPropertyValue('--header-compact-height')) || 60
         : 0;
@@ -274,7 +283,7 @@ const searchMetadata = {
         entry.track.style.setProperty('--story-pin-top', `${entry.pinTop}px`);
         entry.track.toggleAttribute('data-story-pinned', entry.distance > 0);
       });
-      if (artwork?.offsetWidth) {
+      if (showCards && artwork?.offsetWidth) {
         cards?.forEach((card, index) => {
           const offset = stack[index];
           const x = (artwork.offsetWidth - card.offsetWidth) / 2 - card.offsetLeft + offset.x;
