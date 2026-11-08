@@ -869,23 +869,9 @@ article[id] {
 	border-color: #efe2b5;
 }
 .work-meta {
-	display: flex;
-	align-items: center;
-	justify-content: space-between;
-	gap: 15px;
 	margin: 21px 0 12px;
 	font-size: 9px;
 	color: var(--muted);
-}
-.work-meta > span:first-child {
-	border: 1px solid #c8c5cf;
-	padding: 4px 8px;
-	border-radius: 4px;
-	color: #5e4b83;
-	font-size: 8px;
-	text-transform: uppercase;
-	letter-spacing: 0.045em;
-	font-weight: 600;
 }
 .work-title {
 	display: flex;
@@ -2189,12 +2175,6 @@ article[id] {
 	}
 	.work-meta {
 		font-size: 7px;
-		gap: 7px;
-		align-items: start;
-	}
-	.work-meta > span:first-child {
-		font-size: 6px;
-		white-space: nowrap;
 	}
 	.work-title :is(h2, h3) {
 		font-size: 22px;
@@ -2589,11 +2569,7 @@ article[id] {
 	}
 	.work-meta {
 		font-size: 8px;
-		align-items: center;
 		margin-top: 18px;
-	}
-	.work-meta > span:first-child {
-		font-size: 7px;
 	}
 	.work-title :is(h2, h3) {
 		font-size: 24px;

@@ -8,4 +8,4 @@ const artifactId = service === 'brand-blueprint' ? 'message-map' : service === '
 const artifact = project?.artifacts.find((item) => item.id === artifactId);
 const excerpt = artifact?.items[service === 'brand-blueprint' ? 1 : 0];
 ---
-{project && excerpt && <aside class="service-sample"><p class="eyebrow context-label">Sample concept / fictional brand</p><p class="service-sample-brand">{project.visual === 'northline' ? 'Northline Advisory' : 'Daybreak Studio'}</p><blockquote><p>{excerpt.title}</p><p>{excerpt.body}</p></blockquote><a class="text-link" href={withBase(`/work/${project.slug}/#${artifactId}`)}>Explore the demonstration<Arrow/></a></aside>}
+{project && excerpt && <aside class="service-sample sample-card"><p class="eyebrow context-label">Sample concept / fictional brand</p><p class="service-sample-brand">{project.visual === 'northline' ? 'Northline Advisory' : 'Daybreak Studio'}</p><blockquote><p>{excerpt.title}</p><p>{excerpt.body}</p></blockquote><a class="text-link sample-card-link" href={withBase(`/work/${project.slug}/#${artifactId}`)}>Explore the demonstration<Arrow/></a></aside>}

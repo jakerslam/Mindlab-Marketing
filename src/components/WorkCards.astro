@@ -8,5 +8,37 @@ import Arrow from './Arrow.astro';
 interface Props { projects: Project[]; headingLevel?: 2 | 3 }
 const { projects, headingLevel = 3 } = Astro.props;
 const Heading = headingLevel === 2 ? 'h2' : 'h3';
+const previewFormats: Record<Project['visual'], string> = {
+  alder: 'Instagram post',
+  northline: 'LinkedIn carousel',
+  daybreak: 'Ad copy',
+};
 ---
-<div class="work-grid">{projects.map((project) => <article class="work-card"><div class="work-preview">{project.visual === 'northline' ? <NorthlineCarousel compact/> : project.visual !== 'alder' && project.artifacts[0] ? <ProjectArtifact artifact={project.artifacts[0]} theme={project.visual} compact headingLevel={4}/> : <WorkVisual visual={project.visual}/>}</div><div class="work-meta"><span>{project.label}</span><span>{project.audience}</span></div><a class="work-title" href={withBase(`/work/${project.slug}/`)}><Heading>{project.title}</Heading><Arrow/></a><p>{project.summary}</p></article>)}</div>
+<div class="work-grid">
+  {projects.map((project) => (
+    <article class="work-card sample-card">
+      <div class="work-preview">
+        <p class="work-format">{previewFormats[project.visual]}</p>
+        {project.visual === 'northline' ? <NorthlineCarousel compact/> : project.visual !== 'alder' && project.artifacts[0] ? <ProjectArtifact artifact={project.artifacts[0]} theme={project.visual} compact headingLevel={4}/> : <WorkVisual visual={project.visual}/>}
+      </div>
+      <div class="work-meta">{project.audience}</div>
+      <a class="work-title sample-card-link" href={withBase(`/work/${project.slug}/`)}><Heading>{project.title}</Heading><Arrow/></a>
+      <p>{project.summary}</p>
+    </article>
+  ))}
+</div>
+<style>
+  .work-card {
+    min-width: 0;
+    padding: clamp(12px, 2vw, 20px);
+    border: 1px solid var(--line);
+    border-radius: 12px;
+    background: var(--surface);
+  }
+  .work-format {
+    margin: 0 0 10px;
+    color: var(--ink);
+    font-size: .875rem;
+    font-weight: 650;
+  }
+</style>

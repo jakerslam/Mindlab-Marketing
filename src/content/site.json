@@ -64,7 +64,7 @@
     {
       "id": "demand-campaigns",
       "number": "03",
-      "name": "Demand Campaigns",
+      "name": "Ad Campaigns",
       "tagline": "Put your offer in the right places.",
       "description": "Build a focused paid campaign around one offer, then review and refine it. Clear scope, regular optimization, and media costs you can see.",
       "price": 1250,
@@ -267,7 +267,7 @@
       "title": "Alder & Plane Kitchens",
       "label": "Sample concept",
       "audience": "B2C · Home services",
-      "service": "Brand Blueprint · Content Studio · Demand Campaigns",
+      "service": "Brand Blueprint · Content Studio · Ad Campaigns",
       "summary": "A photo-led campaign for a fictional Denver remodeler, with a whole-kitchen transformation and two paid Instagram ads.",
       "headline": "Same home. New kitchen.",
       "visual": "alder",
@@ -317,7 +317,7 @@
         },
         {
           "id": "ad-copy",
-          "title": "Demand Campaigns · Paid social",
+          "title": "Ad Campaigns · Paid social",
           "format": "copy",
           "introduction": "Both ads use the same copy, audience, and fit-call form. One shows the transformation and the other gives a second finished kitchen the full frame.",
           "items": [
@@ -620,11 +620,11 @@
   "faqs": [
     {
       "question": "Do we need all four services?",
-      "answer": "No. Start with the work that solves your immediate problem. If your positioning is already clear, you can begin with Content Studio or Demand Campaigns. We can review fit together before agreeing a scope."
+      "answer": "No. Start with the work that solves your immediate problem. If your positioning is already clear, you can begin with Content Studio or Ad Campaigns. We can review fit together before agreeing a scope."
     },
     {
       "question": "Is advertising spend included?",
-      "answer": "No. Demand Campaigns is a management fee. Your media budget is additional and paid through your advertising account. The package covers up to $10,000 in monthly media spend; larger budgets need a separate scope."
+      "answer": "No. Ad Campaigns is a management fee. Your media budget is additional and paid through your advertising account. The package covers up to $10,000 in monthly media spend; larger budgets need a separate scope."
     },
     {
       "question": "Does Content Studio include design or video?",

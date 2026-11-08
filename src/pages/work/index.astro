@@ -1,9 +1,15 @@
 ---
 import Layout from '@/layouts/Layout.astro';
-import { withBase } from '@/lib/urls';
-const destination = withBase('/about/#our-thinking');
+import WorkCards from '@/components/WorkCards.astro';
+import { getContent } from '@/content';
+const { projects } = await getContent();
 ---
-<Layout title="Our thinking has a new home" description="Find Mindlab’s sample work and practical guides on the About page." canonicalPath="/about/" noindex>
-  <meta slot="head" http-equiv="refresh" content={`0;url=${destination}`}/>
-  <section class="page-hero container"><h1>Our thinking,<br/>all in one place.</h1><p class="lede">Our sample work and practical guides are now part of About Mindlab.</p><a class="button" href={destination}>Explore our thinking →</a></section>
+<Layout title="Sample work" description="Explore Mindlab’s original marketing samples for fictional businesses.">
+  <section class="page-hero container">
+    <h1>Sample work.</h1>
+    <p class="lede">Explore how we approach positioning, content, and advertising through original examples for fictional businesses.</p>
+  </section>
+  <section class="section work-section" aria-label="Sample projects">
+    <div class="container"><WorkCards projects={projects} headingLevel={2}/></div>
+  </section>
 </Layout>

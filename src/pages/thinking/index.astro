@@ -1,0 +1,15 @@
+---
+import Layout from '@/layouts/Layout.astro';
+import GuideList from '@/components/GuideList.astro';
+import { getContent } from '@/content';
+const { guides } = await getContent();
+---
+<Layout title="Practical marketing guides" description="Read Mindlab’s guides to brand strategy, content, and planning paid campaigns.">
+  <section class="page-hero container">
+    <h1>Practical marketing guides.</h1>
+    <p class="lede">Practical starting points for planning your next marketing decision.</p>
+  </section>
+  <section class="section section-compact" aria-label="Marketing guides">
+    <div class="container"><GuideList guides={guides} headingLevel={2}/></div>
+  </section>
+</Layout>

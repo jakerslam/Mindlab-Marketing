@@ -14,7 +14,7 @@ const minutes = Math.max(1, Math.ceil(words / 200));
 ---
 <Layout title={guide.title} description={guide.summary}>
   <article class="guide-article">
-    <header class="page-hero container guide-hero"><a class="back-link" href={withBase('/about/#guides')}>← About / Practical guides</a><p class="eyebrow context-label">{guide.category} / {minutes} minute read</p><h1>{guide.title}</h1><p class="lede">{guide.summary}</p></header>
+    <header class="page-hero container guide-hero"><a class="back-link" href={withBase('/thinking/')}>← All marketing guides</a><p class="eyebrow context-label">{guide.category} / {minutes} minute read</p><h1>{guide.title}</h1><p class="lede">{guide.summary}</p></header>
     <div class="container guide-layout"><aside class="guide-contents"><h2 class="guide-contents-heading">In this guide</h2><nav aria-label="Article contents">{guide.sections.map((section, index) => <a href={`#section-${index + 1}`}>{section.heading}</a>)}</nav><a class="text-link" href={withBase(`/services/#${related.id}`)}>{related.name}<Arrow/></a></aside><div class="guide-body"><p class="guide-introduction">{guide.introduction}</p>{guide.sections.map((section, index) => <section id={`section-${index + 1}`}><h2>{section.heading}</h2>{section.paragraphs.map((paragraph) => <p>{paragraph}</p>)}{section.list.length > 0 && <ul>{section.list.map((item) => <li>{item}</li>)}</ul>}</section>)}<div class="guide-next"><h2>{related.name}</h2><p>{related.description}</p><a class="text-link" href={withBase(`/services/#${related.id}`)}>Explore this service<Arrow/></a><a class="text-link" href={withBase(`/pricing/#${related.id}`)}>See scope & pricing<Arrow/></a></div></div></div>
   </article>
   <CTA title="Let’s talk about your next step."/>

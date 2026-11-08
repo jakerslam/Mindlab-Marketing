@@ -71,7 +71,7 @@ const searchMetadata = {
 
   <div class="home-story-track">
   <section class="section work-section home-story-panel"><div class="container">
-    <div class="section-heading"><div><h2>Explore sample work.</h2></div><div><p>See how positioning, content, and campaign decisions come together for fictional businesses.</p><a class="text-link" href={withBase('/about/#examples')}>View all sample work <Arrow/></a></div></div>
+    <div class="section-heading"><div><h2>Explore sample work.</h2></div><div><p>See how positioning, content, and campaign decisions come together for fictional businesses.</p><a class="text-link" href={withBase('/work/')}>View all sample work <Arrow/></a></div></div>
     <WorkCards projects={content.projects.slice(0, 2)}/>
   </div></section>
   </div>
@@ -100,7 +100,7 @@ const searchMetadata = {
 
   <div class="home-story-track">
   <div class="home-story-panel home-story-pair">
-  {content.guides.length > 0 && <section class="section tinted"><div class="container"><div class="section-heading"><div><h2>Practical marketing guides.</h2></div><div><p>Useful starting points for planning your next move.</p><a class="text-link" href={withBase('/about/#guides')}>Read all guides <Arrow/></a></div></div><GuideList guides={content.guides.slice(0, 1)}/></div></section>}
+  {content.guides.length > 0 && <section class="section tinted"><div class="container"><div class="section-heading"><div><h2>Practical marketing guides.</h2></div><div><p>Useful starting points for planning your next move.</p><a class="text-link" href={withBase('/thinking/')}>Read all guides <Arrow/></a></div></div><GuideList guides={content.guides.slice(0, 1)}/></div></section>}
 
   <section class="section"><div class="container faq-grid"><div><p class="section-overline">Before we begin.</p><h2>Common questions.</h2><a class="text-link" href={withBase('/pricing/')}>Scope, fees & more answers<Arrow/></a></div><FAQ items={content.faqs.filter((_, index) => [0, 2, 3].includes(index))}/></div></section>
   </div>

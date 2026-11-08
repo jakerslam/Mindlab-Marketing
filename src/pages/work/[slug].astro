@@ -18,7 +18,7 @@ const hasAlderArtwork = project.visual === 'alder';
 const hasNorthlineArtwork = project.visual === 'northline';
 ---
 <Layout title={project.title} description={project.summary}>
-  <section class="page-hero container example-hero"><a class="back-link" href={withBase('/about/#our-thinking')}>← About / Our thinking</a><p class="eyebrow context-label">{project.label} / {project.audience}</p><h1>{project.title}</h1><p class="lede">{project.summary}</p><div class="project-tags"><span>{project.service}</span><span>Fictional business · Original demonstration</span></div>
+  <section class="page-hero container example-hero"><a class="back-link" href={withBase('/work/')}>← All sample work</a><p class="eyebrow context-label">{project.label} / {project.audience}</p><h1>{project.title}</h1><p class="lede">{project.summary}</p><div class="project-tags"><span>{project.service}</span><span>Fictional business · Original demonstration</span></div>
     {project.artifacts.length > 0 && <nav class="anchor-nav" aria-label="In this example"><a href="#brief">The brief<span>↘</span></a>{(hasAlderArtwork || hasNorthlineArtwork) && <a href="#creative">Creative examples<span>↘</span></a>}<a href="#deliverables">The deliverables<span>↘</span></a><a href="#measurement">Proposed measurement<span>↘</span></a></nav>}
   </section>
   <section class="example-brief border-top" id="brief"><div class="container editorial-grid"><div><h2>The brief.</h2></div><div>{project.objective && <p class="story-intro">{project.objective}</p>}<p>{project.context}</p><p class="example-disclosure">Sample concept. No campaign was run and no client results are claimed.</p></div></div></section>

@@ -8,7 +8,7 @@ const { packages, industries } = await getContent();
 const links = [['Services', '/services/'], ['Pricing', '/pricing/'], ['Industries', '/industries/'], ['About', '/about/']];
 const dropdownIds: Record<string, string> = { '/services/': 'services-nav', '/industries/': 'industries-nav' };
 const path = Astro.url.pathname;
-const isCurrent = (href: string) => path.startsWith(withBase(href)) || (href === '/about/' && ['/work/', '/thinking/'].some((section) => path.startsWith(withBase(section))));
+const isCurrent = (href: string) => path.startsWith(withBase(href));
 ---
 <header class="site-header">
   <div class="container header-inner">

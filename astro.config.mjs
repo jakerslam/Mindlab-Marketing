@@ -8,7 +8,7 @@ export default defineConfig({
   base: process.env.SITE_BASE || '/',
   output: 'static',
   trailingSlash: 'always',
-  integrations: [react(), sitemap({ filter: (page) => !page.endsWith('/404/') && !page.endsWith('/work/') })],
+  integrations: [react(), sitemap({ filter: (page) => !page.endsWith('/404/') })],
   vite: { plugins: [tailwindcss()] },
   devToolbar: { enabled: false },
 });

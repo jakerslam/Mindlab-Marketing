@@ -1,4 +1,8 @@
 /* Work and editorial pages share the existing Mindlab type and color system. */
+.sample-card { position: relative; }
+.sample-card-link::after { content: ''; position: absolute; inset: 0; z-index: 1; border-radius: 8px; }
+.sample-card-link:focus-visible { outline: none; }
+.sample-card-link:focus-visible::after { outline: 3px solid var(--violet); outline-offset: 5px; }
 .anchor-nav a { font-size: 12px; min-height: 44px; gap: 14px; }
 .thinking-hero { padding-bottom: 48px; }
 .thinking-examples { padding-top: 28px; }
@@ -42,9 +46,9 @@
 .work-preview .artifact-copy .artifact-item > p:last-child { font-size: 16px; }
 .guide-list > article { display: grid; grid-template-columns: .45fr 1fr; gap: 45px; padding: 28px 0; border-top: 1px solid #cfced3; }
 .guide-list .mono { color: var(--violet); padding-top: 6px; text-transform: uppercase; letter-spacing: .06em; font-size: 11px; }
-.guide-list h3 { font-size: clamp(23px, 2.5vw, 30px); line-height: 1.3; }
-.guide-list h3 a { display: flex; align-items: start; justify-content: space-between; gap: 22px; }
-.guide-list h3 svg { flex: none; width: 22px; margin-top: 8px; }
+.guide-list :is(h2, h3) { font-size: clamp(23px, 2.5vw, 30px); line-height: 1.3; }
+.guide-list :is(h2, h3) a { display: flex; align-items: start; justify-content: space-between; gap: 22px; }
+.guide-list :is(h2, h3) svg { flex: none; width: 22px; margin-top: 8px; }
 .guide-list a:hover { color: var(--violet); }
 .guide-list p { font-size: 15px; max-width: 640px; margin: 12px 38px 0 0; }
 .brief-section, .firm-disciplines { background: var(--ink); color: #fff; }
@@ -88,9 +92,8 @@
 .guide-next .text-link { margin-right: 24px; margin-bottom: 14px; }
 .firm-hero { padding-block: 56px; }
 .firm-hero h1 { max-width: 1000px; font-size: clamp(34px, 3.4vw, 48px); }
-.firm-introduction { display: grid; grid-template-columns: 1fr 1fr; gap: 75px; margin-top: 40px; }
-.firm-introduction > .lede { margin: 0; font-size: 22px; color: var(--ink); }
-.firm-introduction > p:last-child { margin: 0; font-size: 16px; }
+.firm-introduction { max-width: 66ch; margin-top: 24px; }
+.firm-introduction > p:last-child { margin-bottom: 0; }
 .team-section { padding-block: 64px; border-top: 1px solid var(--line); }
 .team-grid { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 45px; }
 .team-profile { display: grid; grid-template-columns: 128px minmax(0, 1fr); align-items: start; gap: 26px; border-top: 1px solid var(--line); padding-top: 28px; }
@@ -99,31 +102,6 @@
 .team-biography h3 { font-size: 28px; line-height: 1.25; }
 .team-biography .team-focus { color: var(--violet); font-size: 12px; margin: 12px 0 18px; }
 .team-biography > p:last-child { font-size: 15px; margin: 0; }
-.about-thinking { padding-block: 70px; }
-.about-example-grid { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 28px; }
-.about-example { padding: 30px; border-radius: 8px; background: #e4eae3; }
-.about-example-daybreak { background: #f1dfd3; }
-.about-example .eyebrow { font-size: 10px; margin-bottom: 20px; }
-.about-example h3 { font-size: 27px; line-height: 1.3; }
-.about-example h3 a { display: flex; justify-content: space-between; align-items: start; gap: 25px; }
-.about-example h3 svg { flex: none; width: 20px; margin-top: 7px; }
-.about-example a:hover, .about-guides a:hover { color: var(--violet); }
-.about-example > p:last-child { font-size: 14px; margin: 18px 0 0; }
-.about-example-disclosure { font-size: 12px; margin: 18px 0 36px; }
-.about-guides > h3 { font-size: 23px; margin-bottom: 18px; }
-.about-guides ul { list-style: none; padding: 0; margin: 0; }
-.about-guides li { display: grid; grid-template-columns: 180px minmax(0, 1fr); gap: 30px; align-items: center; border-top: 1px solid var(--line); padding: 17px 0; }
-.about-guides .mono { text-transform: uppercase; color: var(--violet); font-size: 10px; }
-.about-guides a { display: flex; justify-content: space-between; gap: 24px; align-items: start; font-size: 18px; line-height: 1.5; }
-.about-guides a svg { flex: none; width: 18px; margin-top: 5px; }
-.about-brief { border-block: 1px solid var(--line); margin-top: 24px; }
-.about-brief summary { display: flex; justify-content: space-between; align-items: center; gap: 25px; list-style: none; min-height: 64px; padding: 16px 0; font-size: 16px; cursor: pointer; }
-.about-brief summary::-webkit-details-marker { display: none; }
-.about-brief summary > span { font-size: 24px; color: var(--violet); }
-.about-brief[open] summary > span { transform: rotate(45deg); }
-.about-brief ol { display: grid; grid-template-columns: repeat(3,minmax(0,1fr)); gap: 24px 35px; list-style: none; padding: 0 0 24px; margin: 0; }
-.about-brief strong { font-size: 13px; }
-.about-brief li p { font-size: 14px; margin: 8px 0 0; }
 .discipline-grid { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 32px; }
 .discipline-grid article { border-top: 1px solid #4a4a55; padding-top: 22px; display: flex; flex-direction: column; align-items: start; }
 .discipline-grid .mono { color: #c2b0ff; }
@@ -161,7 +139,6 @@
   .example-decisions { gap: 40px; }
   .discipline-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 28px; }
   .discipline-grid h3 { font-size: 25px; }
-  .firm-introduction { gap: 40px; }
   .team-grid { gap: 30px; }
   .team-profile { grid-template-columns: 100px minmax(0, 1fr); gap: 22px; }
 }
@@ -169,12 +146,6 @@
   .team-section { padding-block: 50px; }
   .team-grid { grid-template-columns: 1fr; gap: 32px; }
   .team-profile { grid-template-columns: 128px minmax(0, 1fr); gap: 26px; }
-  .about-thinking { padding-block: 50px; }
-  .about-example-grid { grid-template-columns: 1fr; gap: 20px; }
-  .about-example { padding: 24px; }
-  .about-example h3 { font-size: 26px; }
-  .about-guides li { grid-template-columns: 1fr; gap: 8px; }
-  .about-brief ol { grid-template-columns: repeat(2,minmax(0,1fr)); gap: 24px; }
   .collection-heading { display: block; margin-bottom: 28px; }
   .collection-heading > p { margin-top: 18px; font-size: 12px; }
   .featured-example, .featured-example-reverse { grid-template-columns: 1fr; gap: 30px; padding-block: 32px; }
@@ -189,7 +160,7 @@
   .artifact-item > .artifact-title, .artifact-compact .artifact-item > .artifact-title { font-size: 20px; }
   .work-preview .artifact-copy .artifact-item > .artifact-title { font-size: 28px; }
   .guide-list > article { grid-template-columns: 1fr; gap: 14px; padding: 24px 0; }
-  .guide-list h3 { font-size: 24px; }
+  .guide-list :is(h2, h3) { font-size: 24px; }
   .guide-list p { font-size: 14px; margin-right: 0; }
   .brief-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 26px; }
   .brief-grid p { font-size: 18px; }
@@ -201,8 +172,6 @@
   .guide-contents nav { gap: 12px; }
   .guide-body > .guide-introduction { font-size: 18px; }
   .guide-body h2 { font-size: 26px; }
-  .firm-introduction { grid-template-columns: 1fr; gap: 24px; margin-top: 30px; }
-  .firm-introduction > .lede { font-size: 20px; }
   .discipline-grid { grid-template-columns: 1fr; gap: 30px; }
   .discipline-grid h3 { font-size: 28px; margin-top: 18px; }
   .industry-example { align-items: start; flex-direction: column; gap: 12px; }
@@ -212,7 +181,6 @@
   .team-portrait { aspect-ratio: 16 / 10; }
 }
 @media (max-width: 400px) {
-  .about-brief ol { grid-template-columns: 1fr; }
   .thinking-hero h1 br { display: none; }
   .artifact, .artifact-stack .artifact { padding: 22px; }
   .brief-grid { grid-template-columns: 1fr; }

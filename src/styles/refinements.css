@@ -1,7 +1,7 @@
 /* Context is retained for audience, article category, and illustrative work. */
 .eyebrow.context-label { font-size: 12px; letter-spacing: .055em; line-height: 1.6; }
 .artifact-topline, .artifact-compact .artifact-topline, .artifact-label, .artifact-compact .artifact-label, .artifact-footer { font-size: 12px; }
-.work-meta, .guide-list .mono, .audience-panel > .mono, .about-guides .mono, .discipline-grid .mono, .values-grid .mono, .service-number, .service-row > div > span, .buyer-question > span { font-size: 12px; }
+.work-meta, .guide-list .mono, .audience-panel > .mono, .discipline-grid .mono, .values-grid .mono, .service-number, .service-row > div > span, .buyer-question > span { font-size: 12px; }
 .guide-contents-heading { font-size: 16px; margin-bottom: 20px; }
 .related-services > h3 { font-size: 18px; margin-bottom: 18px; }
 .buyer-question .buyer-question-title { font-family: var(--body); font-size: 14px; letter-spacing: 0; line-height: 1.5; margin: 0 0 22px; }

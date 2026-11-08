@@ -49,9 +49,8 @@ button { color: inherit; }
 .detail-tagline { color: var(--secondary-ink); }
 .sample-notice { background: var(--lavender); color: var(--muted); border-color: var(--violet); }
 .sample-notice strong { color: var(--ink); }
-.work-meta > span:first-child { color: var(--violet); border-color: var(--line); }
-.audience-overview-panel, .buyer-question, .about-example, .service-sample { background: var(--sage); }
-.audience-overview-panel.overview-b2c, .audience-b2c .buyer-question, .about-example-daybreak { background: var(--peach); }
+.audience-overview-panel, .buyer-question, .service-sample { background: var(--sage); }
+.audience-overview-panel.overview-b2c, .audience-b2c .buyer-question { background: var(--peach); }
 .audience-overview-panel > ul, .buyer-question > span, .service-sample { border-color: var(--sage-line); }
 .overview-b2c > ul, .audience-b2c .buyer-question > span { border-color: var(--peach-line); }
 .team-portrait { background: var(--portrait-bg); color: var(--portrait-ink); }
