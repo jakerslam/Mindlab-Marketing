@@ -1,0 +1,227 @@
+---
+interface Props { compact?: boolean }
+const { compact = false } = Astro.props;
+const slides = [
+  {
+    title: 'Want to expand your business?',
+    body: 'Answer these questions first',
+    prompts: ['Team', 'Cost', 'Tradeoff'],
+  },
+  {
+    label: '01 / Team',
+    title: 'Who has time to make it work?',
+    body: 'A new hire still needs someone to recruit, train, and manage them. Name that person and estimate how much time they’ll need in the first month.',
+    prompts: ['Who owns it?', 'Hours per week'],
+  },
+  {
+    label: '02 / Cost',
+    title: 'What will it cost before it pays off?',
+    body: 'If you launch a service, count the setup costs and the team’s time. Estimate what you’ll spend before the first customer pays.',
+    prompts: ['Upfront cost', 'Time to first revenue'],
+  },
+  {
+    label: '03 / Tradeoff',
+    title: 'What goes on hold to make room?',
+    body: 'If you enter a new market, decide which current project can wait. Ask the person who owns it what that delay would cost.',
+    prompts: ['What gets paused?', 'Cost of the delay'],
+  },
+  {
+    label: 'Your next move',
+    title: 'Pick one option to test this quarter.',
+    body: 'Compare your answers. Choose the option you can support and write down what you’d need to learn before committing more time or money.',
+    prompts: ['One option', 'One assumption to test'],
+  },
+];
+---
+<northline-carousel class:list={[{ 'northline-compact': compact }]}>
+  <div class="northline-track" role={compact ? undefined : 'region'} aria-label={compact ? undefined : 'Northline Advisory slides'} tabindex={compact ? undefined : '0'}>
+    {(compact ? slides.slice(0, 1) : slides).map((slide, index) => (
+      <article class:list={['northline-slide', { 'northline-cover': index === 0, 'northline-final': index === slides.length - 1 }]} aria-label={compact ? undefined : `Slide ${index + 1} of ${slides.length}`}>
+        <div class="northline-masthead">
+          <span class="northline-brand"><span class="northline-mark" aria-hidden="true">N</span> Northline Advisory</span>
+          <span aria-hidden="true">{String(index + 1).padStart(2, '0')} / {String(slides.length).padStart(2, '0')}</span>
+        </div>
+        <div class="northline-copy">
+          {slide.label && <p class="northline-label">{slide.label}</p>}
+          {compact ? <p class="northline-title">{slide.title}</p> : <h3 class="northline-title">{slide.title}</h3>}
+          <p class="northline-body">{slide.body}</p>
+        </div>
+        <ul class="northline-prompts">
+          {slide.prompts.map((prompt, i) => (
+            <li><span aria-hidden="true">{String(i + 1).padStart(2, '0')}</span>{prompt}</li>
+          ))}
+        </ul>
+      </article>
+    ))}
+  </div>
+  {!compact && (
+    <div class="northline-controls" hidden>
+      <button type="button" data-step="-1" aria-disabled="true">← Previous</button>
+      <span aria-live="polite">1 of {slides.length}</span>
+      <button type="button" data-step="1" aria-disabled="false">Next →</button>
+    </div>
+  )}
+</northline-carousel>
+
+<script>
+  class NorthlineCarousel extends HTMLElement {
+    connectedCallback() {
+      const track = this.querySelector<HTMLElement>('.northline-track');
+      const controls = this.querySelector<HTMLElement>('.northline-controls');
+      if (!track || !controls) return;
+
+      const slides = Array.from(track.children);
+      const buttons = Array.from(controls.querySelectorAll('button'));
+      const status = controls.querySelector('[aria-live]');
+      let current = 0;
+
+      function showPosition(index: number) {
+        current = index;
+        if (status) status.textContent = `${index + 1} of ${slides.length}`;
+        buttons[0].setAttribute('aria-disabled', String(index === 0));
+        buttons[1].setAttribute('aria-disabled', String(index === slides.length - 1));
+      }
+
+      track.addEventListener('scroll', () => {
+        const index = Math.round(track.scrollLeft / track.clientWidth);
+        if (index !== current) showPosition(index);
+      }, { passive: true });
+      buttons.forEach((button) => {
+        button.addEventListener('click', () => {
+          if (button.getAttribute('aria-disabled') === 'true') return;
+          track.scrollTo({ left: (current + Number(button.dataset.step)) * track.clientWidth });
+        });
+      });
+      controls.hidden = false;
+    }
+  }
+  customElements.define('northline-carousel', NorthlineCarousel);
+</script>
+
+<style>
+  northline-carousel { display: block; min-width: 0; }
+  .northline-track {
+    container-type: inline-size;
+    display: grid;
+    grid-auto-flow: column;
+    grid-auto-columns: 100%;
+    overflow-x: auto;
+    scroll-snap-type: x mandatory;
+    scroll-behavior: smooth;
+    border-radius: 8px;
+  }
+  .northline-compact .northline-track { overflow: hidden; }
+  .northline-slide {
+    --paper: #f5f0e5;
+    --ink: #172b3c;
+    --accent: #78591e;
+    --rule: #c7bba1;
+    box-sizing: border-box;
+    display: grid;
+    grid-template-rows: auto 1fr auto;
+    gap: clamp(16px, 4.2cqw, 26px);
+    aspect-ratio: 940 / 840;
+    background: var(--paper);
+    color: var(--ink);
+    padding: clamp(18px, 6.5cqw, 42px);
+    scroll-snap-align: start;
+    font-family: var(--body);
+  }
+  .northline-final {
+    --paper: #172b3c;
+    --ink: #f5f0e5;
+    --accent: #e1bc74;
+    --rule: #74808a;
+  }
+  .northline-masthead {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 8px;
+    padding-bottom: clamp(8px, 2.7cqw, 16px);
+    border-bottom: 1px solid var(--rule);
+    font-size: clamp(10px, 2.2cqw, 13px);
+    font-weight: 650;
+    letter-spacing: .08em;
+    text-transform: uppercase;
+  }
+  .northline-brand { display: flex; align-items: center; gap: 8px; }
+  .northline-mark {
+    display: grid;
+    place-items: center;
+    width: clamp(20px, 6cqw, 32px);
+    aspect-ratio: 1;
+    background: var(--ink);
+    color: var(--paper);
+    font: 700 clamp(14px, 4cqw, 23px)/1 var(--body);
+    letter-spacing: 0;
+  }
+  .northline-copy { align-self: center; }
+  .northline-cover .northline-copy { text-align: center; }
+  .northline-cover .northline-body {
+    font-size: clamp(18px, 4.1cqw, 24px);
+    margin-inline: auto;
+  }
+  .northline-label {
+    color: var(--accent);
+    font-size: clamp(10px, 2.5cqw, 14px);
+    font-weight: 700;
+    letter-spacing: .11em;
+    text-transform: uppercase;
+    margin: 0 0 .8em;
+  }
+  .northline-title {
+    color: inherit;
+    font: 670 clamp(26px, 7.6cqw, 54px)/1.07 var(--body);
+    letter-spacing: -.055em;
+    text-wrap: balance;
+    margin: 0;
+  }
+  .northline-body {
+    color: inherit;
+    font-size: clamp(13px, 3.1cqw, 17px);
+    line-height: 1.5;
+    margin: 1em 0 0;
+    max-width: 36ch;
+  }
+  .northline-prompts {
+    display: grid;
+    grid-auto-flow: column;
+    grid-auto-columns: 1fr;
+    gap: clamp(6px, 2cqw, 12px);
+    list-style: none;
+    padding: 0;
+    margin: 0;
+  }
+  .northline-prompts li {
+    display: grid;
+    gap: 3px;
+    align-content: start;
+    border-top: 1px solid var(--rule);
+    padding-top: 7px;
+    font-size: clamp(11px, 2.7cqw, 15px);
+    font-weight: 600;
+  }
+  .northline-prompts li span { color: var(--accent); font-size: .8em; font-variant-numeric: tabular-nums; }
+  .northline-controls:not([hidden]) {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-top: 12px;
+    color: var(--muted);
+    font-size: .9rem;
+  }
+  .northline-controls button {
+    min-height: 44px;
+    padding: 0 12px;
+    border: 1px solid var(--line);
+    border-radius: 6px;
+    background: transparent;
+    color: var(--ink);
+    font: inherit;
+  }
+  .northline-controls button[aria-disabled="true"] { opacity: .5; cursor: default; }
+  @media (prefers-reduced-motion: reduce) {
+    .northline-track { scroll-behavior: auto; }
+  }
+</style>

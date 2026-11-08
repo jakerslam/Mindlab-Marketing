@@ -1,7 +1,9 @@
 import { z } from 'zod';
 
+const originalPackageIds = ['brand-blueprint', 'content-studio', 'demand-campaigns'] as const;
+
 export const packageSchema = z.object({
-  id: z.enum(['brand-blueprint', 'content-studio', 'demand-campaigns']),
+  id: z.enum([...originalPackageIds, 'crm-lead-setup']),
   number: z.string(),
   name: z.string().min(1),
   tagline: z.string().min(1),
@@ -29,7 +31,7 @@ export const artifactSchema = z.object({
 export const projectSchema = z.object({
   id: z.string(), slug: z.string().regex(/^[a-z0-9-]+$/), title: z.string(),
   label: z.literal('Sample concept'), audience: z.string(), service: z.string(),
-  summary: z.string(), headline: z.string(), visual: z.enum(['northline', 'daybreak']),
+  summary: z.string(), headline: z.string(), visual: z.enum(['northline', 'daybreak', 'alder']),
   context: z.string(), decisions: z.array(z.object({ title: z.string(), body: z.string() })),
   takeaway: z.string(),
   objective: z.string().nullish(),
@@ -49,7 +51,10 @@ export const guideSchema = z.object({
 export const websiteSchema = z.object({
   settings: z.object({ name: z.string(), description: z.string() }),
   home: z.object({ eyebrow: z.string(), title: z.string(), description: z.string() }),
-  packages: z.array(packageSchema).length(3).refine((items) => new Set(items.map((item) => item.id)).size === 3, 'Package IDs must be unique'),
+  packages: z.array(packageSchema).refine((items) => {
+    const ids = new Set(items.map((item) => item.id));
+    return ids.size === items.length && originalPackageIds.every((id) => ids.has(id));
+  }, 'Package IDs must be unique and include the original three packages'),
   industries: z.array(industrySchema).min(1),
   projects: z.array(projectSchema).min(1),
   guides: z.array(guideSchema).default([]),

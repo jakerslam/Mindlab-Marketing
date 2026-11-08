@@ -15,10 +15,10 @@ const combinedPrice = retainers.reduce((total, pkg) => total + pkg.price, 0);
 const combinedSetup = retainers.reduce((total, pkg) => total + pkg.setup, 0);
 const plannerPackages = packages.map(({ id, name, price, setup, cadence }) => ({ id, name, price, setup, cadence }));
 ---
-<Layout title="Packages & pricing" description="Compare Mindlab’s brand strategy, content, and paid campaign packages. See service fees, setup costs, included deliverables, and an interactive budget estimate.">
+<Layout title="Packages & pricing" description="Compare pricing for Mindlab’s brand strategy, content, paid campaigns, and HighLevel CRM setup. See service fees and build an estimate.">
   <section class="page-hero container pricing-hero">
     <h1>Packages and pricing.</h1>
-    <p class="lede">A focused strategy project or ongoing content and campaign support. Defined scope, with setup and advertising costs shown separately.</p>
+    <p class="lede">One-time strategy and CRM projects, plus ongoing content and campaign support. See service fees, setup costs, and advertising costs separately.</p>
   </section>
 
   <section class="pricing-overview" id="packages" aria-label="Service packages and fees">

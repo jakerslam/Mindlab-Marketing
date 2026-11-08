@@ -3,9 +3,9 @@ import { integrations } from '@/integrations/config';
 import Arrow from './Arrow.astro';
 const booking = integrations.booking;
 ---
-{booking && <div class="booking-calendar">
+{booking && <div class="booking-calendar" data-booking-calendar>
   {booking.embed && <div id="mindlab-calendar" class="calendar-embed" data-cal-link={booking.embed.calLink} data-cal-origin={booking.embed.origin}><p class="calendar-loading" role="status">Loading available times…</p></div>}
-  <a class:list={['button', { 'button-outline': !!booking.embed }]} href={booking.url} target="_blank" rel="noopener noreferrer" data-track="booking_link_opened" data-location="book-call">{booking.embed ? 'Open the calendar in a new tab' : 'Choose a time'}<Arrow/></a>
+  <a class:list={['button', { 'button-outline': !!booking.embed }]} href={booking.url} target="_blank" rel="noopener noreferrer" data-booking-link data-track="booking_link_opened" data-location="book-call">{booking.embed ? 'Open the calendar in a new tab' : 'Choose a time'}<Arrow/></a>
 </div>}
 <script>
   // Cal's supported command queue lets the provider runtime load asynchronously.
@@ -13,6 +13,17 @@ const booking = integrations.booking;
   type CalApi = ((...command: CalCommand) => void) & { q: CalCommand[]; ns: Record<string, unknown>; loaded: boolean };
   const container = document.querySelector<HTMLElement>('#mindlab-calendar');
   if (container?.dataset.calLink && container.dataset.calOrigin) {
+    const calendar = container.closest<HTMLElement>('[data-booking-calendar]');
+    const link = calendar?.querySelector<HTMLAnchorElement>('[data-booking-link]');
+    let notes = calendar?.dataset.bookingNotes;
+    if (notes && link) {
+      const url = new URL(link.href);
+      const existingNotes = url.searchParams.get('notes');
+      if (existingNotes) notes = `${notes}\n${existingNotes}`;
+      url.searchParams.set('notes', notes);
+      link.href = url.href;
+    }
+
     const frameObserver = new MutationObserver(() => {
       const frame = container.querySelector<HTMLIFrameElement>('iframe');
       if (!frame) return;
@@ -43,7 +54,7 @@ const booking = integrations.booking;
     calWindow.Cal('inline', {
       elementOrSelector: '#mindlab-calendar',
       calLink: container.dataset.calLink,
-      config: { layout: 'month_view', theme: 'light' },
+      config: { layout: 'month_view', theme: 'light', ...(notes && { notes }) },
     });
     calWindow.Cal('ui', { styles: { body: { background: '#fff' } } });
   }

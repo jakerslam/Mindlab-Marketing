@@ -77,7 +77,7 @@
         "Up to 3 active campaigns",
         "Management of up to $10,000 in monthly media spend",
         "Up to 4 new ad copy variants per month",
-        "A landing-page messaging brief",
+        "Written messaging recommendations for your existing page, booking link, or form",
         "Weekly optimization and a monthly report and review"
       ],
       "exclusions": [
@@ -87,6 +87,31 @@
         "Product feeds, extensive tracking, or CRM implementation"
       ],
       "idealFor": "Businesses with a clear offer, a ready destination, and a separate budget for advertising."
+    },
+    {
+      "id": "crm-lead-setup",
+      "number": "04",
+      "name": "CRM & Lead Setup",
+      "tagline": "Give every inquiry a next step.",
+      "description": "Connect one existing intake form to HighLevel so new inquiries reach your team with the details they need to follow up.",
+      "price": 1000,
+      "currency": "USD",
+      "cadence": "project",
+      "setup": 0,
+      "timeline": "One-time setup, testing, and handoff once access is ready.",
+      "deliverables": [
+        "Set up one HighLevel workspace and one sales pipeline to track inquiries through won or lost.",
+        "Connect one compatible website intake or ad lead form and map its fields to HighLevel.",
+        "Assign incoming leads to a designated team member and send them an internal alert.",
+        "Submit a test inquiry, verify it reaches the pipeline and alerts the right person, and walk your team through the setup."
+      ],
+      "exclusions": [
+        "HighLevel and connector fees",
+        "Additional intake sources",
+        "Data migration and custom integrations",
+        "Ongoing CRM management"
+      ],
+      "idealFor": "Businesses that want one place to manage new inquiries and know who is responsible for following up."
     }
   ],
   "industries": [
@@ -236,6 +261,113 @@
     }
   ],
   "projects": [
+    {
+      "id": "alder-and-plane",
+      "slug": "alder-and-plane-kitchens",
+      "title": "Alder & Plane Kitchens",
+      "label": "Sample concept",
+      "audience": "B2C · Home services",
+      "service": "Brand Blueprint · Content Studio · Demand Campaigns",
+      "summary": "A photo-led campaign for a fictional Denver remodeler, with a whole-kitchen transformation and two paid Instagram ads.",
+      "headline": "Same home. New kitchen.",
+      "visual": "alder",
+      "objective": "Help homeowners picture a full kitchen remodel and decide whether to discuss their project.",
+      "context": "Alder & Plane is a fictional design-build studio for full kitchen remodels in the Denver metro. Remodel conversations start at $75,000. If the project fits, paid design helps define the work before the studio prepares a construction proposal.",
+      "artifacts": [
+        {
+          "id": "message-map",
+          "title": "Brand Blueprint",
+          "format": "message-map",
+          "introduction": "Show the whole room and make the offer easy to understand.",
+          "items": [
+            {
+              "label": "Audience",
+              "title": "Homeowners ready to remodel the whole kitchen.",
+              "body": "They want to see what a full remodel could do and find a team to take it from design through construction."
+            },
+            {
+              "label": "Campaign line",
+              "title": "Same home. New kitchen.",
+              "body": "A full-room comparison gives homeowners a way to picture the change in their own home."
+            },
+            {
+              "label": "Offer",
+              "title": "Full kitchen remodels in the Denver metro.",
+              "body": "The studio manages design and construction. Full remodel conversations start at $75,000."
+            }
+          ]
+        },
+        {
+          "id": "sample-post",
+          "title": "Content Studio",
+          "format": "copy",
+          "introduction": "The organic post shows the transformation. Follow-up copy helps interested homeowners prepare for a conversation.",
+          "items": [
+            {
+              "label": "Instagram caption",
+              "title": "Same home. New kitchen.",
+              "body": "What could change if you remodeled the whole room? See the before and after in this concept. Alder & Plane designs and builds full kitchen remodels in the Denver metro."
+            },
+            {
+              "label": "Planning guide excerpt",
+              "title": "Picture the room you want to walk into.",
+              "body": "Gather a few images that show the whole room and write down what you like about each. Bring one example, your ZIP code, budget range, and timing to the fit call."
+            }
+          ]
+        },
+        {
+          "id": "ad-copy",
+          "title": "Demand Campaigns · Paid social",
+          "format": "copy",
+          "introduction": "Both ads use the same copy, audience, and fit-call form. One shows the transformation and the other gives a second finished kitchen the full frame.",
+          "items": [
+            {
+              "label": "A / Transformation",
+              "title": "Before and after.",
+              "body": "Shows how much the whole room can change from the same viewpoint."
+            },
+            {
+              "label": "B / Finished room",
+              "title": "One full-room image.",
+              "body": "Shows a second full-room design so viewers can picture a remodel in a different home."
+            },
+            {
+              "label": "Shared ad copy",
+              "title": "Ready for a new kitchen?",
+              "body": "Ready to remodel the whole kitchen? Alder & Plane takes your project from design through construction. Denver metro. Full remodels from $75,000. Request a fit call to discuss your project."
+            }
+          ]
+        }
+      ],
+      "decisions": [
+        {
+          "title": "Show the whole room.",
+          "body": "The comparison keeps the window and camera angle in view so the viewer can see what changed at the scale of a full remodel."
+        },
+        {
+          "title": "Say what the studio does.",
+          "body": "The ads make the full-remodel offer, service area, and starting price clear before the viewer clicks."
+        },
+        {
+          "title": "Compare two ways to show the work.",
+          "body": "Both ads use the same offer and next step. The proposed test compares two complete ad concepts. One shows a transformation and the other shows a different finished kitchen."
+        }
+      ],
+      "measurement": {
+        "approach": "Compare cost per qualified fit-call request for the two ad concepts. The studio would qualify requests by location, full-remodel scope, budget, and timing.",
+        "metrics": [
+          "Fit-call requests and the share that meet the qualification criteria",
+          "Cost per qualified fit-call request and number of calls held",
+          "Paid design phases started after a fit call"
+        ]
+      },
+      "takeaway": "Use qualified inquiries and held calls to decide which ad to keep. If the sample is too small, report the result as inconclusive.",
+      "relatedPackages": [
+        "brand-blueprint",
+        "content-studio",
+        "demand-campaigns"
+      ]
+    },
     {
       "id": "northline",
       "slug": "northline-advisory",
@@ -487,7 +619,7 @@
   ],
   "faqs": [
     {
-      "question": "Do we need all three services?",
+      "question": "Do we need all the services?",
       "answer": "No. Start with the work that solves your immediate problem. If your positioning is already clear, you can begin with Content Studio or Demand Campaigns. We can review fit together before agreeing a scope."
     },
     {

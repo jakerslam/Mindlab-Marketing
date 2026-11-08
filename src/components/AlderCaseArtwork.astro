@@ -1,0 +1,51 @@
+---
+import { withBase } from '@/lib/urls';
+
+const folder = '/work/alder-and-plane';
+const variants = [
+  { file: 'ad-transformation.webp', label: 'A · Before and after', description: 'Before and after views show the full kitchen transformation.' },
+  { file: 'ad-finished-kitchen.webp', label: 'B · Finished kitchen', description: 'A second kitchen concept shows white cabinets, granite counters, and pendant lights in an open layout.' },
+];
+---
+<section class="section border-top" id="creative">
+  <div class="container">
+    <div class="section-heading">
+      <div><h2>Creative examples.</h2></div>
+      <p>A before-and-after post shows how much one room can change. The paid ads show that transformation and a second finished kitchen. The images are AI-generated concepts.</p>
+    </div>
+    <div class="creative-grid">
+      <div>
+        <h3>Organic Instagram post</h3>
+        <figure>
+          <img src={withBase(`${folder}/organic-transformation.webp`)} alt="Same home. New kitchen. The same kitchen before and after, from older oak cabinets to white cabinets, granite counters, and stainless steel appliances." width="800" height="1000" loading="lazy"/>
+          <figcaption>A full kitchen transformation from the same angle.</figcaption>
+        </figure>
+      </div>
+      <div>
+        <h3>Paid Instagram ads</h3>
+        <div class="ad-grid">
+          {variants.map(({ file, label, description }) => (
+            <figure>
+              <img src={withBase(`${folder}/${file}`)} alt={`${description} Ready for a new kitchen? Denver metro full kitchen remodels from $75,000. Request a fit call.`} width="800" height="1000" loading="lazy"/>
+              <figcaption>{label}</figcaption>
+            </figure>
+          ))}
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+<style>
+  .creative-grid, .ad-grid { display: grid; gap: 16px; }
+  .creative-grid { grid-template-columns: minmax(0, 1fr) minmax(0, 2fr); gap: 32px; }
+  .ad-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+  h3 { margin: 0 0 14px; }
+  figure { margin: 0; }
+  figcaption { margin-top: 10px; color: var(--muted); font-size: .9rem; }
+  img { display: block; width: 100%; height: auto; border: 1px solid var(--line); border-radius: 8px; }
+  @media (max-width: 760px) {
+    .creative-grid { grid-template-columns: 1fr; }
+    .creative-grid > div:first-child { max-width: 420px; }
+  }
+  @media (max-width: 520px) { .ad-grid { grid-template-columns: 1fr; } }
+</style>

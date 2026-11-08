@@ -11,6 +11,7 @@ const disciplines = [
   ['01', 'Strategy', 'Choose what to say.', 'Positioning, message hierarchy, voice, and a plan for the next 90 days.', 'brand-blueprint'],
   ['02', 'Content', 'Make the message useful.', 'Expert-led written content built around the questions your customers ask.', 'content-studio'],
   ['03', 'Campaigns', 'Give the offer a focused route.', 'Paid ad management, copy variants, optimization, and review.', 'demand-campaigns'],
+  ['04', 'CRM setup', 'Give each inquiry a next step.', 'Connect intake to HighLevel so your team can assign, track, and follow up on leads.', 'crm-lead-setup'],
 ];
 const briefQuestions = [
   ['The offer', 'What are we asking people to consider?'],
@@ -32,7 +33,7 @@ const briefQuestions = [
       </article>)}</div>
     </div>
   </section>
-  <section class="section firm-disciplines"><div class="container"><div class="section-heading"><div><h2>How our services work together.</h2></div><p>Each service can stand on its own. When they work together, the positioning guides the writing and the offer guides the campaign.</p></div><div class="discipline-grid">{disciplines.map(([number, name, title, description, id]) => <article><span class="mono">{number} / {name}</span><h3>{title}</h3><p>{description}</p><a class="text-link" href={withBase(`/services/#${id}`)}>Explore {name.toLowerCase()}<Arrow/></a></article>)}</div></div></section>
+  <section class="section firm-disciplines"><div class="container"><div class="section-heading"><div><h2>How our services work together.</h2></div><p>Positioning guides the writing, the offer guides the campaign, and the CRM gives your team a place to follow up.</p></div><div class="discipline-grid">{disciplines.map(([number, name, title, description, id]) => <article><span class="mono">{number} / {name}</span><h3>{title}</h3><p>{description}</p><a class="text-link" href={withBase(`/services/#${id}`)}>Explore {id === 'crm-lead-setup' ? name : name.toLowerCase()}<Arrow/></a></article>)}</div></div></section>
   <section class="section about-thinking" id="our-thinking"><div class="container">
     <div class="section-heading"><div><h2>Our thinking.</h2></div><p>Explore the writing and decisions behind two original demonstrations, or start with a practical guide.</p></div>
     <div class="about-example-grid" id="examples">{projects.map((project) => <article class:list={['about-example', `about-example-${project.visual}`]}><p class="eyebrow context-label">{project.label} / {project.audience}</p><h3><a href={withBase(`/work/${project.slug}/`)}>{project.title}<Arrow/></a></h3><p>{project.summary}</p></article>)}</div>

@@ -7,11 +7,18 @@ import InquiryForm from '@/components/InquiryForm.astro';
 import { integrations } from '@/integrations/config';
 import { getContent } from '@/content';
 import { formatPrice } from '@/domain/content';
+import { crmSoftwareCosts } from '@/domain/services';
 const { packages } = await getContent();
 const booking = integrations.booking;
 const form = integrations.leadCapture;
 const retainers = packages.filter((pkg) => pkg.cadence === 'month');
 const combinedSummary = { id: 'combined', name: 'Content and Campaigns', price: `${formatPrice(retainers.reduce((total, pkg) => total + pkg.price, 0))} / month + ${formatPrice(retainers.reduce((total, pkg) => total + pkg.setup, 0))} setup. Media additional.` };
+const packageSummaries = packages.map(({ id, name, price, setup, cadence }) => {
+  const baseFee = `${formatPrice(price)}${cadence === 'project' ? ' one-time project' : ' / month'}`;
+  const setupFee = setup ? ` + ${formatPrice(setup)} one-time setup` : '';
+  const additionalCosts = id === 'demand-campaigns' ? '. Media additional.' : id === 'crm-lead-setup' ? `. ${crmSoftwareCosts}` : '';
+  return { id, name, price: `${baseFee}${setupFee}${additionalCosts}` };
+});
 ---
 <Layout title="Book an intro call" description={`Choose a time for a ${integrations.callDurationMinutes}-minute introductory conversation with Mindlab about your business and the support you need.`}>
   <section class="page-hero container booking-intro">
@@ -23,13 +30,14 @@ const combinedSummary = { id: 'combined', name: 'Content and Campaigns', price: 
     {booking ? <><BookingCalendar/><p class="calendar-privacy">{booking.embed ? 'Scheduling is provided by Cal.com.' : 'Scheduling is handled by our booking provider.'} <a href={withBase('/privacy/')}>How we handle your information</a>.</p></> : <div class="booking-not-connected"><h2>Send us your inquiry.</h2><p>Use the form below to tell us about your business.</p>{integrations.contactEmail && <a class="text-link" href={`mailto:${integrations.contactEmail}`}>Email Mindlab <Arrow/></a>}</div>}
   </section>
   {form && <section class="container booking-message-section"><InquiryForm initiallyOpen={!booking}/></section>}
-  <script define:vars={{ combinedSummary, packageSummaries: packages.map(({ id, name, price, setup, cadence }) => ({ id, name, price: `${formatPrice(price)} / ${cadence}${setup ? ` + ${formatPrice(setup)} one-time setup` : ''}${id === 'demand-campaigns' ? '. Media additional.' : ''}` })) }}>
+  <script define:vars={{ combinedSummary, packageSummaries }}>
     const service = new URLSearchParams(location.search).get('service');
     const selected = [...packageSummaries, combinedSummary].find((item) => item.id === service);
     if (selected) {
       document.getElementById('selected-package').hidden = false;
       document.getElementById('selected-name').textContent = selected.name;
       document.getElementById('selected-price').textContent = selected.price;
+      document.querySelector('[data-booking-calendar]')?.setAttribute('data-booking-notes', `Interested in ${selected.name}.`);
     }
   </script>
 </Layout>

@@ -1,8 +1,10 @@
 ---
-interface Props { visual: 'northline' | 'daybreak'; compact?: boolean }
+import type { Project } from '@/domain/content';
+import { withBase } from '@/lib/urls';
+interface Props { visual: Project['visual']; compact?: boolean }
 const { visual, compact = false } = Astro.props;
 ---
-<div class:list={['work-visual', `visual-${visual}`, { compact }]} aria-hidden="true">
+{visual === 'alder' ? <img class="work-cover" src={withBase('/work/alder-and-plane/remodel-before-after.webp')} alt="Alder & Plane Kitchens. Same home. New kitchen. Before and after concepts show older oak cabinets replaced with white cabinets, granite counters, and pendant lights." width="940" height="840" loading="lazy"/> : <div class:list={['work-visual', `visual-${visual}`, { compact }]} aria-hidden="true">
   {visual === 'northline' ? <>
     <span class="sample-brand">N / NORTHLINE ADVISORY</span>
     <div class="northline-art"><span></span><span></span><span></span><span></span><span></span></div>
@@ -16,4 +18,7 @@ const { visual, compact = false } = Astro.props;
     <span class="sample-caption">Start where you are. Find your rhythm.</span>
     <span class="sample-corner">↗</span>
   </>}
-</div>
+</div>}
+<style>
+  .work-cover { display: block; width: 100%; height: auto; border-radius: 8px; }
+</style>

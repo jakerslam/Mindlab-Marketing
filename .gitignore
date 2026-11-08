@@ -9,3 +9,6 @@ studio-dist/
 .sites-runtime/
 *.log
 .DS_Store
+
+# Local client and concept work
+/projects/
