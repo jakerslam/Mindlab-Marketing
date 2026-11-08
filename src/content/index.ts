@@ -16,7 +16,7 @@ export function getContent() {
           ? site.projects
           : [projectSchema.parse(draft.projects.find((project) => project.slug === 'alder-and-plane-kitchens')), ...site.projects];
         const faqs = site.faqs.map((faq) => faq.question === 'Do we need all three services?'
-          ? { ...faq, question: 'Do we need all the services?' }
+          ? { ...faq, question: 'Do we need all four services?' }
           : faq);
         return { ...site, packages, projects, faqs };
       })
