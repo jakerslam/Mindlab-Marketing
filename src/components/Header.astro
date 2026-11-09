@@ -11,7 +11,7 @@ const path = Astro.url.pathname;
 const isCurrent = (href: string) => path.startsWith(withBase(href));
 ---
 <header class="site-header">
-  <div class="container header-inner">
+  <div class="header-inner">
     <a class="wordmark" href={withBase("/")} aria-label="Mindlab Solutions home"><Mark/><span>mindlab<span class="wordmark-dot">.</span></span></a>
     <button class="menu-toggle" aria-expanded="false" aria-controls="main-nav" type="button"><span>Menu</span><svg width="20" height="20" viewBox="0 0 20 20" fill="none" stroke="currentColor" aria-hidden="true"><path d="M3 6h14M3 13h14"/></svg></button>
     <nav id="main-nav" class="main-nav" aria-label="Main navigation">

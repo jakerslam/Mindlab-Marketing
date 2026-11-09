@@ -285,6 +285,7 @@ article[id] {
 	box-shadow: 0 5px 18px rgba(0, 0, 0, 0.16);
 }
 .header-inner {
+	padding-inline: clamp(16px, 2.5vw, 40px);
 	display: flex;
 	align-items: center;
 	justify-content: space-between;
@@ -1365,6 +1366,9 @@ article[id] {
 	background: var(--ink);
 	color: #eae9ee;
 	padding: 64px 0 22px;
+}
+.footer-inner {
+	padding-inline: clamp(16px, 2.75vw, 48px);
 }
 .footer-main {
 	display: grid;
