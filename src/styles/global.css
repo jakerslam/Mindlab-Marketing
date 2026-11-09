@@ -1005,9 +1005,8 @@ article[id] {
 	padding-bottom: 22px;
 	border-bottom: 1px solid #c9c4d7;
 }
-.process-number > span {
-	font-size: 22px;
-	font-weight: 300;
+.process-number > svg {
+	transform: rotate(-45deg);
 }
 .process-grid h3 {
 	font-size: 21px;

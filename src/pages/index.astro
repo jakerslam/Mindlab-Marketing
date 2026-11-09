@@ -91,7 +91,7 @@ const searchMetadata = {
     ['Define', 'Agree deliverables, responsibilities, timing, and the review process in a written scope.'],
     ['Create & launch', 'Develop the work, collect your feedback, and prepare the approved deliverables.'],
     ['Review & improve', 'Review the work and available evidence, then agree what should happen next.'],
-  ].map(([title, body], i) => <li><span class="process-number">0{i + 1}<span>↗</span></span><h3>{title}</h3><p>{body}</p></li>)}</ol></div></section>
+  ].map(([title, body], i) => <li><span class="process-number">0{i + 1}<Arrow/></span><h3>{title}</h3><p>{body}</p></li>)}</ol></div></section>
 
   <section class="section border-top" id="packages"><div class="container cta-inner"><div><h2>Packages and pricing.</h2><p>Compare what’s included, see the fees, and find the right starting point for a focused project or ongoing support.</p></div><a class="button button-outline" href={withBase('/pricing/')}>Compare packages & pricing <Arrow/></a></div></section>
 
