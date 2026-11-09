@@ -11,6 +11,7 @@ import '@/styles/theme.css';
 import Header from '@/components/Header.astro';
 import Footer from '@/components/Footer.astro';
 import Analytics from '@/components/Analytics.astro';
+import Chat from '@/components/Chat.astro';
 import ThemeInit from '@/components/ThemeInit.astro';
 import { integrations } from '@/integrations/config';
 interface Props { title: string; description: string; noindex?: boolean; canonicalPath?: string }
@@ -48,5 +49,6 @@ const socialImage = new URL(withBase('/images/mindlab-share.png'), Astro.site);
     <main id="main"><slot/></main>
     <Footer/>
     <Analytics/>
+    <Chat/>
   </body>
 </html>
