@@ -2,7 +2,7 @@
 import { withBase } from '@/lib/urls';
 import Mark from './Mark.astro';
 import ThemeSwitch from './ThemeSwitch.astro';
-import { integrations } from '@/integrations/config';
+import { hasOptionalAnalytics, integrations } from '@/integrations/config';
 import { projectConfig } from '@/integrations/project';
 
 const socialIcons: Record<typeof projectConfig.socialProfiles[number]['name'], string> = {
@@ -44,7 +44,7 @@ const socialIcons: Record<typeof projectConfig.socialProfiles[number]['name'], s
         <a href={withBase("/privacy/")}>Privacy &amp; Cookies</a>
         <a href={withBase("/terms/")}>Terms of Use</a>
         <a href={withBase("/ai-use/")}>How We Use AI</a>
-        {integrations.analytics && <button class="text-button" type="button" data-consent-open>Cookie preferences</button>}
+        {hasOptionalAnalytics && <button class="text-button" type="button" data-consent-open>Cookie preferences</button>}
         <span>Built with intention.</span>
       </div>
     </div>

@@ -1,36 +1,47 @@
 ---
 import { withBase } from '@/lib/urls';
-import { integrations } from '@/integrations/config';
+import { hasOptionalAnalytics, integrations, zoomInfoProjectKey } from '@/integrations/config';
 const analytics = integrations.analytics;
 ---
-  <div class="consent-banner" id="consent-banner" role="region" aria-labelledby="consent-title" hidden data-gtm-id={analytics?.id}>
+  <div class="consent-banner" id="consent-banner" role="region" aria-labelledby="consent-title" hidden data-gtm-id={analytics?.id} data-zoominfo-key={zoomInfoProjectKey}>
     <div>
       <strong id="consent-title">Cookies and privacy</strong>
       <p>
-        {analytics
-          ? 'Optional analytics help us understand how the site is used. We only load them if you agree.'
+        {hasOptionalAnalytics
+          ? 'Optional analytics help us understand how the site is used and which businesses visit. We only load them if you agree.'
           : 'We use browser storage to remember your preferences. Our booking and inquiry tools may use their own cookies.'}
         <a href={withBase("/privacy/#cookies")}>Privacy &amp; Cookies</a>
       </p>
     </div>
     <div class="consent-actions">
-      {analytics ? <>
+      {hasOptionalAnalytics ? <>
         <button class="button button-outline button-small" type="button" data-consent="denied">Reject analytics</button>
         <button class="button button-small" type="button" data-consent="granted">Allow analytics</button>
-      </> : <button class="button button-small" type="button" data-cookie-notice-dismiss>Got it</button>}
+      </> : <>
+        <button class="button button-outline button-small" type="button" data-cookie-notice-dismiss>Deny</button>
+        <button class="button button-small" type="button" data-cookie-notice-dismiss>Got it</button>
+      </>}
     </div>
   </div>
-  {analytics ? <script>
-    type DataWindow = Window & { dataLayer?: Record<string, unknown>[] };
+  {hasOptionalAnalytics ? <script>
+    type DataWindow = Window & { ZIProjectKey?: string; dataLayer?: Record<string, unknown>[] };
     const w = window as DataWindow;
     const banner = document.getElementById('consent-banner');
-    const key = 'mindlab-analytics-v1';
+    const key = banner?.dataset.zoominfoKey ? 'mindlab-analytics-v2' : 'mindlab-analytics-v1';
     let active = false;
     let preference: string | null = null;
     try { preference = localStorage.getItem(key); } catch { /* Storage may be disabled. */ }
     const load = () => {
-      if (active || !banner?.dataset.gtmId) return;
+      if (active || !banner) return;
       active = true;
+      if (banner.dataset.zoominfoKey) {
+        w.ZIProjectKey = banner.dataset.zoominfoKey;
+        const zoomInfo = document.createElement('script');
+        zoomInfo.async = true;
+        zoomInfo.src = 'https://js.zi-scripts.com/zi-tag.js';
+        document.head.append(zoomInfo);
+      }
+      if (!banner.dataset.gtmId) return;
       w.dataLayer = w.dataLayer || [];
       w.dataLayer.push({ 'gtm.start': Date.now(), event: 'gtm.js' });
       const script = document.createElement('script');
@@ -65,9 +76,9 @@ const analytics = integrations.analytics;
       let dismissed = false;
       try { dismissed = localStorage.getItem(key) === 'dismissed'; } catch { /* Storage may be disabled. */ }
       banner.hidden = dismissed;
-      banner.querySelector('[data-cookie-notice-dismiss]')?.addEventListener('click', () => {
+      banner.querySelectorAll('[data-cookie-notice-dismiss]').forEach((button) => button.addEventListener('click', () => {
         banner.hidden = true;
         try { localStorage.setItem(key, 'dismissed'); } catch { /* Dismissal still works on this page. */ }
-      });
+      }));
     })();
   </script>}

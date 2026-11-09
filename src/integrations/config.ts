@@ -43,3 +43,6 @@ if (stage === 'production') {
   if (missing.length) throw new Error(`Production setup incomplete: ${missing.join(', ')}. Use SITE_STAGE=preview to review the local draft.`);
 }
 
+
+export const zoomInfoProjectKey = '3e272eeeb41794260206';
+export const hasOptionalAnalytics = Boolean(integrations.analytics || zoomInfoProjectKey);

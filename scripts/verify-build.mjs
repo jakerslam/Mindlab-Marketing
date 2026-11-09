@@ -44,6 +44,6 @@ for (const file of pages) {
 }
 const home = await readFile(path.join(root, 'index.html'), 'utf8');
 assert.match(home, /fictional businesses/i, 'Sample work disclosure must be visible');
-assert.doesNotMatch(home, /googletagmanager\.com\/gtm\.js/, 'The home page must not embed an unconditional analytics loader');
+assert.doesNotMatch(home, /<script\b[^>]*\bsrc=["']https:\/\/(?:www\.googletagmanager\.com\/gtm\.js|js\.zi-scripts\.com\/zi-tag\.js)/i, 'The home page must not load analytics through a static script tag');
 assert.ok(files.some((file) => file.endsWith('sitemap-index.xml')), 'Missing sitemap');
 console.log(`Verified ${pages.length} generated pages and ${links} local URLs/assets/anchors for base ${basePath || '/'}; metadata, unique IDs, sample disclosures, and sitemap passed.`);

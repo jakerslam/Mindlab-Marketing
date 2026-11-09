@@ -1,6 +1,6 @@
 ---
 import Layout from '@/layouts/Layout.astro';
-import { integrations } from '@/integrations/config';
+import { hasOptionalAnalytics, integrations, zoomInfoProjectKey } from '@/integrations/config';
 ---
 <Layout title="Privacy & Cookies" description="How the Mindlab website handles inquiries, scheduling, cookies, and browser storage.">
   <section class="page-hero container"><h1>Privacy &amp; Cookies</h1><p class="lede">This page describes the tools enabled on this website and how information moves through them.</p></section>
@@ -10,9 +10,12 @@ import { integrations } from '@/integrations/config';
     <h2>Scheduling</h2>{integrations.booking ? <p>{integrations.booking.embed ? 'The call page includes a Cal.com calendar, and you can also open the calendar in a separate tab. Cal.com receives technical information when the calendar loads and handles the booking details you provide, including contact information and your chosen time.' : 'The booking button opens an external scheduling service. That service handles the booking details you provide, including contact information and your chosen time.'} Review its privacy information before submitting.</p> : <p>A booking calendar is not currently connected to this draft website.</p>}
     <h2 id="cookies">Cookies and browser storage</h2>
     <p>Cookies and other browser storage can remember preferences or support services you use on this site. Our own settings and the tools we embed are described below.</p>
-    <h3>Optional analytics</h3>{integrations.analytics ? <p>Optional analytics are delivered through Google Tag Manager only after you choose Allow analytics. Your preference is stored in your browser. The site sends a limited set of interaction events, such as package interest and booking-link clicks; it does not send inquiry field contents through that event wrapper. You can change your choice using Cookie preferences in the footer. <a href="https://policies.google.com/privacy" target="_blank" rel="noopener noreferrer">Google privacy policy</a>.</p> : <p>Optional analytics are not enabled on this version of the website. We do not load Google Tag Manager or Google Analytics.</p>}
+    <h3>Optional analytics</h3>
+    {hasOptionalAnalytics && <p>Optional analytics load only after you choose Allow analytics. We store your choice in your browser. You can change it using Cookie preferences in the footer.</p>}
+    {zoomInfoProjectKey && <p>We use ZoomInfo to track website visits and help identify businesses that visit. When enabled, your browser connects to ZoomInfo and shares technical information such as your IP address and the page you visit. <a href="https://www.zoominfo.com/legal/privacy-policy" target="_blank" rel="noopener noreferrer">ZoomInfo privacy policy</a>.</p>}
+    {integrations.analytics && <p>We use Google Tag Manager for optional analytics. The site sends a limited set of interaction events, such as package interest and booking-link clicks; it does not send inquiry field contents through that event wrapper. <a href="https://policies.google.com/privacy" target="_blank" rel="noopener noreferrer">Google privacy policy</a>.</p>}
     <h3>Display preferences</h3><p>The footer lets you choose Light, System, or Dark. System follows your device’s appearance setting. We store your choice locally in your browser so it carries between pages and visits. This preference is not sent to analytics.</p>
-    {!integrations.analytics && <p>We save your acknowledgment in your browser so the cookie notice stays dismissed on later visits.</p>}
+    {!hasOptionalAnalytics && <p>We save your acknowledgment in your browser so the cookie notice stays dismissed on later visits.</p>}
     {(integrations.leadCapture || integrations.booking?.embed) && <>
       <h3>Embedded tools</h3>
       <p>{integrations.booking?.embed && <>Cal.com loads on the booking page to display available times. <a href="https://cal.com/privacy" target="_blank" rel="noopener noreferrer">Cal.com privacy information</a>. </>}{integrations.leadCapture && <>Tally loads when you open the inquiry form. <a href="https://tally.so/help/privacy-policy" target="_blank" rel="noopener noreferrer">Tally privacy information</a>. </>}These providers may use their own cookies or browser storage. The optional analytics setting controls Mindlab’s analytics, and the embedded tools operate separately.</p>
