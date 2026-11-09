@@ -20,16 +20,21 @@ const packageSummaries = packages.map(({ id, name, price, setup, cadence }) => {
   return { id, name, price: `${baseFee}${setupFee}${additionalCosts}` };
 });
 ---
-<Layout title="Book an intro call" description={`Choose a time for a ${integrations.callDurationMinutes}-minute introductory conversation with Mindlab about your business and the support you need.`}>
+<Layout title="Let’s talk" description="Tell Mindlab about your business and the support you need, or book an introductory call.">
   <section class="page-hero container booking-intro">
-    <div><h1>{booking ? <>Book a {integrations.callDurationMinutes}-minute<br/>intro call.</> : 'Tell us about your business.'}</h1><p class="lede">{booking ? 'Choose a time below. We’ll talk about your business, the problem you want to solve, and where the work could start.' : 'Use the inquiry form to share your offer and the support you need.'}</p></div>
+    <div>
+      <h1>{form || !booking ? 'Tell us about your business.' : `Book a ${integrations.callDurationMinutes}-minute intro call.`}</h1>
+      <p class="lede">{form ? 'Share what you’re working on and where you’d like help.' : 'We’ll talk about your business, the problem you want to solve, and where the work could start.'}</p>
+      {form && booking && <a class="text-link" href="#calendar">Book a {integrations.callDurationMinutes}-minute intro call <Arrow/></a>}
+    </div>
     <div class="call-expectations"><h2>On the call</h2><ul><li>Tell us about your offer and customers.</li><li>Talk through the support you need.</li><li>Discuss fit, scope, and possible next steps.</li></ul><p>A first conversation, with no obligation to proceed.</p></div>
     <div id="selected-package" class="selected-package" hidden><span class="eyebrow context-label">You’re considering</span><strong id="selected-name"></strong><p id="selected-price"></p><a href={withBase('/pricing/')} class="text-link">Review all packages <Arrow/></a></div>
   </section>
-  <section class="container booking-calendar-section" id="calendar" aria-label="Choose an introductory call time">
+  {form && <section class="container booking-message-section" aria-label="Send an inquiry"><InquiryForm initiallyOpen/></section>}
+  {(booking || !form) && <section class="container booking-calendar-section" id="calendar" aria-label="Choose an introductory call time">
+    {form && booking && <h2>Book an intro call.</h2>}
     {booking ? <><BookingCalendar/><p class="calendar-privacy">{booking.embed ? 'Scheduling is provided by Cal.com.' : 'Scheduling is handled by our booking provider.'} <a href={withBase('/privacy/')}>How we handle your information</a>.</p></> : <div class="booking-not-connected"><h2>Send us your inquiry.</h2><p>Use the form below to tell us about your business.</p>{integrations.contactEmail && <a class="text-link" href={`mailto:${integrations.contactEmail}`}>Email Mindlab <Arrow/></a>}</div>}
-  </section>
-  {form && <section class="container booking-message-section"><InquiryForm initiallyOpen={!booking}/></section>}
+  </section>}
   <script define:vars={{ combinedSummary, packageSummaries }}>
     const service = new URLSearchParams(location.search).get('service');
     const selected = [...packageSummaries, combinedSummary].find((item) => item.id === service);

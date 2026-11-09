@@ -51,6 +51,25 @@ const socialIcons: Record<typeof projectConfig.socialProfiles[number]['name'], s
   </div>
 </footer>
 
+<script>
+  const footer = document.getElementById('site-footer');
+  const reducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)');
+
+  footer?.addEventListener('pointermove', (event) => {
+    if (event.pointerType === 'touch' || reducedMotion.matches) return;
+    const bounds = footer.getBoundingClientRect();
+    const x = (event.clientX - bounds.left - bounds.width / 2) * 0.24;
+    const y = (event.clientY - bounds.top - bounds.height / 2) * 0.28;
+    footer.style.setProperty('--footer-glow-x', `${x}px`);
+    footer.style.setProperty('--footer-glow-y', `${y}px`);
+  }, { passive: true });
+
+  footer?.addEventListener('pointerleave', () => {
+    footer.style.removeProperty('--footer-glow-x');
+    footer.style.removeProperty('--footer-glow-y');
+  });
+</script>
+
 <style>
   .footer-socials {
     display: flex;
