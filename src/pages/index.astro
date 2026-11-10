@@ -77,17 +77,12 @@ const searchMetadata = {
   </div>
 
   <div class="home-story-track">
-  <div class="home-story-panel home-story-pair">
-  <section class="section process-section"><div class="container"><div class="section-heading"><div><p class="section-overline">From brief to launch.</p><h2>How we work.</h2></div><div><p>Agree what the work needs to do, who provides the inputs, and how it will be reviewed.</p><a class="text-link" href={withBase('/about/')}>The Mindlab approach<Arrow/></a></div></div><ol class="process-grid">{[
+  <section class="section process-section home-story-panel"><div class="container"><div class="section-heading"><div><p class="section-overline">From brief to launch.</p><h2>How we work.</h2></div><div><p>Agree what the work needs to do, who provides the inputs, and how it will be reviewed.</p><a class="text-link" href={withBase('/about/')}>The Mindlab approach<Arrow/></a></div></div><ol class="process-grid">{[
     ['Understand', 'Bring the offer, the audience, your priorities, and the materials you already have.'],
     ['Define', 'Agree deliverables, responsibilities, timing, and the review process in a written scope.'],
     ['Create & launch', 'Develop the work, collect your feedback, and prepare the approved deliverables.'],
     ['Review & improve', 'Review the work and available evidence, then agree what should happen next.'],
   ].map(([title, body], i) => <li><span class="process-number">0{i + 1}<Arrow/></span><h3>{title}</h3><p>{body}</p></li>)}</ol></div></section>
-
-  <section class="section border-top" id="packages"><div class="container cta-inner"><div><h2>Packages and pricing.</h2><p>Compare what’s included, see the fees, and find the right starting point for a focused project or ongoing support.</p></div><a class="button button-outline" href={withBase('/pricing/')}>Compare packages & pricing <Arrow/></a></div></section>
-
-  </div>
   </div>
 
   <div class="home-story-track">
@@ -119,7 +114,7 @@ const searchMetadata = {
       '.hero-description, .hero-actions, .hero-art',
       '.section-heading, .service-row',
       '.section-heading, .work-card',
-      '.section-heading, .process-grid, .cta-inner',
+      '.section-heading, .process-grid',
       '.section-heading, .guide-list, .faq-grid',
     ];
     const tracks = [...story.querySelectorAll<HTMLElement>('.home-story-track')].map((track, index) => ({
@@ -138,7 +133,7 @@ const searchMetadata = {
     const headingParts = new Map<Element, ReturnType<typeof prepareHeading>>();
     const heroHeading = story.querySelector<HTMLElement>('.hero-copy h1');
     const opening = heroHeading ? prepareHeading(heroHeading) : undefined;
-    for (const heading of story.querySelectorAll<HTMLElement>('.section-heading h2, #packages h2, .faq-grid h2')) {
+    for (const heading of story.querySelectorAll<HTMLElement>('.section-heading h2, .faq-grid h2')) {
       const part = heading.closest('[data-story-part]');
       if (!part) continue;
       headingParts.set(part, prepareHeading(heading));

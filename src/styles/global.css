@@ -2781,6 +2781,11 @@ article[id] {
 	.footer-note {
 		grid-column: 1/-1;
 	}
+	.footer-note > .footer-label,
+	.footer-note > p,
+	.footer-note:not(:has(> a)) {
+		display: none;
+	}
 	.footer-bottom {
 		align-items: start;
 		flex-direction: column;
