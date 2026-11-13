@@ -1,0 +1,53 @@
+---
+import Layout from '@/layouts/Layout.astro';
+import Arrow from '@/components/Arrow.astro';
+import CTA from '@/components/CTA.astro';
+import { withBase } from '@/lib/urls';
+
+const services = [
+  { id: 'brand-blueprint', name: 'Brand Blueprint', description: 'Put words to what makes your selection worth shopping. Define who you serve, what you look for in the products you stock, and how you help customers choose.' },
+  { id: 'content-studio', name: 'Content Studio', description: 'Turn the advice you give in-store into product comparisons, routine guides, and emails that help shoppers decide what to try next.' },
+  { id: 'demand-campaigns', name: 'Ad Campaigns', description: 'Build a paid campaign around one clear reason to shop, such as a new collection, a seasonal gift edit, or an in-store event.' },
+];
+---
+<Layout title="Marketing for Beauty Boutiques" description="Brand strategy, written content, and paid advertising for independent beauty shops, skincare boutiques, and specialty cosmetics retailers.">
+  <section class="page-hero container">
+    <a class="back-link" href={withBase('/industries/b2c/#beauty-boutiques')}>← B2C industries</a>
+    <h1>Marketing for beauty boutiques.</h1>
+    <p class="lede">Help shoppers discover what you stock, choose products that suit them, and find a reason to visit your shop or buy online.</p>
+    <div class="hero-actions">
+      <a class="button" href={withBase('/book-call/')}>Talk about your boutique<Arrow/></a>
+    </div>
+  </section>
+
+  <section class="section tinted">
+    <div class="container">
+      <div class="section-heading">
+        <h2>Bring your in-store expertise online.</h2>
+        <p>For independent beauty shops, skincare boutiques, and specialty cosmetics retailers, good marketing can start with the questions customers already ask at the counter.</p>
+      </div>
+      <div class="service-rows">
+        {services.map((service, index) => (
+          <a class="service-row" href={withBase(`/services/#${service.id}`)}>
+            <span class="mono service-number">0{index + 1}</span>
+            <h3>{service.name}</h3>
+            <p>{service.description}</p>
+            <span class="round-arrow"><Arrow/></span>
+          </a>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="container cta-inner">
+      <div>
+        <h2>Start with one reason to shop.</h2>
+        <p>For a seasonal launch, we could build a gift edit around three price points, write an email explaining who each set is for, and run a local ad inviting shoppers to browse the collection in-store.</p>
+      </div>
+      <a class="button button-outline" href={withBase('/pricing/')}>View packages and pricing<Arrow/></a>
+    </div>
+  </section>
+
+  <CTA title="What do you want more shoppers to discover?" description="Tell us about your boutique, the customers you want to reach, and the products or events you’d like to promote."/>
+</Layout>

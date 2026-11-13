@@ -16,7 +16,10 @@ if (bookingUrl) {
   if (url.protocol !== 'https:') throw new Error('PUBLIC_BOOKING_URL must use HTTPS.');
 }
 const email = value('PUBLIC_CONTACT_EMAIL');
-if (email && !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) throw new Error('PUBLIC_CONTACT_EMAIL is invalid.');
+const secondaryEmail = value('PUBLIC_SECONDARY_CONTACT_EMAIL');
+for (const [name, address] of [['PUBLIC_CONTACT_EMAIL', email], ['PUBLIC_SECONDARY_CONTACT_EMAIL', secondaryEmail]]) {
+  if (address && !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(address)) throw new Error(`${name} is invalid.`);
+}
 const gtmId = value('PUBLIC_GTM_ID');
 if (gtmId && !/^GTM-[A-Z0-9]+$/.test(gtmId)) throw new Error('PUBLIC_GTM_ID is invalid.');
 const callDurationMinutes = Number(value('PUBLIC_CALL_DURATION_MINUTES') || projectConfig.callDurationMinutes);
@@ -29,6 +32,7 @@ export const integrations = {
   booking: bookingUrl ? { mode: bookingEmbed ? 'embed' as const : 'link' as const, url: bookingUrl, embed: bookingEmbed, durationMinutes: callDurationMinutes, supportsConfirmedBooking: false } : null,
   callDurationMinutes,
   contactEmail: email || null,
+  contactEmails: [...new Set([email, secondaryEmail].filter(Boolean))],
   analytics: gtmId ? { provider: 'gtm' as const, id: gtmId } : null,
 };
 

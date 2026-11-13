@@ -48,6 +48,7 @@ jobs:
           SITE_URL: ${{ steps.pages.outputs.origin }}
           SITE_BASE: ${{ steps.pages.outputs.base_path }}
           PUBLIC_CONTACT_EMAIL: ${{ vars.PUBLIC_CONTACT_EMAIL }}
+          PUBLIC_SECONDARY_CONTACT_EMAIL: ${{ vars.PUBLIC_SECONDARY_CONTACT_EMAIL }}
           LAUNCH_CONTENT_APPROVED: ${{ vars.LAUNCH_CONTENT_APPROVED }}
         run: |
           npm run build

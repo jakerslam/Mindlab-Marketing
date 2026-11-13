@@ -161,6 +161,15 @@
       "action": "Bookings, memberships, or offer inquiries"
     },
     {
+      "id": "beauty-boutiques",
+      "name": "Beauty boutiques",
+      "audience": "b2c",
+      "examples": "Independent beauty shops, skincare boutiques, and specialty cosmetics retailers",
+      "challenge": "Shoppers need help choosing among products they may never have tried.",
+      "approach": "Explain what you stock and why, write content that answers product questions, and build campaigns around one collection, launch, or store event.",
+      "action": "Store visits, product inquiries, or online purchases"
+    },
+    {
       "id": "retail-consumer",
       "name": "Retail & consumer brands",
       "audience": "b2c",
@@ -809,6 +818,68 @@
           "paragraphs": [
             "Brand Blueprint covers stakeholder input, a competitor review, one priority buyer profile, positioning, voice guidance, three content themes, and a 90-day plan. Logo and visual identity design, naming, photography, video, and website development are separately scoped.",
             "Bring your existing materials and the decisions you need to make. The first conversation should help establish which work is useful now and which work depends on it."
+          ],
+          "list": []
+        }
+      ]
+    },
+    {
+      "slug": "first-visit-facial-ads",
+      "title": "What should a first-visit facial ad include?",
+      "category": "Campaign planning",
+      "summary": "A short hook, treatment footage, and a clear way to book.",
+      "introduction": "Give people a reason to want the facial, then make it easy to book. A first-visit ad can lead with a feeling, show the treatment, and put the practical details near the booking link.",
+      "relatedPackage": "demand-campaigns",
+      "sections": [
+        {
+          "heading": "Lead with a feeling people recognize",
+          "paragraphs": [
+            "Try “You deserve a facial” over a close-up of a warm towel being laid across a client’s face. The line gives someone permission to take time for themselves. The footage makes the service clear."
+          ],
+          "list": []
+        },
+        {
+          "heading": "Show what the appointment feels like",
+          "paragraphs": [
+            "Use footage from your studio with permission. Show a few seconds of the actual treatment, such as an esthetician applying a mask, so viewers can picture the experience. Keep the first line short enough to read while the footage plays."
+          ],
+          "list": []
+        },
+        {
+          "heading": "Make the first visit easy to book",
+          "paragraphs": [
+            "If you have a first-visit offer, state the actual price, what’s included, and who qualifies. Link directly to the relevant appointment when possible. Compare two hooks with the same offer and booking destination, and judge the test by booked appointments."
+          ],
+          "list": []
+        }
+      ]
+    },
+    {
+      "slug": "better-qualified-remodeling-inquiries",
+      "title": "How can remodelers get better-qualified quote requests?",
+      "category": "Campaign planning",
+      "summary": "Use project photos, clear scope, and a short inquiry form to attract work that fits.",
+      "introduction": "Show the type of remodel you want to build again, say where you work, and ask a few questions that help you decide whether to schedule a consultation.",
+      "relatedPackage": "demand-campaigns",
+      "sections": [
+        {
+          "heading": "Show a project that fits the work you want",
+          "paragraphs": [
+            "If you want full kitchen remodels, show a completed kitchen as a whole room. Before-and-after photos from a similar angle can help homeowners see the scale of the work. Name the project type and service area in the ad."
+          ],
+          "list": []
+        },
+        {
+          "heading": "Give homeowners enough context to self-select",
+          "paragraphs": [
+            "Say what kind of work you take on. If you have a minimum project budget, state it clearly. If you publish a range, explain what can move a project within it, such as the size of the space or the finish selections."
+          ],
+          "list": []
+        },
+        {
+          "heading": "Ask only what you need for the first conversation",
+          "paragraphs": [
+            "Start with location, project type, rough budget, and desired start date. Offer a way to say the budget or timing is still undecided. Explain what happens after submission. Track which inquiries fit your scope and how many become consultations."
           ],
           "list": []
         }

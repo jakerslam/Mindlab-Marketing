@@ -35,7 +35,7 @@ const socialIcons: Record<typeof projectConfig.socialProfiles[number]['name'], s
       </div>
       <div><span class="footer-label">Explore</span><a href={withBase("/services/")}>Our services</a><a href={withBase("/pricing/")}>Packages & pricing</a><a href={withBase("/industries/")}>Industries</a></div>
       <div><span class="footer-label">Meet Mindlab</span><a href={withBase("/about/")}>About Mindlab</a><a href={withBase("/book-call/")}>Let’s talk</a></div>
-      <div class="footer-note"><span class="footer-label">A good place to start</span><p>One business. One clear next step.<br/> Let’s work out yours.</p>{integrations.contactEmail && <a href={`mailto:${integrations.contactEmail}`}>{integrations.contactEmail}</a>}</div>
+      <div class="footer-note"><span class="footer-label">A good place to start</span><p>One business. One clear next step.<br/> Let’s work out yours.</p>{integrations.contactEmails.map((email) => <a href={`mailto:${email}`}>{email}</a>)}</div>
     </div>
     <div class="footer-bottom">
       <span>© {new Date().getFullYear()} Mindlab LLC</span>
